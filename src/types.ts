@@ -1,4 +1,5 @@
 export type Language = 'de' | 'en';
+export type Theme = 'dark' | 'sepia';
 
 export interface PersonaContent {
   roleId: 'management' | 'it-compliance' | 'departments';

@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
-import { Language } from './types';
+import React, { useState, useEffect } from 'react';
+import { Language, Theme } from './types';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { SocialProof } from './components/SocialProof';
@@ -20,14 +20,78 @@ import { BookingModal } from './components/BookingModal';
 import { ResourceModal } from './components/ResourceModal';
 import { ImpressumModal } from './components/ImpressumModal';
 import { AdminLeadModal } from './components/AdminLeadModal';
+import {
+  getInitialThemeState,
+  getScheduledTheme,
+  persistThemeState,
+  ThemeMode,
+} from './utils/theme';
 
 export default function App() {
   const [lang, setLang] = useState<Language>('de');
+  const [themeState, setThemeState] = useState<{ theme: Theme; mode: ThemeMode }>(getInitialThemeState);
+  const { theme, mode: themeMode } = themeState;
+
   const [isBookingOpen, setIsBookingOpen] = useState<boolean>(false);
   const [isResourceOpen, setIsResourceOpen] = useState<boolean>(false);
   const [isImpressumOpen, setIsImpressumOpen] = useState<boolean>(false);
   const [isAdminLeadsOpen, setIsAdminLeadsOpen] = useState<boolean>(false);
   const [preselectedPackage, setPreselectedPackage] = useState<string | undefined>(undefined);
+
+  // Sync theme with document attribute & localStorage
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    persistThemeState(theme, themeMode);
+  }, [theme, themeMode]);
+
+  // Periodic and visibility-based check to automatically switch theme when schedule changes (e.g. crossing 20:00 or 07:00)
+  useEffect(() => {
+    const evaluateSchedule = () => {
+      if (themeMode === 'auto') {
+        const scheduled = getScheduledTheme();
+        setThemeState((prev) => {
+          if (prev.mode === 'auto' && prev.theme !== scheduled) {
+            return { theme: scheduled, mode: 'auto' };
+          }
+          return prev;
+        });
+      }
+    };
+
+    // Run immediate check
+    evaluateSchedule();
+
+    const interval = setInterval(evaluateSchedule, 30000);
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        evaluateSchedule();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      clearInterval(interval);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [themeMode]);
+
+  const handleToggleTheme = () => {
+    // Manually toggling locks into manual mode
+    const nextTheme: Theme = theme === 'dark' ? 'sepia' : 'dark';
+    setThemeState({
+      theme: nextTheme,
+      mode: 'manual',
+    });
+  };
+
+  const handleResetToAutoTheme = () => {
+    // Return to the automatic time schedule
+    const scheduled = getScheduledTheme();
+    setThemeState({
+      theme: scheduled,
+      mode: 'auto',
+    });
+  };
 
   const handleOpenBooking = (packageTitle?: string) => {
     setPreselectedPackage(packageTitle);
@@ -39,11 +103,21 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#090D14] text-slate-200 selection:bg-[#14B8A6] selection:text-[#090D14]">
-      {/* 3-Zone Top Bar Navigation */}
+    <div
+      className={`min-h-screen flex flex-col transition-colors duration-200 ${
+        theme === 'sepia'
+          ? 'bg-[#FAF8F5] text-[#18130E] selection:bg-[#0F766E] selection:text-white'
+          : 'bg-[#090D14] text-slate-200 selection:bg-[#14B8A6] selection:text-[#090D14]'
+      }`}
+    >
+      {/* 3-Zone Top Bar Navigation with Theme & Language Actions */}
       <Navbar
         lang={lang}
+        theme={theme}
+        themeMode={themeMode}
         onLanguageChange={setLang}
+        onToggleTheme={handleToggleTheme}
+        onResetToAutoTheme={handleResetToAutoTheme}
         onOpenBooking={() => handleOpenBooking()}
       />
 
@@ -99,6 +173,7 @@ export default function App() {
       {/* 10. Quiet B2B Footer */}
       <Footer
         lang={lang}
+        theme={theme}
         onOpenBooking={() => handleOpenBooking()}
         onOpenResource={handleOpenResource}
         onOpenImpressum={() => setIsImpressumOpen(true)}

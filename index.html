@@ -249,6 +249,24 @@
       ]
     }
     </script>
+
+    <!-- Time-based Theme Init: Sepia (07:00–20:00), Dunkel (20:00–07:00) -->
+    <script>
+      (function() {
+        try {
+          var mode = localStorage.getItem('kiventis_theme_mode');
+          var manual = localStorage.getItem('kiventis_theme');
+          var theme = 'sepia';
+          if (mode === 'manual' && (manual === 'sepia' || manual === 'dark')) {
+            theme = manual;
+          } else {
+            var hour = new Date().getHours();
+            theme = (hour >= 20 || hour < 7) ? 'dark' : 'sepia';
+          }
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body class="bg-[#0B0F17] text-[#E2E8F0] antialiased selection:bg-[#0D9488] selection:text-white">
     <div id="root"></div>

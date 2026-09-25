@@ -1,10 +1,11 @@
 import React from 'react';
-import { Language } from '../types';
+import { Language, Theme } from '../types';
 import { translations } from '../data/translations';
 import { ShieldCheck, MapPin, Mail, Phone, Globe } from 'lucide-react';
 
 interface FooterProps {
   lang: Language;
+  theme?: Theme;
   onOpenBooking: () => void;
   onOpenResource: () => void;
   onOpenImpressum: () => void;
@@ -13,6 +14,7 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({
   lang,
+  theme = 'dark',
   onOpenBooking,
   onOpenResource,
   onOpenImpressum,
@@ -21,13 +23,14 @@ export const Footer: React.FC<FooterProps> = ({
   const t = translations[lang].footer;
 
   return (
-    <footer className="border-t border-white/[0.08] bg-[#070A10] text-slate-400 text-xs">
+    <footer className="border-t border-white/[0.08] bg-[#070A10] text-slate-400 text-xs transition-colors duration-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand & Mission */}
           <div className="lg:col-span-2 space-y-4">
             <a href="#" className="font-display text-xl font-bold tracking-tight block">
-              <span className="text-[#14B8A6]">KI</span><span className="text-white">VENTIS</span>
+              <span className={theme === 'sepia' ? 'text-[#0D9488]' : 'text-[#14B8A6]'}>KI</span>
+              <span className={theme === 'sepia' ? 'text-[#1A140F]' : 'text-white'}>VENTIS</span>
             </a>
             <p className="text-sm text-slate-400 max-w-sm leading-relaxed">
               {t.tagline}

@@ -13,6 +13,7 @@
     color: #E2E8F0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 
   h1, h2, h3, .font-display {
@@ -25,7 +26,7 @@
   }
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - Dark Mode */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -39,5 +40,364 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #334155;
+}
+
+/* ==========================================================================
+   SEPIA / WARM LIGHT THEME
+   Strict adherence to Standard UI Design Rules:
+   - Clean, anti-glare warm ivory canvas (#FAF8F5)
+   - Crisp white cards (#FFFFFF) with subtle warm hairline borders (#E8E2D6)
+   - Deep espresso / charcoal typography (#18130E) meeting WCAG AAA (17:1 ratio)
+   - High-contrast, deep teal accents (#0F766E / #0D9488)
+   - No muddy, dingy yellowish-brown surfaces
+   ========================================================================== */
+html[data-theme="sepia"],
+[data-theme="sepia"] {
+  color-scheme: light;
+}
+
+[data-theme="sepia"] body {
+  background-color: #FAF8F5 !important;
+  color: #18130E !important;
+}
+
+/* Scrollbar in Sepia */
+[data-theme="sepia"] ::-webkit-scrollbar-track {
+  background: #FAF8F5 !important;
+}
+[data-theme="sepia"] ::-webkit-scrollbar-thumb {
+  background: #D8CEBE !important;
+  border-radius: 4px;
+}
+[data-theme="sepia"] ::-webkit-scrollbar-thumb:hover {
+  background: #C4B6A2 !important;
+}
+
+/* 1. Canvas & Section Backgrounds (Standard Warm Ivory & Alternating Rhythm) */
+[data-theme="sepia"] .bg-\[\#090D14\],
+[data-theme="sepia"] [class*="bg-[#090D14]"] {
+  background-color: #FAF8F5 !important;
+}
+[data-theme="sepia"] .bg-\[\#070A10\],
+[data-theme="sepia"] [class*="bg-[#070A10]"] {
+  background-color: #F4EFE6 !important;
+}
+[data-theme="sepia"] .bg-\[\#0A0E18\],
+[data-theme="sepia"] [class*="bg-[#0A0E18]"] {
+  background-color: #F4EFE6 !important;
+}
+[data-theme="sepia"] .bg-\[\#0A0E1A\],
+[data-theme="sepia"] [class*="bg-[#0A0E1A]"] {
+  background-color: #F4EFE6 !important;
+}
+[data-theme="sepia"] .bg-\[\#0A0F1D\],
+[data-theme="sepia"] [class*="bg-[#0A0F1D]"] {
+  background-color: #FAF8F5 !important;
+}
+[data-theme="sepia"] .bg-\[\#090D14\]\/90,
+[data-theme="sepia"] .bg-\[\#090D14\]\/95 {
+  background-color: rgba(250, 248, 245, 0.95) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+/* 2. Elevated Cards & Containers -> Crisp Clean White (#FFFFFF) with Soft Shadow */
+[data-theme="sepia"] .bg-\[\#0E1524\],
+[data-theme="sepia"] [class*="bg-[#0E1524]"],
+[data-theme="sepia"] .bg-\[\#0B111D\],
+[data-theme="sepia"] [class*="bg-[#0B111D]"] {
+  background-color: #FFFFFF !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.03) !important;
+}
+
+[data-theme="sepia"] .hover\:bg-\[\#121B2E\]:hover {
+  background-color: #FFFFFF !important;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.06) !important;
+}
+
+/* 3. Card Gradients -> Clean White to Soft Warm Ivory */
+[data-theme="sepia"] [class*="from-[#0E1524]"] {
+  --tw-gradient-from: #FFFFFF var(--tw-gradient-from-position) !important;
+}
+[data-theme="sepia"] [class*="to-[#121B2E]"] {
+  --tw-gradient-to: #FBF9F4 var(--tw-gradient-to-position) !important;
+}
+[data-theme="sepia"] [class*="from-[#0C1220]"] {
+  --tw-gradient-from: #FFFFFF var(--tw-gradient-from-position) !important;
+}
+[data-theme="sepia"] [class*="via-[#0E1627]"] {
+  --tw-gradient-via: #FAF8F4 var(--tw-gradient-via-position) !important;
+}
+[data-theme="sepia"] [class*="to-[#0A0F1D]"] {
+  --tw-gradient-to: #F6F1E8 var(--tw-gradient-to-position) !important;
+}
+
+/* 4. Subtle Pills, Badges & Translucent Overlays */
+[data-theme="sepia"] [class*="bg-white/"] {
+  background-color: #F2ECE0 !important;
+}
+[data-theme="sepia"] [class*="hover:bg-white/"]:hover {
+  background-color: #E8E0D2 !important;
+}
+
+/* 5. Teal & Emerald Accent Containers */
+[data-theme="sepia"] .bg-\[\#14B8A6\]\/\[0\.07\],
+[data-theme="sepia"] .bg-\[\#14B8A6\]\/\[0\.08\],
+[data-theme="sepia"] [class*="bg-[#14B8A6]"][class*="/"] {
+  background-color: #E6F5F2 !important;
+}
+[data-theme="sepia"] .bg-teal-950\/20,
+[data-theme="sepia"] .bg-teal-950\/30,
+[data-theme="sepia"] .bg-teal-950\/40,
+[data-theme="sepia"] [class*="bg-teal-950/"] {
+  background-color: #E8F5F2 !important;
+  border-color: #B2DFD8 !important;
+}
+[data-theme="sepia"] .bg-amber-400\/\[0\.03\],
+[data-theme="sepia"] [class*="bg-amber-400/"] {
+  background-color: #FEF8EC !important;
+  border-color: #F7E3B5 !important;
+}
+
+/* Solid Teal Accent Buttons & Badges */
+[data-theme="sepia"] .bg-\[\#14B8A6\],
+[data-theme="sepia"] [class*="bg-[#14B8A6]"]:not([class*="/"]) {
+  background-color: #0D9488 !important;
+  color: #FFFFFF !important;
+}
+
+/* 6. Hairline Borders (Crisp warm stone, no dark lines) */
+[data-theme="sepia"] [class*="border-white/"] {
+  border-color: #E8E2D6 !important;
+}
+[data-theme="sepia"] .border-slate-800,
+[data-theme="sepia"] .border-slate-700 {
+  border-color: #E8E2D6 !important;
+}
+[data-theme="sepia"] [class*="hover:border-white"]:hover {
+  border-color: #D0C6B5 !important;
+}
+[data-theme="sepia"] .border-teal-500\/20,
+[data-theme="sepia"] .border-teal-500\/30 {
+  border-color: rgba(15, 118, 110, 0.25) !important;
+}
+
+/* 7. Typography (WCAG AAA High Contrast & Crisp Hierarchy) */
+[data-theme="sepia"] .text-white {
+  color: #18130E !important;
+}
+[data-theme="sepia"] .text-slate-100 {
+  color: #18130E !important;
+}
+[data-theme="sepia"] .text-slate-200 {
+  color: #2D241C !important;
+}
+[data-theme="sepia"] .text-slate-300 {
+  color: #3D332A !important;
+}
+[data-theme="sepia"] .text-slate-400 {
+  color: #5F5245 !important;
+}
+[data-theme="sepia"] .text-slate-500 {
+  color: #7A6C5F !important;
+}
+[data-theme="sepia"] .text-slate-600 {
+  color: #8C7D70 !important;
+}
+[data-theme="sepia"] .hover\:text-white:hover {
+  color: #18130E !important;
+}
+
+/* Brand Accents in Sepia (Deep, saturated for high contrast on light backgrounds) */
+[data-theme="sepia"] .text-\[\#14B8A6\],
+[data-theme="sepia"] .text-\[\#2DD4BF\] {
+  color: #0F766E !important;
+}
+[data-theme="sepia"] .text-teal-300,
+[data-theme="sepia"] .text-teal-400 {
+  color: #0F766E !important;
+}
+[data-theme="sepia"] .text-emerald-400 {
+  color: #047857 !important;
+}
+[data-theme="sepia"] .text-cyan-400,
+[data-theme="sepia"] .text-sky-400 {
+  color: #0369A1 !important;
+}
+[data-theme="sepia"] .text-amber-200,
+[data-theme="sepia"] .text-amber-300,
+[data-theme="sepia"] .text-amber-400,
+[data-theme="sepia"] [class*="text-amber-"] {
+  color: #78350F !important; /* WCAG AAA high contrast (11:1 ratio) */
+}
+[data-theme="sepia"] [class*="bg-amber-500/"],
+[data-theme="sepia"] [class*="bg-amber-400/"] {
+  background-color: #FEF3C7 !important;
+  border-color: #FCD34D !important;
+}
+[data-theme="sepia"] [class*="border-amber-500/"],
+[data-theme="sepia"] [class*="border-amber-400/"] {
+  border-color: #FBBF24 !important;
+}
+
+/* Gradient text in Social Proof & Stats */
+[data-theme="sepia"] .from-teal-300 {
+  --tw-gradient-from: #0F766E var(--tw-gradient-from-position) !important;
+}
+[data-theme="sepia"] .to-emerald-400 {
+  --tw-gradient-to: #047857 var(--tw-gradient-to-position) !important;
+}
+
+/* 8. Interactive Form Controls, Inputs & Modals */
+[data-theme="sepia"] input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+[data-theme="sepia"] select,
+[data-theme="sepia"] textarea {
+  background-color: #FFFFFF !important;
+  color: #18130E !important;
+  border-color: #D8CEBE !important;
+}
+[data-theme="sepia"] input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):focus,
+[data-theme="sepia"] select:focus,
+[data-theme="sepia"] textarea:focus {
+  border-color: #0F766E !important;
+  outline-color: #0F766E !important;
+}
+[data-theme="sepia"] input::placeholder,
+[data-theme="sepia"] textarea::placeholder {
+  color: #8C7D70 !important;
+}
+
+/* ==========================================================================
+   Range Slider Controls - High Contrast Custom Track & Thumb
+   ========================================================================== */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  height: 24px;
+}
+
+/* Chrome, Safari, Edge, Opera Track */
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 8px;
+  background: #25334D;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Chrome, Safari, Edge, Opera Thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 22px;
+  width: 22px;
+  border-radius: 50%;
+  background: #14B8A6;
+  border: 2.5px solid #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  margin-top: -7px;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.12);
+  background: #2DD4BF;
+}
+
+/* Firefox Track */
+input[type="range"]::-moz-range-track {
+  height: 8px;
+  background: #25334D;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Firefox Thumb */
+input[type="range"]::-moz-range-thumb {
+  height: 22px;
+  width: 22px;
+  border-radius: 50%;
+  background: #14B8A6;
+  border: 2.5px solid #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  transform: scale(1.12);
+  background: #2DD4BF;
+}
+
+/* Sepia Mode Range Sliders */
+[data-theme="sepia"] input[type="range"]::-webkit-slider-runnable-track {
+  background: #E5DDD0 !important;
+  border: 1px solid #C8BEAF !important;
+}
+
+[data-theme="sepia"] input[type="range"]::-webkit-slider-thumb {
+  background: #0F766E !important;
+  border: 2.5px solid #FAF8F5 !important;
+  box-shadow: 0 2px 6px rgba(15, 118, 110, 0.35) !important;
+}
+
+[data-theme="sepia"] input[type="range"]::-webkit-slider-thumb:hover {
+  background: #0D9488 !important;
+}
+
+[data-theme="sepia"] input[type="range"]::-moz-range-track {
+  background: #E5DDD0 !important;
+  border: 1px solid #C8BEAF !important;
+}
+
+[data-theme="sepia"] input[type="range"]::-moz-range-thumb {
+  background: #0F766E !important;
+  border: 2.5px solid #FAF8F5 !important;
+  box-shadow: 0 2px 6px rgba(15, 118, 110, 0.35) !important;
+}
+
+/* Modal Backdrops */
+[data-theme="sepia"] .bg-black\/80,
+[data-theme="sepia"] .bg-black\/70 {
+  background-color: rgba(24, 19, 14, 0.5) !important;
+  backdrop-filter: blur(4px) !important;
+}
+
+/* Secondary Buttons in Sepia */
+[data-theme="sepia"] button[class*="border-white"] {
+  border-color: #D8CEBE !important;
+  background-color: #FFFFFF !important;
+  color: #18130E !important;
+}
+[data-theme="sepia"] button[class*="border-white"]:hover {
+  background-color: #F7F4EC !important;
+  border-color: #C4B8A4 !important;
+}
+
+/* Dark text utility for emerald buttons & chips in Sepia */
+[data-theme="sepia"] .text-\[\#090D14\] {
+  color: #18130E !important;
+}
+
+/* Grounded warm footer in Sepia */
+[data-theme="sepia"] footer {
+  background-color: #EDE6D8 !important;
+  border-color: #DFD5C2 !important;
+}
+
+/* ROI Calculator Results card in Sepia (Crisp white with teal border) */
+[data-theme="sepia"] #calculator .bg-\[\#090D14\] {
+  background-color: #FFFFFF !important;
+  border-color: rgba(15, 118, 110, 0.35) !important;
+}
+
+/* Persona detail card right column in Sepia */
+[data-theme="sepia"] #personas .bg-\[\#090D14\] {
+  background-color: #FAF8F5 !important;
+  border-color: #E8E2D6 !important;
+}
+
+/* Hero Background Glow Adaptation */
+[data-theme="sepia"] .from-\[\#14B8A6\]\/\[0\.08\] {
+  --tw-gradient-from: rgba(13, 148, 136, 0.08) var(--tw-gradient-from-position) !important;
 }
 

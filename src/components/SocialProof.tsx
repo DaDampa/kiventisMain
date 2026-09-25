@@ -10,6 +10,10 @@ import {
   Cpu,
   Layers,
   Sparkles,
+  BarChart3,
+  Clock,
+  TrendingUp,
+  Zap,
 } from 'lucide-react';
 
 interface SocialProofProps {
@@ -129,24 +133,59 @@ export const SocialProof: React.FC<SocialProofProps> = ({ lang }) => {
         </div>
 
         {/* Training & Quantitative Outcome Metrics */}
-        <div className="pt-8 border-t border-white/[0.06]">
-          <div className="text-center mb-8">
-            <span className="text-xs font-mono font-semibold text-slate-400 uppercase tracking-wider">
-              {t.metricsHeading}
-            </span>
+        <div className="rounded-2xl border border-white/[0.08] bg-[#0E1524]/70 p-6 sm:p-8 shadow-xl backdrop-blur-sm">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-6 border-b border-white/[0.08]">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-teal-500/15 border border-teal-500/30 flex items-center justify-center text-teal-400 shrink-0">
+                <BarChart3 className="h-5 w-5 text-[#14B8A6]" />
+              </div>
+              <div>
+                <span className="text-xs font-mono font-semibold text-[#14B8A6] uppercase tracking-wider block">
+                  {lang === 'de' ? 'VALIDIERTE EFFIZIENZ- & ROI-BENCHMARKS' : 'VALIDATED EFFICIENCY & ROI BENCHMARKS'}
+                </span>
+                <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                  {t.metricsHeading}
+                </h3>
+              </div>
+            </div>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.04] text-xs font-mono text-slate-300 self-start sm:self-auto shrink-0">
+              <CheckCircle2 className="h-3.5 w-3.5 text-teal-400" />
+              <span>{lang === 'de' ? 'KMU-Praxisvalidiert' : 'SME Field-Validated'}</span>
+            </div>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {t.metrics.map((item, idx) => (
-              <div key={idx} className="flex flex-col items-center text-center px-3">
-                <span className="font-mono tabular-nums text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-emerald-400">
-                  {item.metric}
-                </span>
-                <p className="mt-2 text-xs sm:text-sm text-slate-300 leading-snug font-medium max-w-[220px]">
-                  {item.label}
-                </p>
-              </div>
-            ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {t.metrics.map((item, idx) => {
+              const metricIcons = [
+                <Clock className="h-4 w-4 text-[#14B8A6]" key="clock" />,
+                <ShieldCheck className="h-4 w-4 text-emerald-400" key="shield" />,
+                <TrendingUp className="h-4 w-4 text-cyan-400" key="trending" />,
+                <Zap className="h-4 w-4 text-teal-300" key="zap" />,
+              ];
+              return (
+                <div
+                  key={idx}
+                  className="group rounded-xl border border-white/[0.06] bg-[#0A0E18]/60 p-5 flex flex-col justify-between transition-all duration-200 hover:border-teal-500/30 hover:bg-[#0A0E18]/80 hover:shadow-md"
+                >
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-[11px] font-mono text-slate-400 font-medium uppercase tracking-wider">
+                      KPI 0{idx + 1}
+                    </span>
+                    <div className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/10 flex items-center justify-center group-hover:scale-105 transition-transform">
+                      {metricIcons[idx % metricIcons.length]}
+                    </div>
+                  </div>
+                  <div>
+                    <div className="font-mono tabular-nums text-3xl sm:text-4xl font-extrabold text-[#14B8A6] tracking-tight">
+                      {item.metric}
+                    </div>
+                    <p className="mt-2 text-xs sm:text-sm text-slate-300 leading-snug font-medium">
+                      {item.label}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

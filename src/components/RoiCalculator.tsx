@@ -49,12 +49,12 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({
 
         <div className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Controls Box */}
-          <div className="lg:col-span-6 rounded-2xl border border-white/[0.08] bg-[#0E1524]/70 p-6 sm:p-8 space-y-8 flex flex-col justify-between">
+          <div className="lg:col-span-6 rounded-2xl border border-white/[0.12] bg-[#0E1524]/85 p-6 sm:p-8 space-y-8 flex flex-col justify-between shadow-lg">
             {/* Slider 1: Team Size */}
             <div>
-              <div className="flex justify-between items-center text-sm font-semibold text-white mb-2">
-                <label htmlFor={teamSizeId}>{t.teamSizeLabel}</label>
-                <span className="font-mono tabular-nums text-base text-[#14B8A6] bg-white/[0.04] px-2.5 py-0.5 rounded border border-white/10">
+              <div className="flex justify-between items-center text-sm font-bold text-white mb-2.5">
+                <label htmlFor={teamSizeId} className="tracking-wide">{t.teamSizeLabel}</label>
+                <span className="font-mono font-bold tabular-nums text-sm sm:text-base text-teal-300 bg-teal-950/60 px-3 py-1 rounded-lg border border-teal-500/40 shadow-sm">
                   {teamSize} {lang === 'de' ? 'Mitarbeiter' : 'employees'}
                 </span>
               </div>
@@ -66,9 +66,9 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({
                 step="1"
                 value={teamSize}
                 onChange={(e) => setTeamSize(Number(e.target.value))}
-                className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-[#14B8A6]"
+                className="w-full h-2.5 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#14B8A6]/40 transition-all"
               />
-              <div className="flex justify-between text-[11px] text-slate-400 mt-1 font-mono">
+              <div className="flex justify-between text-xs text-slate-300 font-mono font-medium mt-1.5 px-0.5">
                 <span>3 MA</span>
                 <span>40 MA</span>
                 <span>80 MA</span>
@@ -77,9 +77,9 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({
 
             {/* Slider 2: Hourly Rate */}
             <div>
-              <div className="flex justify-between items-center text-sm font-semibold text-white mb-2">
-                <label htmlFor={hourlyRateId}>{t.hourlyRateLabel}</label>
-                <span className="font-mono tabular-nums text-base text-[#14B8A6] bg-white/[0.04] px-2.5 py-0.5 rounded border border-white/10">
+              <div className="flex justify-between items-center text-sm font-bold text-white mb-2.5">
+                <label htmlFor={hourlyRateId} className="tracking-wide">{t.hourlyRateLabel}</label>
+                <span className="font-mono font-bold tabular-nums text-sm sm:text-base text-teal-300 bg-teal-950/60 px-3 py-1 rounded-lg border border-teal-500/40 shadow-sm">
                   {hourlyRate} € / {lang === 'de' ? 'Std.' : 'hr'}
                 </span>
               </div>
@@ -91,9 +91,9 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({
                 step="5"
                 value={hourlyRate}
                 onChange={(e) => setHourlyRate(Number(e.target.value))}
-                className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-[#14B8A6]"
+                className="w-full h-2.5 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#14B8A6]/40 transition-all"
               />
-              <div className="flex justify-between text-[11px] text-slate-400 mt-1 font-mono">
+              <div className="flex justify-between text-xs text-slate-300 font-mono font-medium mt-1.5 px-0.5">
                 <span>40 €</span>
                 <span>95 €</span>
                 <span>160 €</span>
@@ -102,9 +102,9 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({
 
             {/* Slider 3: Hours Saved per week */}
             <div>
-              <div className="flex justify-between items-center text-sm font-semibold text-white mb-2">
-                <label htmlFor={hoursSavedId}>{t.hoursSavedLabel}</label>
-                <span className="font-mono tabular-nums text-base text-[#14B8A6] bg-white/[0.04] px-2.5 py-0.5 rounded border border-white/10">
+              <div className="flex justify-between items-center text-sm font-bold text-white mb-2.5">
+                <label htmlFor={hoursSavedId} className="tracking-wide">{t.hoursSavedLabel}</label>
+                <span className="font-mono font-bold tabular-nums text-sm sm:text-base text-teal-300 bg-teal-950/60 px-3 py-1 rounded-lg border border-teal-500/40 shadow-sm">
                   {hoursSavedPerWeek} {lang === 'de' ? 'Std. / Woche' : 'hrs / week'}
                 </span>
               </div>
@@ -116,41 +116,41 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({
                 step="0.5"
                 value={hoursSavedPerWeek}
                 onChange={(e) => setHoursSavedPerWeek(Number(e.target.value))}
-                className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-[#14B8A6]"
+                className="w-full h-2.5 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#14B8A6]/40 transition-all"
               />
-              <div className="flex justify-between text-[11px] text-slate-400 mt-1 font-mono">
+              <div className="flex justify-between text-xs text-slate-300 font-mono font-medium mt-1.5 px-0.5">
                 <span>1 Std.</span>
                 <span>2 Std.</span>
-                <span>4,5 Std. (Ø KMU)</span>
+                <span className="text-teal-400 font-bold">4,5 Std. (Ø KMU)</span>
                 <span>8 Std.</span>
               </div>
             </div>
 
-            <p className="text-xs text-slate-400 italic pt-2 border-t border-white/[0.06]">
+            <p className="text-xs text-slate-300 font-normal italic pt-3 border-t border-white/[0.10] leading-relaxed">
               {t.disclaimer}
             </p>
           </div>
 
           {/* Results Box */}
-          <div className="lg:col-span-6 rounded-2xl border border-[#14B8A6]/30 bg-[#090D14] p-6 sm:p-8 flex flex-col justify-between shadow-xl">
+          <div className="lg:col-span-6 rounded-2xl border border-[#14B8A6]/40 bg-[#090D14] p-6 sm:p-8 flex flex-col justify-between shadow-xl">
             <div>
-              <div className="flex items-center justify-between pb-4 border-b border-white/[0.08]">
-                <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#14B8A6]">
+              <div className="flex items-center justify-between pb-4 border-b border-white/[0.10]">
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#14B8A6]">
                   {t.resultsTitle}
                 </span>
                 <TrendingUp className="h-5 w-5 text-emerald-400" />
               </div>
 
               {/* Main big figure: Yearly savings */}
-              <div className="mt-6 p-6 rounded-xl bg-gradient-to-br from-[#14B8A6]/10 to-transparent border border-[#14B8A6]/20">
-                <span className="text-xs font-medium text-slate-300">
+              <div className="mt-6 p-6 rounded-xl bg-gradient-to-br from-[#14B8A6]/15 to-transparent border border-[#14B8A6]/30">
+                <span className="text-xs font-semibold text-slate-200">
                   {t.yearlySavings}
                 </span>
                 <div className="mt-1 font-mono tabular-nums text-4xl sm:text-5xl font-extrabold text-white">
                   {yearlyGrossSavings.toLocaleString('de-DE')} €
                 </div>
-                <div className="mt-2 text-xs text-emerald-400 font-medium flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5" />
+                <div className="mt-2 text-xs text-emerald-400 font-semibold flex items-center gap-1.5">
+                  <CheckCircle2 className="h-4 w-4" />
                   <span>
                     {totalHoursSavedPerYear.toLocaleString('de-DE')} {t.hoursPerYear}
                   </span>
@@ -159,26 +159,26 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({
 
               {/* Secondary metrics: Break even and ROI */}
               <div className="mt-6 grid grid-cols-2 gap-4">
-                <div className="p-4 rounded-xl border border-white/[0.06] bg-white/[0.02]">
-                  <span className="text-xs text-slate-400 font-medium">
+                <div className="p-4 rounded-xl border border-white/[0.10] bg-white/[0.04]">
+                  <span className="text-xs text-slate-300 font-medium">
                     {t.breakEven}
                   </span>
-                  <div className="mt-1 font-mono tabular-nums text-2xl sm:text-3xl font-bold text-white">
+                  <div className="mt-1 font-mono tabular-nums text-2xl sm:text-3xl font-extrabold text-white">
                     {breakEvenMonths} {lang === 'de' ? 'Monate' : 'mo.'}
                   </div>
-                  <div className="mt-1 text-[11px] text-[#14B8A6]">
+                  <div className="mt-1 text-xs font-semibold text-[#14B8A6]">
                     {lang === 'de' ? 'Ø 35 bis 55 Tage' : 'Avg. 35 to 55 days'}
                   </div>
                 </div>
 
-                <div className="p-4 rounded-xl border border-white/[0.06] bg-white/[0.02]">
-                  <span className="text-xs text-slate-400 font-medium">
+                <div className="p-4 rounded-xl border border-white/[0.10] bg-white/[0.04]">
+                  <span className="text-xs text-slate-300 font-medium">
                     {t.roiMultiple}
                   </span>
-                  <div className="mt-1 font-mono tabular-nums text-2xl sm:text-3xl font-bold text-emerald-400">
+                  <div className="mt-1 font-mono tabular-nums text-2xl sm:text-3xl font-extrabold text-emerald-400">
                     {roiMultiple}x
                   </div>
-                  <div className="mt-1 text-[11px] text-slate-400">
+                  <div className="mt-1 text-xs text-slate-300 font-medium">
                     {lang === 'de' ? 'Faktor im 1. Geschäftsjahr' : 'Factor in Year 1'}
                   </div>
                 </div>

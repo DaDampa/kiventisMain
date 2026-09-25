@@ -32,27 +32,31 @@ export const ProblemSection: React.FC<ProblemSectionProps> = ({ lang }) => {
           {t.cards.map((card, idx) => (
             <div
               key={idx}
-              className="relative rounded-xl border border-white/[0.08] bg-[#0E1524]/60 p-6 sm:p-7 flex flex-col justify-between hover:border-amber-400/30 transition-all group"
+              className="relative rounded-xl border border-white/[0.12] bg-[#0E1524]/80 p-6 sm:p-7 flex flex-col justify-between hover:border-amber-400/40 transition-all group shadow-md"
             >
               <div>
-                <div className="flex items-center justify-between pb-4 border-b border-white/[0.06]">
-                  <span className="font-mono text-2xl font-extrabold text-slate-400 group-hover:text-amber-400 transition-colors">
+                <div className="flex items-center justify-between pb-4 border-b border-white/[0.08]">
+                  <span className="font-mono text-2xl font-extrabold text-slate-300 group-hover:text-amber-400 transition-colors">
                     {card.index}
                   </span>
-                  {idx === 0 && <Clock className="h-5 w-5 text-slate-400" />}
+                  {idx === 0 && <Clock className="h-5 w-5 text-slate-300" />}
                   {idx === 1 && <ShieldAlert className="h-5 w-5 text-amber-400" />}
-                  {idx === 2 && <Cpu className="h-5 w-5 text-slate-400" />}
+                  {idx === 2 && <Cpu className="h-5 w-5 text-slate-300" />}
                 </div>
-                <h3 className="mt-5 text-lg font-bold text-white">
+                <h3 className="mt-5 text-lg font-bold text-white tracking-tight">
                   {card.title}
                 </h3>
-                <p className="mt-2.5 text-sm text-slate-300 leading-relaxed">
+                <p className="mt-2.5 text-sm text-slate-200 leading-relaxed">
                   {card.description}
                 </p>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-white/[0.06] bg-amber-400/[0.03] -mx-6 sm:-mx-7 -mb-6 sm:-mb-7 p-4 sm:p-5 rounded-b-xl">
-                <p className="text-xs font-medium text-amber-300/90 leading-normal">
+              {/* Consequence alert callout with high-contrast typography and clear border */}
+              <div className="mt-6 pt-4 border-t border-amber-500/30 bg-amber-500/[0.08] -mx-6 sm:-mx-7 -mb-6 sm:-mb-7 p-4 sm:p-5 rounded-b-xl flex items-start gap-3">
+                <div className="p-1 rounded bg-amber-500/20 text-amber-400 shrink-0 mt-0.5">
+                  <AlertTriangle className="h-3.5 w-3.5" />
+                </div>
+                <p className="text-xs font-semibold text-amber-200 leading-relaxed">
                   {card.consequence}
                 </p>
               </div>
