@@ -152,23 +152,6 @@ export const Hero: React.FC<HeroProps> = ({
               );
             })}
           </div>
-
-          {/* Quick Metrics Bar directly tied to Hero proof */}
-          <div className="mt-8 pt-6 border-t border-white/[0.08] grid grid-cols-1 md:grid-cols-3 gap-6">
-            {t.quickStats.map((item, idx) => (
-              <div key={idx} className="flex flex-col">
-                <div className="font-mono tabular-nums text-3xl sm:text-4xl font-extrabold text-white">
-                  {item.value}
-                </div>
-                <div className="mt-1 text-sm font-semibold text-slate-200">
-                  {item.label}
-                </div>
-                <div className="text-xs text-slate-400 mt-0.5">
-                  {item.sub}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>
