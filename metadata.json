@@ -1,0 +1,8 @@
+{
+  "name": "KIMPACT – B2B KI-Trainings & Enablement",
+  "description": "Praxisnahes B2B KI-Training, Vibe Coding, EU AI Act Compliance und On-Premise LLM Strategien für KMUs im DACH- und APAC-Raum.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

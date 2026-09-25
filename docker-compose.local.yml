@@ -1,0 +1,13 @@
+# Für lokales Testen auf deinem Computer oder Standalone VPS (ohne Traefik)
+# Starten mit: docker compose -f docker-compose.local.yml up --build -d
+services:
+  kiventismain-local:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kiventismain-local
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      - NODE_ENV=production
