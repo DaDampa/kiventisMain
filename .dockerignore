@@ -4,8 +4,11 @@ build
 coverage
 .git
 .gitignore
+.github
 .env
 .env.local
+bun.lock
+*.md
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

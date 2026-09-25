@@ -1,15 +1,19 @@
 # ----------------------------------------------------
 # Stage 1: Build the React Application
 # ----------------------------------------------------
-FROM node:20-alpine AS builder
+# Use Debian slim for 100% glibc native module compatibility (Tailwind Oxide, LightningCSS, Vite)
+FROM node:20-bookworm-slim AS builder
 
 WORKDIR /app
+
+# Ensure devDependencies are installed during build
+ENV NODE_ENV=development
 
 # Copy dependency manifests
 COPY package*.json ./
 
-# Install dependencies (using legacy-peer-deps for robust build)
-RUN npm install --legacy-peer-deps
+# Install dependencies cleanly with legacy-peer-deps to prevent peer conflicts
+RUN npm install --legacy-peer-deps --no-audit --no-fund
 
 # Copy application source files
 COPY . .
