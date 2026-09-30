@@ -1,0 +1,24 @@
+services:
+  kiventismain:
+    image: ghcr.io/dadampa/kiventismain:latest
+    container_name: kiventismain
+    restart: unless-stopped
+    expose:
+      - "80"
+    environment:
+      - NODE_ENV=production
+    labels:
+      - "traefik.enable=true"
+      # Ersetze 'kiventis.com' bzw. 'deinedomain.de' mit deiner tatsächlichen Domain:
+      - "traefik.http.routers.kiventismain.rule=Host(`kiventis.com`) || Host(`www.kiventis.com`)"
+      - "traefik.http.routers.kiventismain.entrypoints=websecure"
+      - "traefik.http.routers.kiventismain.tls=true"
+      - "traefik.http.routers.kiventismain.tls.certresolver=letsencrypt"
+      - "traefik.http.services.kiventismain.loadbalancer.server.port=80"
+    networks:
+      - traefik-net
+
+networks:
+  traefik-net:
+    name: traefik
+    external: true

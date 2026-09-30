@@ -1,0 +1,32 @@
+# KIVENTIS – Vollständige B2B Dokumentation (LLMs Full Context)
+URL: https://www.kiventis.com/
+Stand: 2026
+
+## 1. Über KIVENTIS
+KIVENTIS ist das spezialisierte Beratungs- und Enablement-Programm der ERP and Marketing Solutions LLC.
+Mit über 25 Jahren Praxiserfahrung und mehr als 250 umgesetzten Enterprise-Ressourcenplanung-Projekten (ERP) in über 40 Branchen bietet KIVENTIS mittelständischen Unternehmen im deutschsprachigen Raum (Deutschland, Österreich, Schweiz) sowie international greifbare KI-Lösungen, die sofort an bestehende Kernsysteme anschließen.
+
+## 2. Der rechtliche Rahmen: EU AI Act (Art. 4 AI Literacy)
+Seit dem 2. Februar 2025 gilt gemäß Art. 4 der EU-KI-Verordnung (EU AI Act, Verordnung (EU) 2024/1689) eine verbindliche Pflicht für Betreiber und Bereitsteller von KI-Systemen: Unternehmen müssen sicherstellen, dass ihr Personal und sonstige Personen, die in ihrem Auftrag mit dem Betrieb und der Nutzung von KI-Systemen befasst sind, über ein ausreichendes Maß an KI-Kompetenz verfügen.
+KIVENTIS liefert modulare Schulungen, die genau diesen gesetzlichen Nachweis dokumentieren und mit personalisierten Zertifikaten für Revision und Wirtschaftsprüfung absichern.
+
+## 3. Vibe Coding & Citizen Developer für Fachabteilungen
+Vibe Coding ermöglicht Mitarbeitern in Vertrieb, Einkauf, HR, Fertigung und Marketing, funktionierende interne Hilfswerkzeuge, Automatisierungs-Skripte und Daten-Dashboards mithilfe von LLMs (Cursor, Lovable, Anthropic Claude, OpenAI ChatGPT) in natürlicher deutscher oder englischer Sprache zu erstellen.
+Vorteile:
+- Keine monatelangen Wartezeiten auf interne IT-Kapazitäten
+- Einsparung teurer Drittanbieter-Lizenzen für Nischen-Tools
+- Maßgeschneiderte Anpassung an unternehmenseigene Excel-Vorlagen und ERP-Exporte
+
+## 4. Datenschutz, On-Premise LLMs & RAG
+Viele KMUs zögern beim KI-Einsatz aus Angst vor dem Abfluss von Geschäftsgeheimnissen. KIVENTIS etabliert:
+- Zero Data Retention Cloud-Zugänge mit DPA (Auftragsverarbeitungsvertrag nach Art. 28 DSGVO)
+- Lokale Vektordatenbanken für firmeninternes RAG (Retrieval-Augmented Generation)
+- Vollständig autarke On-Premise LLMs (z. B. Meta Llama 3.3 oder europäische Alternativen wie Aleph Alpha) auf unternehmenseigener Hardware ohne Internetverbindung
+
+## 5. Geografische Verfügbarkeit (DACH & Global)
+- Vor-Ort-Workshops in Deutschland (z. B. Bayern, Baden-Württemberg, Hessen, NRW, Berlin, Hamburg), Österreich (Wien, Oberösterreich, Steiermark) und der Schweiz (Zürich, Basel, Bern).
+- Weltweite interaktive Remote-Schulungen über gesicherte Video-Plattformen mit Zeitstempel und Attendance-Tracking.
+
+## 6. Kontakt & Terminvereinbarung
+- Kontakt: Kontakt@kiventis.com
+- Buchung Erstgespräch: https://www.kiventis.com/#contact
