@@ -31,9 +31,14 @@ import {
   persistThemeState,
   ThemeMode,
 } from './utils/theme';
+import {
+  getInitialLanguage,
+  detectGeoLanguage,
+  persistLanguage,
+} from './utils/language';
 
 export default function App() {
-  const [lang, setLang] = useState<Language>('de');
+  const [lang, setLang] = useState<Language>(getInitialLanguage);
   const [themeState, setThemeState] = useState<{ theme: Theme; mode: ThemeMode }>(getInitialThemeState);
   const { theme, mode: themeMode } = themeState;
 
@@ -80,6 +85,36 @@ export default function App() {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, [themeMode]);
+
+  // Sync document lang attribute and dynamic metadata when language changes
+  useEffect(() => {
+    document.documentElement.lang = lang;
+    if (standaloneDemo === 'none') {
+      updatePageMeta({
+        title:
+          lang === 'de'
+            ? 'KIVENTIS · B2B KI-Trainings, Vibe Coding & EU AI Act (DACH)'
+            : 'KIVENTIS · B2B AI Training, Vibe Coding & EU AI Act Compliance',
+        description:
+          lang === 'de'
+            ? 'Praxisnahes KI-Enablement, Vibe Coding & rechtssichere Zertifikate nach Art. 4 EU AI Act für den B2B-Mittelstand. Messbarer ROI in 2 bis 4 Monaten.'
+            : 'Hands-on AI enablement, Vibe Coding for domain teams & verifiable EU AI Act compliance for mid-sized enterprises. Measurable ROI in 2 to 4 months.',
+        canonical: lang === 'de' ? 'https://www.kiventis.com/' : 'https://www.kiventis.com/?lang=en',
+      });
+    }
+  }, [lang, standaloneDemo]);
+
+  // Background Geo-IP detection: Automatically selects English for visitors outside DACH (Germany, Austria, Switzerland)
+  useEffect(() => {
+    detectGeoLanguage((detectedLang) => {
+      setLang(detectedLang);
+    });
+  }, []);
+
+  const handleLanguageChange = (newLang: Language) => {
+    setLang(newLang);
+    persistLanguage(newLang, true);
+  };
 
   // Handle Clean URL Route for /beispiele and standalone apps
   useEffect(() => {
@@ -245,7 +280,7 @@ export default function App() {
         lang={lang}
         theme={theme}
         themeMode={themeMode}
-        onLanguageChange={setLang}
+        onLanguageChange={handleLanguageChange}
         onToggleTheme={handleToggleTheme}
         onResetToAutoTheme={handleResetToAutoTheme}
         onOpenBooking={() => handleOpenBooking()}
