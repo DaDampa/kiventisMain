@@ -375,7 +375,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                     <input
                       type="text"
                       required
-                      placeholder="z. B. Dr. Stefan Meier"
+                      placeholder={lang === 'de' ? 'z. B. Dr. Stefan Meier' : 'e.g. John Doe'}
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full rounded-lg border border-white/10 bg-[#090D14] px-3 py-2 text-xs text-white placeholder-slate-500 focus:border-[#14B8A6] focus:outline-hidden"
@@ -389,7 +389,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                     <input
                       type="email"
                       required
-                      placeholder="name@unternehmen.de"
+                      placeholder={lang === 'de' ? 'name@unternehmen.de' : 'name@company.com'}
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full rounded-lg border border-white/10 bg-[#090D14] px-3 py-2 text-xs text-white placeholder-slate-500 focus:border-[#14B8A6] focus:outline-hidden"
@@ -403,7 +403,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                     <input
                       type="text"
                       required
-                      placeholder="z. B. Präzisionstechnik GmbH"
+                      placeholder={lang === 'de' ? 'z. B. Präzisionstechnik GmbH' : 'e.g. Acme Corp'}
                       value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                       className="w-full rounded-lg border border-white/10 bg-[#090D14] px-3 py-2 text-xs text-white placeholder-slate-500 focus:border-[#14B8A6] focus:outline-hidden"
@@ -416,7 +416,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                     </label>
                     <input
                       type="tel"
-                      placeholder="+49 170 1234567"
+                      placeholder={lang === 'de' ? '+49 170 1234567' : '+1 (555) 019-2834'}
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full rounded-lg border border-white/10 bg-[#090D14] px-3 py-2 text-xs text-white placeholder-slate-500 focus:border-[#14B8A6] focus:outline-hidden"
@@ -483,19 +483,27 @@ export const BookingModal: React.FC<BookingModalProps> = ({
             {/* Appointment Summary Box */}
             <div className="mt-6 max-w-md mx-auto rounded-xl border border-white/[0.08] bg-[#090D14] p-4 text-left text-xs font-mono space-y-2">
               <div className="flex justify-between border-b border-white/[0.06] pb-2">
-                <span className="text-slate-400">Gewählter Termin:</span>
+                <span className="text-slate-400">
+                  {lang === 'de' ? 'Gewählter Termin:' : 'Selected Slot:'}
+                </span>
                 <span className="text-teal-300 font-bold text-right">{selectedSlot.fullLabel}</span>
               </div>
               <div className="flex justify-between border-b border-white/[0.06] pb-2">
-                <span className="text-slate-400">Teilnehmer:</span>
+                <span className="text-slate-400">
+                  {lang === 'de' ? 'Teilnehmer:' : 'Attendee:'}
+                </span>
                 <span className="text-white">{formData.name} ({formData.company})</span>
               </div>
               <div className="flex justify-between border-b border-white/[0.06] pb-2">
-                <span className="text-slate-400">Bestätigung an:</span>
+                <span className="text-slate-400">
+                  {lang === 'de' ? 'Bestätigung an:' : 'Confirmation sent to:'}
+                </span>
                 <span className="text-emerald-400">{formData.email}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-slate-400">Betreuung:</span>
+                <span className="text-slate-400">
+                  {lang === 'de' ? 'Betreuung:' : 'Host / Advisory:'}
+                </span>
                 <span className="text-slate-200">KIVENTIS B2B Executive Advisory</span>
               </div>
             </div>
@@ -503,16 +511,18 @@ export const BookingModal: React.FC<BookingModalProps> = ({
             <div className="mt-6 flex flex-col sm:flex-row justify-center gap-3">
               <a
                 href={`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
-                  'KIVENTIS 30-Min KI-Erstgespräch'
+                  lang === 'de' ? 'KIVENTIS 30-Min KI-Erstgespräch' : 'KIVENTIS 30-Min AI Discovery Call'
                 )}&details=${encodeURIComponent(
-                  `Virtuelles Beratungsgespräch zu Vibe Coding, EU AI Act und ROI.\nTermin: ${selectedSlot.fullLabel}`
+                  lang === 'de'
+                    ? `Virtuelles Beratungsgespräch zu Vibe Coding, EU AI Act und ROI.\nTermin: ${selectedSlot.fullLabel}`
+                    : `Virtual discovery call on Vibe Coding, EU AI Act compliance and ROI.\nSlot: ${selectedSlot.fullLabel}`
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/[0.04] hover:bg-white/[0.08] text-xs font-semibold px-4 py-2.5 text-white transition-colors cursor-pointer"
               >
                 <Calendar className="h-3.5 w-3.5" />
-                <span>Google Calendar vormerken</span>
+                <span>{lang === 'de' ? 'Google Calendar vormerken' : 'Add to Google Calendar'}</span>
               </a>
 
               <button
