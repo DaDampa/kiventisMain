@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090D14" />
+      <stop offset="50%" stop-color="#0E1524" />
+      <stop offset="100%" stop-color="#080C14" />
+    </linearGradient>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#14B8A6" />
+      <stop offset="100%" stop-color="#10B981" />
+    </linearGradient>
+    <linearGradient id="accentGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14B8A6" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#0EA5E9" stop-opacity="0.05" />
+    </linearGradient>
+    <radialGradient id="halo" cx="70%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#14B8A6" stop-opacity="0.25" />
+      <stop offset="60%" stop-color="#06B6D4" stop-opacity="0.05" />
+      <stop offset="100%" stop-color="#090D14" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#FFFFFF" stroke-opacity="0.04" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)" />
+  <rect width="1200" height="630" fill="url(#halo)" />
+  <rect width="1200" height="630" fill="url(#grid)" />
+
+  <!-- Top accent bar -->
+  <rect x="0" y="0" width="1200" height="5" fill="url(#tealGrad)" />
+
+  <!-- Brand Badge -->
+  <g transform="translate(80, 80)">
+    <rect width="210" height="38" rx="8" fill="#14B8A6" fill-opacity="0.12" stroke="#14B8A6" stroke-opacity="0.4" stroke-width="1" />
+    <circle cx="20" cy="19" r="5" fill="#10B981" />
+    <text x="34" y="24" font-family="'JetBrains Mono', monospace, sans-serif" font-size="13" font-weight="700" fill="#14B8A6" letter-spacing="1.5">B2B KI-ENABLEMENT</text>
+  </g>
+
+  <!-- Main Brand Title -->
+  <text x="80" y="210" font-family="'Outfit', 'Plus Jakarta Sans', sans-serif" font-size="74" font-weight="900" letter-spacing="-1">
+    <tspan fill="#14B8A6">KI</tspan><tspan fill="#FFFFFF">VENTIS</tspan>
+  </text>
+  <text x="440" y="210" font-family="'Outfit', 'Plus Jakarta Sans', sans-serif" font-size="34" font-weight="600" fill="#14B8A6">
+    · Mittelstand AI
+  </text>
+
+  <!-- Subtitle / Value Proposition -->
+  <text x="80" y="280" font-family="'Plus Jakarta Sans', sans-serif" font-size="32" font-weight="700" fill="#F1F5F9">
+    Praxisnahe B2B KI-Trainings, Vibe Coding &amp; EU AI Act Governance
+  </text>
+
+  <text x="80" y="325" font-family="'Plus Jakarta Sans', sans-serif" font-size="20" font-weight="400" fill="#94A3B8">
+    Rechtssichere Zertifizierungen nach Art. 4 der EU-KI-Verordnung (EU 2024/1689).
+  </text>
+
+  <!-- 3 Feature Highlight Cards -->
+  <g transform="translate(80, 390)">
+    <!-- Card 1 -->
+    <rect x="0" y="0" width="320" height="130" rx="14" fill="#0F172A" fill-opacity="0.8" stroke="#FFFFFF" stroke-opacity="0.1" stroke-width="1" />
+    <rect x="18" y="18" width="32" height="32" rx="8" fill="#14B8A6" fill-opacity="0.15" />
+    <text x="27" y="40" font-family="sans-serif" font-size="18" fill="#14B8A6">§</text>
+    <text x="60" y="38" font-family="'Plus Jakarta Sans', sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">EU AI Act Art. 4</text>
+    <text x="18" y="76" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#94A3B8">Schulungs- und Prüfpflicht</text>
+    <text x="18" y="96" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#94A3B8">für alle KMU-Mitarbeiter</text>
+
+    <!-- Card 2 -->
+    <rect x="360" y="0" width="320" height="130" rx="14" fill="#0F172A" fill-opacity="0.8" stroke="#FFFFFF" stroke-opacity="0.1" stroke-width="1" />
+    <rect x="378" y="18" width="32" height="32" rx="8" fill="#0EA5E9" fill-opacity="0.15" />
+    <text x="388" y="40" font-family="sans-serif" font-size="18" fill="#0EA5E9">&lt;&gt;</text>
+    <text x="420" y="38" font-family="'Plus Jakarta Sans', sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">Vibe Coding Bootcamp</text>
+    <text x="378" y="76" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#94A3B8">Eigene Mini-Apps bauen ohne</text>
+    <text x="378" y="96" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#94A3B8">Programmierer (Cursor/Claude)</text>
+
+    <!-- Card 3 -->
+    <rect x="720" y="0" width="320" height="130" rx="14" fill="#0F172A" fill-opacity="0.8" stroke="#FFFFFF" stroke-opacity="0.1" stroke-width="1" />
+    <rect x="738" y="18" width="32" height="32" rx="8" fill="#10B981" fill-opacity="0.15" />
+    <text x="748" y="40" font-family="sans-serif" font-size="18" fill="#10B981">✓</text>
+    <text x="780" y="38" font-family="'Plus Jakarta Sans', sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">38-Seiten KMU-Leitfaden</text>
+    <text x="738" y="76" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#94A3B8">Kostenlose Executive-Ausgabe</text>
+    <text x="738" y="96" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#94A3B8">mit ROI-Rechner &amp; Checklisten</text>
+  </g>
+
+  <!-- Bottom Bar with Domain & Verification -->
+  <g transform="translate(80, 565)">
+    <text x="0" y="16" font-family="'JetBrains Mono', monospace, sans-serif" font-size="15" font-weight="600" fill="#FFFFFF">
+      www.kiventis.com
+    </text>
+    <text x="210" y="16" font-family="'JetBrains Mono', monospace, sans-serif" font-size="14" fill="#64748B">
+      · DACH &amp; APAC B2B Enablement
+    </text>
+    <text x="960" y="16" font-family="'JetBrains Mono', monospace, sans-serif" font-size="13" fill="#10B981" font-weight="600">
+      ISO &amp; DSGVO READY
+    </text>
+  </g>
+</svg>
