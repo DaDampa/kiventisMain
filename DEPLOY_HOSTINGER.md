@@ -29,6 +29,31 @@ Dieses Setup wurde speziell an die Anforderungen deines **Hostinger VPS mit Dock
 
 ## 🛠️ Einmalige Vorbereitung auf GitHub
 
+### ⚠️ WICHTIG: GitHub Actions "Workflow Permissions" aktivieren (Behebt `permission_denied: write_package`)
+GitHub setzt für neue Repositories die Berechtigungen von `GITHUB_TOKEN` standardmäßig auf **Read-Only**. Wenn der Workflow versucht, das Docker-Image in die GitHub Container Registry (GHCR) zu pushen, schlägt dies mit `denied: permission_denied: write_package` fehl.
+
+**So behebst du das in 30 Sekunden:**
+1. Öffne dein GitHub-Repository: `https://github.com/dadampa/kiventismain`
+2. Klicke oben auf **Settings** (Repository-Einstellungen).
+3. Klicke links im Menü auf **Actions** ➔ **General**.
+4. Scrolle ganz nach unten zum Bereich **"Workflow permissions"**.
+5. Wähle **"Read and write permissions"** aus.
+6. Setze das Häkchen bei **"Allow GitHub Actions to create and approve pull requests"**.
+7. Klicke auf **Save**.
+8. Klicke im Tab **Actions** auf den fehlgeschlagenen Workflow ➔ **Re-run all jobs**. Der Push läuft nun sofort erfolgreich durch!
+
+---
+
+### Falls das Paket `kiventismain` bereits existiert (Manage Actions access)
+Falls du das Paket schon einmal manuell oder aus einem anderen Branch angelegt hast:
+1. Öffne dein GitHub-Profil: `https://github.com/dadampa?tab=packages`
+2. Klicke auf das Paket **`kiventismain`**.
+3. Klicke auf **Package settings** (rechts unten).
+4. Scrolle zu **Manage Actions access**.
+5. Klicke auf **Add Repository**, wähle `dadampa/kiventismain` und vergib die Rolle **Write** oder **Admin**.
+
+---
+
 ### 1. Repository-Sichtbarkeit für Packages prüfen
 Damit dein Hostinger VPS das Image von GHCR ohne Authentifizierungsprobleme ziehen kann:
 1. Öffne dein GitHub-Profil oder Repo: `https://github.com/dadampa/kiventismain`.
