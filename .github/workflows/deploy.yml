@@ -16,6 +16,8 @@ permissions:
 
 env:
   REGISTRY: ghcr.io
+  # Opt-in to Node 24 runtime to handle the GitHub Actions runner transition smoothly
+  ACTIONS_RUNNER_FORCE_NODE24: "true"
 
 jobs:
   build-and-push:
