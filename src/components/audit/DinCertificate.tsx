@@ -244,9 +244,9 @@ export const DinCertificate: React.FC<DinCertificateProps> = ({
             <div className="text-xs sm:text-sm font-bold tracking-[0.3em] text-[#854D0E] uppercase font-sans">
               {isDe ? 'KONFORMITÄTSBESCHEINIGUNG' : 'CERTIFICATE OF CONFORMITY'}
             </div>
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-[#0F172A] tracking-tight mt-1 font-serif">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-[#0F172A] tracking-tight mt-1 font-serif">
               {isDe ? 'ZERTIFIKAT' : 'CERTIFICATE'}
-            </h1>
+            </h2>
             <div className="text-xs sm:text-sm italic text-[#475569] mt-1 font-serif">
               {isDe
                 ? 'über die nachgewiesene KI-Kompetenz gemäß Artikel 4 EU AI Act'

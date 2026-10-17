@@ -425,9 +425,9 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
               <div className="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold mb-2">
                 {selectedArticle.kicker}
               </div>
-              <h1 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight">
+              <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight">
                 {selectedArticle.title}
-              </h1>
+              </h2>
 
               {/* Author & Citation */}
               <div className="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-400 border-b border-white/[0.08] pb-4">

@@ -127,6 +127,16 @@ export default function App() {
     const handleRoute = () => {
       const path = window.location.pathname;
 
+      // Hidden admin entry (?admin=1) — keeps the lead manager reachable
+      // without a public footer button.
+      try {
+        if (new URLSearchParams(window.location.search).get('admin') === '1') {
+          setIsAdminLeadsOpen(true);
+        }
+      } catch {
+        /* ignore malformed URLs */
+      }
+
       if (path === '/beispiele/bom-designer' || path === '/demos/bom-designer') {
         setStandaloneDemo('bom-designer');
         updatePageMeta({
