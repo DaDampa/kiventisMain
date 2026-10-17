@@ -101,6 +101,16 @@ export const Footer: React.FC<FooterProps> = ({
                 </a>
               </li>
               <li>
+                <a href="/ki-beratung-kmu" className="hover:text-white transition-colors">
+                  {lang === 'de' ? 'KI-Beratung für KMU' : 'AI Consulting for SMEs'}
+                </a>
+              </li>
+              <li>
+                <a href="/erp-prozessautomatisierung" className="hover:text-white transition-colors">
+                  {lang === 'de' ? 'ERP-Prozessautomatisierung' : 'ERP Process Automation'}
+                </a>
+              </li>
+              <li>
                 <a href="#services" className="hover:text-white transition-colors">
                   {lang === 'de' ? 'Vibe Coding & Citizen Dev' : 'Vibe Coding & Citizen Dev'}
                 </a>

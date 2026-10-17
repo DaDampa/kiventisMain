@@ -54,6 +54,9 @@ import {
   persistLanguage,
 } from './utils/language';
 
+import { LandingPage } from './components/LandingPage';
+import { landingById, type LandingId } from './data/landings';
+
 const SectionFallback: React.FC = () => (
   <div className="min-h-[50vh] flex items-center justify-center">
     <div className="font-mono text-[11px] tracking-[0.3em] text-slate-500 uppercase">
@@ -74,6 +77,7 @@ export default function App() {
   const [isLlmsTxtOpen, setIsLlmsTxtOpen] = useState<boolean>(false);
   const [preselectedPackage, setPreselectedPackage] = useState<string | undefined>(undefined);
   const [standaloneDemo, setStandaloneDemo] = useState<'none' | 'bom-designer' | 'rechnungspruefer' | 'ai-act-audit'>('none');
+  const [landing, setLanding] = useState<LandingId | 'none'>('none');
 
   // Sync theme with document attribute & localStorage
   useEffect(() => {
@@ -115,7 +119,7 @@ export default function App() {
   // Sync document lang attribute and dynamic metadata when language changes
   useEffect(() => {
     document.documentElement.lang = lang;
-    if (standaloneDemo === 'none') {
+    if (standaloneDemo === 'none' && landing === 'none') {
       updatePageMeta({
         title:
           lang === 'de'
@@ -128,7 +132,7 @@ export default function App() {
         canonical: lang === 'de' ? 'https://www.kiventis.com/' : 'https://www.kiventis.com/?lang=en',
       });
     }
-  }, [lang, standaloneDemo]);
+  }, [lang, standaloneDemo, landing]);
 
   // Background Geo-IP detection: Automatically selects English for visitors outside DACH (Germany, Austria, Switzerland)
   useEffect(() => {
@@ -221,7 +225,64 @@ export default function App() {
         return;
       }
 
+      if (path === '/ki-beratung-kmu' || path === '/ki-beratung-kmu/') {
+        setLanding('ki-beratung-kmu');
+        setStandaloneDemo('none');
+        window.history.pushState(null, '', '/ki-beratung-kmu');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        updatePageMeta({
+          title:
+            lang === 'de'
+              ? 'KI-Beratung für KMU: Strategisch beraten, Prozesse automatisieren · KIVENTIS'
+              : 'AI consulting for SMEs: strategic advice, automated processes · KIVENTIS',
+          description:
+            lang === 'de'
+              ? 'Kiventis ist Ihr Partner für KI-Beratung KMU, ERP Prozessautomatisierung und KI Agenten im Mittelstand — von der Strategie über die ERP Schnittstellen Programmierung bis zur E-Rechnung und Workflow Automatisierung.'
+              : 'Kiventis is your partner for AI consulting for SMEs, ERP process automation and AI agents for the mid-market — from strategy and ERP interface programming to e-invoicing and workflow automation.',
+          canonical: 'https://www.kiventis.com/ki-beratung-kmu',
+          schema: {
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            serviceType: 'KI-Beratung KMU',
+            provider: { '@type': 'Organization', name: 'KIVENTIS', url: 'https://www.kiventis.com' },
+            areaServed: ['DE', 'AT', 'CH', 'LI'],
+            keywords:
+              'KI Beratung KMU, ERP Prozessautomatisierung, KI Agenten Mittelstand, ERP Schnittstellen Programmierung, E-Rechnung, Workflow Automatisierung',
+          },
+        });
+        return;
+      }
+
+      if (path === '/erp-prozessautomatisierung' || path === '/erp-prozessautomatisierung/') {
+        setLanding('erp-prozessautomatisierung');
+        setStandaloneDemo('none');
+        window.history.pushState(null, '', '/erp-prozessautomatisierung');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        updatePageMeta({
+          title:
+            lang === 'de'
+              ? 'ERP-Prozessautomatisierung: Bestehende Workflows end-to-end automatisieren · KIVENTIS'
+              : 'ERP process automation: automate existing workflows end-to-end · KIVENTIS',
+          description:
+            lang === 'de'
+              ? 'Kiventis automatisiert Ihre ERP-Prozesse — von der Schnittstellen-Programmierung über KI Agenten bis zur E-Rechnung. 25 Jahre ERP- & Prozessberatung, über 250 umgesetzte Projekte.'
+              : 'Kiventis automates your ERP processes — from interface programming and AI agents to e-invoicing. 25 years of ERP & process consulting, over 250 delivered projects.',
+          canonical: 'https://www.kiventis.com/erp-prozessautomatisierung',
+          schema: {
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            serviceType: 'ERP Prozessautomatisierung',
+            provider: { '@type': 'Organization', name: 'KIVENTIS', url: 'https://www.kiventis.com' },
+            areaServed: ['DE', 'AT', 'CH', 'LI'],
+            keywords:
+              'ERP Prozessautomatisierung, ERP Schnittstellen Programmierung, KI Agenten Mittelstand, E-Rechnung, Workflow Automatisierung, KI Beratung KMU',
+          },
+        });
+        return;
+      }
+
       setStandaloneDemo('none');
+      setLanding('none');
 
       if (path === '/beispiele' || path === '/beispiele/') {
         updatePageMeta({
@@ -364,6 +425,23 @@ export default function App() {
     });
   };
 
+  const handleBackFromLanding = () => {
+    setLanding('none');
+    window.history.pushState(null, '', '/');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    updatePageMeta({
+      title:
+        lang === 'de'
+          ? 'KIVENTIS · B2B KI-Trainings, Vibe Coding & EU AI Act (DACH)'
+          : 'KIVENTIS · B2B AI Training, Vibe Coding & EU AI Act Compliance',
+      description:
+        lang === 'de'
+          ? 'Praxisnahes KI-Enablement, Vibe Coding & rechtssichere Zertifikate nach Art. 4 EU AI Act für den B2B-Mittelstand. Messbarer ROI in 2 bis 4 Monaten.'
+          : 'Hands-on AI enablement, Vibe Coding for domain teams & verifiable EU AI Act compliance for mid-sized enterprises. Measurable ROI in 2 to 4 months.',
+      canonical: lang === 'de' ? 'https://www.kiventis.com/' : 'https://www.kiventis.com/?lang=en',
+    });
+  };
+
   // If user navigated to a dedicated standalone application page, render it full-screen in its original application UI
   if (standaloneDemo === 'bom-designer') {
     return (
@@ -378,6 +456,20 @@ export default function App() {
       <React.Suspense fallback={<SectionFallback />}>
         <InvoiceAuditorApp theme={theme} onBack={handleBackFromStandalone} lang={lang} />
       </React.Suspense>
+    );
+  }
+
+  // Landingpages der DACH-Cluster (/ki-beratung-kmu, /erp-prozessautomatisierung)
+  if (landing !== 'none') {
+    const spec = landingById(landing);
+    return (
+      <LandingPage
+        spec={spec}
+        lang={lang}
+        theme={theme}
+        onOpenBooking={() => handleOpenBooking()}
+        onBackToHome={handleBackFromLanding}
+      />
     );
   }
 

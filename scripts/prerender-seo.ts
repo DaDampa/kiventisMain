@@ -24,6 +24,8 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { articlesDe } from '../src/data/articles';
 import type { InsightArticle } from '../src/types';
+import { landings } from '../src/data/landings';
+import type { LandingSpec } from '../src/data/landings';
 
 const SITE = 'https://www.kiventis.com';
 const DIST = resolve(process.cwd(), 'dist');
@@ -433,6 +435,47 @@ function buildPage(template: string, spec: RouteSpec): string {
   return html;
 }
 
+/** Landingpage-Routen aus den Cluster-Content-Specs (DACH-Cluster). */
+function landingRoute(l: LandingSpec): RouteSpec {
+  const url = `${SITE}/${l.path}`;
+  const short = l.h1.de.split(':')[0];
+  return {
+    route: l.path,
+    title: `${l.h1.de} · KIVENTIS`,
+    description: l.lead.de,
+    ogType: 'website',
+    h1: l.h1.de,
+    lead: l.lead.de,
+    blocks: [
+      {
+        heading: 'Leistungen',
+        bullets: l.benefits.map((b) => `${b.title.de} — ${b.text.de}`),
+      },
+      {
+        heading: 'Warum Kiventis',
+        paragraphs: [
+          'Kiventis ist ein auf den Mittelstand spezialisiertes Beratungs- und Implementierungshaus für KI und ERP-Automatisierung mit 25 Jahren ERP- & Prozessberatung und über 250 umgesetzten Projekten in DACH & APAC.',
+        ],
+      },
+    ],
+    breadcrumb: [
+      { name: 'Startseite', item: `${SITE}/` },
+      { name: short, item: url },
+    ],
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: l.h1.de,
+      description: l.lead.de,
+      serviceType: short,
+      provider: { '@type': 'Organization', name: 'KIVENTIS', url: SITE },
+      areaServed: ['DE', 'AT', 'CH', 'LI'],
+      keywords: l.keywords.de,
+      url,
+    },
+  };
+}
+
 function main(): void {
   if (!existsSync(TEMPLATE_PATH)) {
     console.error(`[prerender-seo] FEHLER: ${TEMPLATE_PATH} fehlt (vite build zuerst ausfuehren).`);
@@ -440,7 +483,11 @@ function main(): void {
   }
 
   const template = readFileSync(TEMPLATE_PATH, 'utf8');
-  const specs: RouteSpec[] = [...staticRoutes, ...articlesDe.map(articleRoute)];
+  const specs: RouteSpec[] = [
+    ...staticRoutes,
+    ...landings.map(landingRoute),
+    ...articlesDe.map(articleRoute),
+  ];
 
   let written = 0;
   const seen = new Set<string>();
@@ -463,6 +510,41 @@ function main(): void {
   }
 
   console.log(`[prerender-seo] ${written}/${specs.length} statische Routen erzeugt (Stand ${BUILD_DATE}).`);
+
+  // E3: sitemap.xml automatisch aus allen Specs generieren (ersetzt manuelle Pflege)
+  const homepageEntry = [
+    '  <url>',
+    `    <loc>${SITE}/</loc>`,
+    `    <xhtml:link rel="alternate" hreflang="de" href="${SITE}/" />`,
+    `    <xhtml:link rel="alternate" hreflang="en" href="${SITE}/?lang=en" />`,
+    `    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE}/" />`,
+    `    <lastmod>${BUILD_DATE}</lastmod>`,
+    '    <changefreq>weekly</changefreq>',
+    '    <priority>1.0</priority>',
+    '  </url>',
+  ].join('\n');
+  const sitemapUrls = specs.map((spec) => {
+    const loc = spec.route ? `${SITE}/${spec.route}` : `${SITE}/`;
+    return [
+      '  <url>',
+      `    <loc>${loc}</loc>`,
+      `    <lastmod>${BUILD_DATE}</lastmod>`,
+      '    <changefreq>monthly</changefreq>',
+      '    <priority>0.8</priority>',
+      '  </url>',
+    ].join('\n');
+  });
+  const sitemap = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
+    '        xmlns:xhtml="http://www.w3.org/1999/xhtml">',
+    homepageEntry,
+    ...sitemapUrls,
+    '</urlset>',
+    '',
+  ].join('\n');
+  writeFileSync(join(DIST, 'sitemap.xml'), sitemap, 'utf8');
+  console.log(`[prerender-seo] sitemap.xml mit ${sitemapUrls.length + 1} URLs erzeugt.`);
 }
 
 main();
