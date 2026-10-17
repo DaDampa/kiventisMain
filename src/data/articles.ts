@@ -192,6 +192,76 @@ export const articlesDe: InsightArticle[] = [
       },
     ],
   },
+  {
+    id: 'ki-agenten-mittelstand-prozessautomatisierung',
+    category: 'erp',
+    categoryLabel: 'ERP, Prozesse & KI-Agenten',
+    kicker: 'PROZESSAUTOMATISIERUNG 2026',
+    title:
+      'KI-Agenten im Mittelstand: Wann sich autonome Agenten gegenüber klassischer Prozessautomatisierung rechnen',
+    excerpt:
+      'Zwischen RPA-Skript, Workflow-Engine und autonomem Agenten liegen Welten in Architektur, Betriebsrisiko und Kosten. Eine technische Einordnung für IT-Leitung und Geschäftsführung, welche ERP-nahen Prozesse sich heute sinnvoll agentisch automatisieren lassen.',
+    readTime: '7 Min. Lesezeit',
+    publishedDate: 'Oktober 2026',
+    author: {
+      name: 'Dipl.-Ing. D. Blazinic',
+      role: 'Senior Enterprise Architect & KI-Consultant',
+    },
+    tags: ['KI-Agenten', 'Autonomous AI Agents', 'ERP Prozessautomatisierung', 'RPA-Abgrenzung', 'KI-Governance'],
+    citation:
+      'Verordnung (EU) 2024/1689 (EU AI Act), Art. 4 (KI-Kompetenz) und Art. 6 (risikobasierte Einstufung); Model Context Protocol (MCP) als offener Integrationsstandard für Werkzeuganbindung',
+    keyTakeaways: [
+      'Ein KI-Agent ist ein Modell mit Werkzeugzugriff, Gedächtnis und eigenständiger Schrittfolge – er plant und korrigiert sich selbst, statt nur ein festes Skript abzuarbeiten.',
+      'Für klar regelbasierte, hochvolumige Prozesse bleibt klassische Automatisierung (Workflow, RPA, ERP-Workflow) oft die günstigere und besser prüfbare Wahl.',
+      'Agenten lohnen sich dort, wo Eingaben unstrukturiert sind und Entscheidungen Kontext brauchen – etwa Belegerfassung mit Sonderfällen, Angebotserstellung oder Stammdatenpflege.',
+      'Der entscheidende Aufwand liegt nicht im Modell, sondern in Prozessgrenzen, Freigabepunkten und Nachvollziehbarkeit: Wer genehmigt, was darf der Agent ohne Mensch?',
+      'Ohne Protokollierung der Agentenschritte entsteht ein Nachweisproblem – bei Schulungspflichten nach Art. 4 EU AI Act und bei internen oder behördlichen Prüfungen.',
+    ],
+    sections: [
+      {
+        heading: '1. Was ein KI-Agent tatsächlich ist',
+        paragraphs: [
+          'Ein KI-Agent ist kein neues Modell, sondern eine Architektur um ein Sprachmodell herum. Drei Eigenschaften unterscheiden ihn von einem klassischen Automatisierungsskript: Er bekommt Werkzeuge (Tool Calls) statt fester Funktionsaufrufe, er führt einen Zustand über mehrere Schritte hinweg und er entscheidet selbst, welcher Schritt als nächster sinnvoll ist. Ein Agent bekommt also ein Ziel, keinen Ablaufplan.',
+          'Diese Offenheit ist gleichzeitig sein Vorteil und sein Risiko. Der Vorteil ist der Umgang mit unstrukturierten Eingaben: Ein Agent kann eine PDF-Bestellung, eine E-Mail mit Anhang und einen ERP-Datensatz mit unterschiedlicher Feldbelegung verarbeiten, ohne dass für jede Variante ein eigener Parser gebaut werden muss. Das Risiko ist die Nichtdeterminismus-Eigenschaft: Derselbe Eingabewert kann zu unterschiedlichen Schrittfolgen führen.',
+          'Für den Mittelstand ist deshalb nicht die Frage entscheidend, ob Agenten "besser" sind, sondern ob der betroffene Prozess mit einem ergebnisorientierten statt ablauforientierten Ansatz sauber beschreibbar und überwachbar bleibt.',
+        ],
+        callout:
+          'Faustregel für die Vorprüfung: Lässt sich der Prozess in einer Entscheidungstabelle vollständig beschreiben, ist er ein Fall für Workflow- oder RPA-Automatisierung. Bleiben Sonderfälle übrig, die heute von erfahrenen Mitarbeitern im Kopf aufgelöst werden, ist das ein Agenten-Kandidat.',
+      },
+      {
+        heading: '2. Abgrenzung: Workflow-Engine, RPA oder Agent',
+        paragraphs: [
+          'Klassische Workflow-Engines im ERP (etwa Freigabeprozesse, Belegketten, Preis- und Rabattlogik in SAP S/4HANA, Microsoft Dynamics 365, proALPHA, abas oder Infor) sind deterministisch, testbar und seit Jahren produktiv. Sie sind die richtige Antwort auf Aufgaben mit klaren Regeln und hohem Volumen.',
+          'RPA ergänzt diese Ebene um die Bedienung von Oberflächen, die keine API anbieten. Der Ansatz ist technisch robust, aber wartungsintensiv: Jede UI-Änderung kann Skripte brechen, und Ausnahmen führen in der Regel zu manuellen Rückläufen.',
+          'Agenten setzen eine Ebene darüber an. Sie kombinieren vorhandene APIs, Datenbanken und Wissensquellen und treffen Zwischenentscheidungen. In der Praxis ist das fast nie ein Ersatz, sondern eine Ergänzung: Der Agent übernimmt die fallweise Vorarbeit, die Regelstrecke bleibt im ERP.',
+        ],
+      },
+      {
+        heading: '3. Architekturmuster, die sich im Mittelstand bewährt haben',
+        paragraphs: [
+          'Drei Muster decken den Großteil der realistischen Einsatzfälle ab. Erstens der Agent als Vorschlagsgeber: Er bereitet eine Entscheidung vor (etwa eine Kontierungsempfehlung oder einen Rechnungsabgleich), die Freigabe bleibt beim Menschen im ERP. Zweitens der Agent als Klärungsassistent: Er bearbeitet Ausnahmen, die im Standardprozess hängen bleiben, und dokumentiert seine Begründung. Drittens der Agent als Recherche- und Berichtsschicht über internen Daten, typischerweise als RAG-Architektur mit Vektorindex auf freigegebene Dokumente.',
+          'Technisch setzt sich für die Werkzeuganbindung das Model Context Protocol (MCP) als offener Standard durch. Der praktische Nutzen im Projektalltag: Die Anbindung an Fachsysteme wird nicht für jedes Modell neu gebaut, und man bleibt beim Modellwechsel handlungsfähig.',
+          'Für regulatorisch sensible Daten gilt weiterhin die bereits etablierte Zweiteilung: Enterprise-Modelle mit vertraglich garantierter Zero-Data-Retention oder vollständig autarke On-Premise-Modelle mit lokaler Vektordatenbank hinter der Firmen-Firewall.',
+        ],
+      },
+      {
+        heading: '4. Governance: Die eigentliche Projektarbeit',
+        paragraphs: [
+          'Der teuerste Teil eines Agentenprojekts ist nicht die Modellintegration, sondern die Definition der Prozessgrenzen. Zu klären sind mindestens vier Punkte: Welche Systeme darf der Agent beschreibend nutzen und welche nur lesend? Ab welchem Schwellwert ist eine menschliche Freigabe zwingend? Wie werden Fehlschläge erkannt und zurückgerollt? Und wie wird jeder Agentenschritt so protokolliert, dass er einem Prüfer erklärt werden kann?',
+          'Der letzte Punkt hat eine regulatorische Dimension, die häufig unterschätzt wird. Artikel 4 der Verordnung (EU) 2024/1689 verpflichtet Betreiber von KI-Systemen seit dem 2. Februar 2025 zu nachweisbarer KI-Kompetenz der Beschäftigten. Ein Team, das agentische Systeme fachlich beaufsichtigt, muss beurteilen können, wann ein Agent plausibel und wann er falsch liegt – das ist eine Qualifikationsfrage und keine reine IT-Frage.',
+          'Die risikobasierte Einstufung nach Art. 6 bleibt davon unberührt, ist aber bei der Prozessauswahl mitzudenken: Agenten im Personalwesen (Bewerberauswahl, Leistungsbewertung) fallen regelmäßig in den Bereich der Hochrisikosysteme nach Anhang III und ziehen deutlich strengere Pflichten nach sich als Agenten in Buchhaltung oder Logistik.',
+        ],
+      },
+      {
+        heading: '5. Wirtschaftlichkeit: Wann sich Agenten rechnen',
+        paragraphs: [
+          'Eine belastbare Bewertung stellt drei Größen gegenüber. Erstens das Volumen der Sonderfälle: Solange Ausnahmen selten sind, bringen bessere Regeln mehr als ein Agent. Zweitens der Aufwand pro Ausnahme heute: Ein Vorgang, der eine erfahrene Fachkraft zwanzig Minuten Recherche in drei Systemen kostet, ist ein guter Kandidat. Drittens das Änderungsrisiko: Prozesse, deren Schnittstellen sich häufig ändern, verteuern eine Agentenlösung überproportional.',
+          'Als pragmatischer Einstieg hat sich ein Zuschnitt bewährt, der den Agenten zuerst ausschließlich auf Klärungs- und Rechercheaufgaben setzt. Das liefert schnell Nutzen, ohne Schreibzugriffe auf Kernsysteme zu riskieren, und schafft die Protokollierungsroutine, die später für schreibende Szenarien ohnehin Voraussetzung ist.',
+          'Wer diese Einordnung mit den eigenen Prozessdaten durchrechnet, kommt in der Regel zu einer kleinen Zahl tragfähiger Kandidaten statt zu einem flächigen Rollout – und genau das ist der Unterschied zwischen einem belastbaren Business Case und einer Technologiedemo.',
+        ],
+      },
+    ],
+  },
 ];
 
 export const articlesEn: InsightArticle[] = [
@@ -378,6 +448,76 @@ export const articlesEn: InsightArticle[] = [
         paragraphs: [
           'Using modern web tooling and Vibe Coding, building a specialized internal portal no longer demands an agency army. A trained internal employee builds the tool in days.',
           'The application runs in a lightweight Docker container on your own server or European VPS (such as Hetzner or Hostinger) for less than €20/month total infrastructure overhead. No user licensing tiers, no price hikes, complete data sovereignty.',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'ki-agenten-mittelstand-prozessautomatisierung',
+    category: 'erp',
+    categoryLabel: 'ERP, Processes & AI Agents',
+    kicker: 'PROCESS AUTOMATION 2026',
+    title:
+      'AI Agents for SMEs: When Autonomous Agents Beat Classical Process Automation',
+    excerpt:
+      'Between an RPA script, a workflow engine and an autonomous agent lie fundamental differences in architecture, operational risk and cost. A technical assessment for IT leadership and managing directors on which ERP-adjacent processes are worth automating agentically today.',
+    readTime: '7 min read',
+    publishedDate: 'October 2026',
+    author: {
+      name: 'Dipl.-Ing. D. Blazinic',
+      role: 'Senior Enterprise Architect & AI Consultant',
+    },
+    tags: ['AI Agents', 'Autonomous AI Agents', 'ERP Process Automation', 'RPA vs. Agents', 'AI Governance'],
+    citation:
+      'Regulation (EU) 2024/1689 (EU AI Act), Art. 4 (AI literacy) and Art. 6 (risk-based classification); Model Context Protocol (MCP) as an open integration standard for tool use',
+    keyTakeaways: [
+      'An AI agent is a model with tool access, memory and an autonomous sequence of steps - it plans and self-corrects instead of executing a fixed script.',
+      'For clearly rule-based, high-volume processes, classical automation (workflow engines, RPA, ERP workflow) usually remains the cheaper and more auditable choice.',
+      'Agents pay off where inputs are unstructured and decisions need context - such as invoice capture with exception cases, quote generation or master data maintenance.',
+      'The real effort is not the model integration but process boundaries, approval gates and auditability: who approves, and what may an agent do without a human?',
+      'Without step-level logging of agent actions you create an evidence gap - both for the Art. 4 EU AI Act training obligation and for internal or regulatory audits.',
+    ],
+    sections: [
+      {
+        heading: '1. What an AI agent actually is',
+        paragraphs: [
+          'An AI agent is not a new model but an architecture built around a language model. Three properties distinguish it from a classical automation script: it receives tools (tool calls) rather than fixed function calls, it maintains state across multiple steps, and it decides for itself which step makes sense next. An agent is given a goal, not a procedure.',
+          'That openness is both its strength and its risk. The strength is handling unstructured input: an agent can process a PDF purchase order, an email with an attachment and an ERP record with inconsistent field mapping without a bespoke parser for every variant. The risk is non-determinism: the same input can lead to different step sequences.',
+          'For mid-sized companies the decisive question is therefore not whether agents are "better", but whether the process in question remains cleanly describable and monitorable under an outcome-oriented rather than procedure-oriented approach.',
+        ],
+        callout:
+          'A useful pre-check rule: if a process can be fully expressed as a decision table, it belongs to workflow or RPA automation. If exception cases remain that experienced staff currently resolve in their heads, it is an agent candidate.',
+      },
+      {
+        heading: '2. Distinction: workflow engine, RPA or agent',
+        paragraphs: [
+          'Classical workflow engines inside ERP systems (approval processes, document chains, pricing and discount logic in SAP S/4HANA, Microsoft Dynamics 365, proALPHA, abas or Infor) are deterministic, testable and have been in production for years. They are the right answer for clearly rule-based, high-volume tasks.',
+          'RPA extends that layer by operating user interfaces that expose no API. The approach is technically robust but maintenance-heavy: any UI change can break scripts, and exceptions typically result in manual rework.',
+          'Agents operate one level above. They combine existing APIs, databases and knowledge sources and make intermediate decisions. In practice this is almost never a replacement but an addition: the agent handles case-by-case preparation while the rule-based path stays in the ERP.',
+        ],
+      },
+      {
+        heading: '3. Architecture patterns that work for mid-sized companies',
+        paragraphs: [
+          'Three patterns cover most realistic use cases. First, the agent as recommender: it prepares a decision (such as an account assignment suggestion or an invoice reconciliation) while approval stays with a human in the ERP. Second, the agent as exception handler: it processes cases that stall in the standard flow and documents its reasoning. Third, the agent as a research and reporting layer over internal data, typically as a RAG architecture with a vector index over approved documents.',
+          'For tool integration, the Model Context Protocol (MCP) is emerging as an open standard. Its practical benefit in day-to-day projects: integration into line-of-business systems is not rebuilt for every model, and you retain freedom of action when switching models.',
+          'For regulated data, the established two-track approach still applies: enterprise models with contractually guaranteed zero data retention, or fully self-hosted on-premise models with a local vector database behind the corporate firewall.',
+        ],
+      },
+      {
+        heading: '4. Governance: the actual project work',
+        paragraphs: [
+          'The most expensive part of an agent project is not model integration but defining process boundaries. At minimum, four questions need answers: which systems may the agent write to and which are read-only? Above which threshold is human approval mandatory? How are failures detected and rolled back? And how is every agent step logged so that it can be explained to an auditor?',
+          'That last point has a regulatory dimension that is frequently underestimated. Article 4 of Regulation (EU) 2024/1689 has required demonstrable AI literacy among staff since 2 February 2025. A team supervising agentic systems must be able to judge when an agent is plausible and when it is wrong - that is a qualification question, not a purely technical one.',
+          'Risk-based classification under Art. 6 is a separate matter but must be factored into process selection: agents in HR (candidate screening, performance monitoring) regularly fall into the high-risk category under Annex III and trigger significantly stricter obligations than agents in accounting or logistics.',
+        ],
+      },
+      {
+        heading: '5. Economics: when agents pay off',
+        paragraphs: [
+          'A sound assessment compares three quantities. First, the volume of exception cases: as long as exceptions are rare, better rules deliver more than an agent. Second, today\u2019s effort per exception: a case that costs an experienced specialist twenty minutes of research across three systems is a good candidate. Third, change risk: processes whose interfaces change frequently make an agent solution disproportionately expensive.',
+          'A pragmatic entry point has proven effective: scope the agent initially to clarification and research tasks only. That delivers value quickly without risking write access to core systems, and it establishes the logging routine that later write scenarios require anyway.',
+          'Anyone who runs this assessment against their own process data typically arrives at a small number of viable candidates rather than a company-wide rollout - and that is precisely the difference between a defensible business case and a technology demo.',
         ],
       },
     ],
