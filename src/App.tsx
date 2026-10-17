@@ -26,9 +26,21 @@ import { ResourceModal } from './components/ResourceModal';
 import { ImpressumModal } from './components/ImpressumModal';
 import { AdminLeadModal } from './components/AdminLeadModal';
 import { LlmsTxtModal } from './components/LlmsTxtModal';
-import { BomDesignerApp } from './components/demos/BomDesignerApp';
-import { InvoiceAuditorApp } from './components/demos/InvoiceAuditorApp';
-import { AiActAuditPage } from './components/audit/AiActAuditPage';
+const BomDesignerApp = React.lazy(() =>
+  import('./components/demos/BomDesignerApp').then((m) => ({
+    default: m.BomDesignerApp,
+  })),
+);
+const InvoiceAuditorApp = React.lazy(() =>
+  import('./components/demos/InvoiceAuditorApp').then((m) => ({
+    default: m.InvoiceAuditorApp,
+  })),
+);
+const AiActAuditPage = React.lazy(() =>
+  import('./components/audit/AiActAuditPage').then((m) => ({
+    default: m.AiActAuditPage,
+  })),
+);
 import { updatePageMeta } from './utils/seo';
 import {
   getInitialThemeState,
@@ -41,6 +53,14 @@ import {
   detectGeoLanguage,
   persistLanguage,
 } from './utils/language';
+
+const SectionFallback: React.FC = () => (
+  <div className="min-h-[50vh] flex items-center justify-center">
+    <div className="font-mono text-[11px] tracking-[0.3em] text-slate-500 uppercase">
+      KIVENTIS · Loading
+    </div>
+  </div>
+);
 
 export default function App() {
   const [lang, setLang] = useState<Language>(getInitialLanguage);
@@ -346,11 +366,19 @@ export default function App() {
 
   // If user navigated to a dedicated standalone application page, render it full-screen in its original application UI
   if (standaloneDemo === 'bom-designer') {
-    return <BomDesignerApp theme={theme} onBack={handleBackFromStandalone} lang={lang} />;
+    return (
+      <React.Suspense fallback={<SectionFallback />}>
+        <BomDesignerApp theme={theme} onBack={handleBackFromStandalone} lang={lang} />
+      </React.Suspense>
+    );
   }
 
   if (standaloneDemo === 'rechnungspruefer') {
-    return <InvoiceAuditorApp theme={theme} onBack={handleBackFromStandalone} lang={lang} />;
+    return (
+      <React.Suspense fallback={<SectionFallback />}>
+        <InvoiceAuditorApp theme={theme} onBack={handleBackFromStandalone} lang={lang} />
+      </React.Suspense>
+    );
   }
 
   return (
@@ -376,12 +404,14 @@ export default function App() {
       {/* Main Content Sections */}
       <main className="flex-grow">
         {standaloneDemo === 'ai-act-audit' ? (
-          <AiActAuditPage
-            lang={lang}
-            theme={theme}
-            onOpenBooking={(packageTitle) => handleOpenBooking(packageTitle)}
-            onBackToHome={handleBackFromAudit}
-          />
+          <React.Suspense fallback={<SectionFallback />}>
+            <AiActAuditPage
+              lang={lang}
+              theme={theme}
+              onOpenBooking={(packageTitle) => handleOpenBooking(packageTitle)}
+              onBackToHome={handleBackFromAudit}
+            />
+          </React.Suspense>
         ) : (
           <>
             {/* 1. Hero Section (Next-Level High-Craft & Interactive Dataflow Pipeline) */}

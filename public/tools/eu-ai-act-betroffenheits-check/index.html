@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang='de'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>EU AI Act Art. 4 – Betroffenheits-Check</title>
+<script src='https://cdn.tailwindcss.com'></script>
+<link rel='preconnect' href='https://fonts.googleapis.com'>
+<link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap' rel='stylesheet'>
+<style>body{font-family:'Inter',system-ui,sans-serif}</style>
+</head>
+<body class='bg-slate-950 text-slate-100 min-h-screen selection:bg-indigo-500/30'>
+
+<div class='max-w-3xl mx-auto px-6 py-12 md:py-16'>
+
+  <header class='mb-10 md:mb-14'>
+    <div class='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950/60 border border-indigo-800/40 text-indigo-300 text-xs font-semibold tracking-wide uppercase mb-5'>
+      <span class='w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse'></span>
+      B2B KI-Kompetenz-Check
+    </div>
+    <h1 class='text-3xl md:text-5xl font-extrabold tracking-tight text-white leading-tight mb-4'>EU AI Act Art. 4<br><span class='text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-emerald-400'>Betroffenheits-Check</span></h1>
+    <p class='text-slate-400 text-base md:text-lg leading-relaxed max-w-2xl'>Kurz-Selbsteinschätzung für Anbieter und Betreiber von KI-Systemen. Alle Annahmen sind als sichtbare Eingabefelder offengelegt – keine versteckten Schwellenwerte.</p>
+  </header>
+
+  <section class='bg-slate-900/50 border border-slate-800 rounded-2xl p-6 md:p-8 mb-10 shadow-2xl shadow-black/20 backdrop-blur-sm'>
+    <h2 class='text-sm font-bold text-slate-200 uppercase tracking-wider mb-4'>Rechtlicher Kontext</h2>
+    <p class='text-slate-300 text-sm md:text-base leading-relaxed mb-3'>Art. 4 der EU-KI-Verordnung (Verordnung (EU) 2024/1689) verpflichtet <strong>Anbieter</strong> und <strong>Betreiber</strong>, ab dem 02.02.2025 Maßnahmen zu ergreifen, um ein <em>ausreichendes Maß</em> an KI-Kompetenz sicherzustellen.</p>
+    <ul class='list-disc list-inside text-slate-400 text-sm space-y-1.5 mb-3 marker:text-indigo-400'>
+      <li>Die Verordnung nennt <strong>keine Mindestmitarbeiterzahl</strong>.</li>
+      <li>Sie definiert <strong>nicht abschließend</strong>, was „ausreichend“ bedeutet.</li>
+      <li>Hochrisiko-Systeme (Art. 6) erhöhen die Dokumentations- und Schulungsdringlichkeit.</li>
+    </ul>
+    <div class='flex items-center gap-2 text-xs text-amber-300/90 bg-amber-950/30 border border-amber-900/40 rounded-lg px-3 py-2.5'>
+      <span>⚠</span>
+      <span>Alle Zahlenfelder tragen den Hinweis <strong>„(bitte prüfen)“</strong>, da Art. 4 keine festen Grenzwerte vorschreibt.</span>
+    </div>
+  </section>
+
+  <form id='checkForm' class='space-y-8' onsubmit='event.preventDefault();'>
+
+    <div class='grid md:grid-cols-2 gap-6'>
+      <div class='bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-lg shadow-black/10 hover:border-slate-700 transition-colors'>
+        <label for='sel_role' class='block text-sm font-semibold text-slate-200 mb-2'>Ihre Rolle (bitte prüfen)</label>
+        <select id='sel_role' class='w-full bg-slate-950 border border-slate-700 text-slate-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/40 focus:border-indigo-500 transition' onchange='update()'>
+          <option value='none'>Bitte wählen</option>
+          <option value='provider'>Anbieter (entwickle KI)</option>
+          <option value='operator'>Betreiber (nutze KI)</option>
+          <option value='both'>Beides</option>
+          <option value='unclear'>Unklar / Bitte prüfen</option>
+        </select>
+        <p class='text-xs text-slate-500 mt-2'>Art. 4 gilt für Anbieter <em>und</em> Betreiber gleichermaßen.</p>
+      </div>
+
+      <div class='bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-lg shadow-black/10 hover:border-slate-700 transition-colors'>
+        <label class='flex items-center gap-3 cursor-pointer select-none'>
+          <input type='checkbox' id='chk_ai' class='w-5 h-5 rounded border-slate-600 text-indigo-500 bg-slate-950 focus:ring-indigo-500/40' onchange='update()'>
+          <span class='text-sm font-medium text-slate-200'>KI-Systeme im Einsatz oder in Entwicklung</span>
+        </label>
+        <p class='text-xs text-slate-500 mt-2'>Nur wenn Sie KI-Systeme bereitstellen, betreiben oder überwachen.</p>
+      </div>
+    </div>
+
+    <div class='grid md:grid-cols-3 gap-6'>
+      <div class='bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-lg shadow-black/10 hover:border-slate-700 transition-colors'>
+        <label for='num_people' class='block text-sm font-semibold text-slate-200 mb-2'>Betroffene Personen (bitte prüfen)</label>
+        <input type='number' id='num_people' value='10' min='0' step='1' class='w-full bg-slate-950 border border-slate-700 text-slate-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/40 focus:border-indigo-500 transition' oninput='update()'>
+        <p class='text-xs text-slate-500 mt-2'>Art. 4 nennt keine Mindestschwelle. Bitte prüfen, wer betroffen ist.</p>
+      </div>
+
+      <div class='bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-lg shadow-black/10 hover:border-slate-700 transition-colors'>
+        <label for='chk_highrisk' class='flex items-center gap-3 cursor-pointer select-none mb-3'>
+          <input type='checkbox' id='chk_highrisk' class='w-5 h-5 rounded border-slate-600 text-amber-400 bg-slate-950 focus:ring-amber-500/40' onchange='update()'>
+          <span class='text-sm font-medium text-slate-200'>Hochrisiko-System (Art. 6) – bitte prüfen</span>
+        </label>
+        <p class='text-xs text-slate-500'>Erhöht die Dringlichkeit der Kompetenznachweise deutlich.</p>
+      </div>
+
+      <div class='bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-lg shadow-black/10 hover:border-slate-700 transition-colors'>
+        <label for='rng_doc' class='block text-sm font-semibold text-slate-200 mb-2'>Kompetenznachweis (bitte prüfen)</label>
+        <input type='range' id='rng_doc' min='0' max='100' value='40' step='5' class='w-full accent-indigo-500 h-2 bg-slate-950 rounded-lg appearance-none cursor-pointer' oninput='update(); document.getElementById("val_doc").textContent=this.value+"%";'>
+        <div class='flex justify-between text-xs text-slate-500 mt-2'><span>0 %</span><span id='val_doc' class='font-mono text-indigo-300'>40%</span><span>100 %</span></div>
+        <p class='text-xs text-slate-500 mt-2'>Art. 4 fordert „ausreichend“, definiert aber keine Prozentvorgabe.</p>
+      </div>
+    </div>
+
+    <div class='bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-lg shadow-black/10 hover:border-slate-700 transition-colors md:w-1/2'>
+      <label class='flex items-center gap-3 cursor-pointer select-none mb-3'>
+        <input type='checkbox' id='chk_plan' class='w-5 h-5 rounded border-slate-600 text-emerald-400 bg-slate-950 focus:ring-emerald-500/40' onchange='update()'>
+        <span class='text-sm font-medium text-slate-200'>Dokumentierter Schulungsplan vorhanden und aktualisiert</span>
+      </label>
+      <p class='text-xs text-slate-500'>Ohne Plan steigt der Nachweisaufwand. Bitte prüfen Sie Aktualität und Vollständigkeit.</p>
+    </div>
+
+    <section class='bg-gradient-to-br from-indigo-950/40 to-emerald-950/20 border border-indigo-900/30 rounded-2xl p-6 md:p-8 shadow-inner shadow-black/20'>
+      <h3 class='text-lg font-extrabold text-white mb-6'>Offene Parameter (bitte prüfen)</h3>
+      <p class='text-xs text-slate-400 mb-5'>Die folgende Rechenlogik nutzt ausschließlich Ihre Eingaben. Alle Gewichtungen und Schwellen sind sichtbar und editierbar – keine versteckten Annahmen.</p>
+
+      <div class='grid md:grid-cols-3 gap-4 mb-6'>
+        <div>
+          <label for='w_provider' class='block text-xs font-semibold text-indigo-300 mb-1'>Gewicht Anbieter</label>
+          <input type='number' id='w_provider' value='30' step='1' class='w-full bg-slate-950 border border-slate-700 rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-indigo-500' oninput='update()'>
+        </div>
+        <div>
+          <label for='w_operator' class='block text-xs font-semibold text-indigo-300 mb-1'>Gewicht Betreiber</label>
+          <input type='number' id='w_operator' value='30' step='1' class='w-full bg-slate-950 border border-slate-700 rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-indigo-500' oninput='update()'>
+        </div>
+        <div>
+          <label for='w_ai' class='block text-xs font-semibold text-indigo-300 mb-1'>Gewicht KI-Einsatz</label>
+          <input type='number' id='w_ai' value='20' step='1' class='w-full bg-slate-950 border border-slate-700 rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-indigo-500' oninput='update()'>
+        </div>
+        <div>
+          <label for='w_highrisk' class='block text-xs font-semibold text-amber-300 mb-1'>Gewicht Hochrisiko</label>
+          <input type='number' id='w_highrisk' value='15' step='1' class='w-full bg-slate-950 border border-slate-700 rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-amber-500' oninput='update()'>
+        </div>
+        <div>
+          <label for='w_doc_factor' class='block text-xs font-semibold text-emerald-300 mb-1'>Abzugsfaktor Dokumentation</label>
+          <input type='number' id='w_doc_factor' value='0.3' step='0.05' min='0' max='2' class='w-full bg-slate-950 border border-slate-700 rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-emerald-500' oninput='update()'>
+        </div>
+        <div>
+          <label for='w_no_plan' class='block text-xs font-semibold text-rose-300 mb-1'>Abzug fehlender Plan</label>
+          <input type='number' id='w_no_plan' value='20' step='1' class='w-full bg-slate-950 border border-slate-700 rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-rose-500' oninput='update()'>
+        </div>
+      </div>
+
+      <div class='flex items-center gap-4 mb-6'>
+        <div class='flex-1'>
+          <label for='num_threshold' class='block text-xs font-semibold text-slate-300 mb-1'>Schwellenwert Handlungsbedarf (bitte prüfen)</label>
+          <input type='number' id='num_threshold' value='60' step='5' min='0' max='150' class='w-full bg-slate-950 border border-slate-700 rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-white' oninput='update()'>
+        </div>
+        <div class='text-xs text-slate-500 leading-tight pt-5'>Ab welchem Score sehen Sie akuten Handlungsbedarf? Art. 4 definiert keine feste Grenze.</div>
+      </div>
+    </section>
+
+    <section id='resultBox' class='bg-slate-950 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-2xl shadow-black/30 relative overflow-hidden'>
+      <div class='absolute top-0 right-0 w-32 h-32 bg-indigo-600/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3'></div>
+      <div class='relative z-10'>
+        <h2 class='text-sm font-bold text-slate-200 uppercase tracking-wider mb-6'>Ergebnis – Sofort sichtbar</h2>
+
+        <div class='flex flex-col md:flex-row md:items-end gap-8 mb-6'>
+          <div class='flex-1'>
+            <div class='text-xs text-slate-500 mb-1'>Betroffenheits-Score (0 – 150+)</div>
+            <div id='scoreDisplay' class='text-5xl md:text-7xl font-extrabold text-white tracking-tighter leading-none'>0</div>
+            <div id='scoreSub' class='text-sm text-slate-400 mt-2'>Wird sofort berechnet</div>
+          </div>
+          <div class='w-full md:w-64 h-3 bg-slate-800 rounded-full overflow-hidden shadow-inner'>
+            <div id='scoreBar' class='h-full bg-gradient-to-r from-indigo-500 to-emerald-400 rounded-full transition-all duration-700 ease-out' style='width:0%'></div>
+          </div>
+        </div>
+
+        <div id='resultText' class='text-base md:text-lg font-medium text-slate-200 mb-4 min-h-[2rem]'>Geben Sie Ihre Daten ein, um die Betroffenheit nach Art. 4 einzuschätzen.</div>
+
+        <div class='grid md:grid-cols-2 gap-4 text-sm'>
+          <div class='bg-slate-900/60 border border-slate-800 rounded-lg p-4'>
+            <div class='text-xs text-slate-500 mb-1'>Offene Handlungsfelder (geschätzt)</div>
+            <div id='fieldsOpen' class='text-xl font-bold text-amber-300'>–</div>
+          </div>
+          <div class='bg-slate-900/60 border border-slate-800 rounded-lg p-4'>
+            <div class='text-xs text-slate-500 mb-1'>Ihr Schwellenwert</div>
+            <div id='fieldsThreshold' class='text-xl font-bold text-indigo-300'>60</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </form>
+
+  <section class='mt-8 bg-indigo-950/20 border border-indigo-900/20 rounded-xl p-5 md:p-6'>
+    <h3 class='text-sm font-bold text-indigo-200 mb-3'>Wie funktioniert die Berechnung?</h3>
+    <p class='text-xs text-slate-400 leading-relaxed mb-2'>Die Rechenlogik ist vollständig offen im Quellcode. Kurz zusammengefasst:</p>
+    <code class='block text-xs text-slate-300 bg-slate-950 border border-slate-800 rounded-lg p-3 overflow-x-auto whitespace-pre-wrap'>
+Score = (Anbieter × w_provider) + (Betreiber × w_operator)
+      + (KI_Einsatz × w_ai) + (Hochrisiko × w_highrisk)
+      - (Dokumentation_% × w_doc_factor)
+      + (Kein_Plan × w_no_plan)
+    </code>
+    <p class='text-xs text-slate-500 mt-3'>Hinweis: Die Gewichtungen dienen ausschließlich der Orientierung. Art. 4 schreibt keine Punktwerte vor.</p>
+  </section>
+
+  <footer class='mt-12 pt-8 border-t border-slate-800 text-center md:text-left md:flex md:justify-between md:items-center gap-4'>
+    <div>
+      <p class='text-xs text-slate-500 font-medium'>Keine Rechts- oder Steuerberatung. Angaben ohne Gewähr.</p>
+      <p class='text-xs text-slate-600 mt-1'>Dieses Tool ersetzt keine juristische Prüfung durch Fachanwälte.</p>
+    </div>
+    <div class='text-xs text-slate-600 md:text-right'>
+      Lead-Magnet für KI-Kompetenz-Trainings · DACH · Art. 4 EU AI Act
+    </div>
+  </footer>
+
+</div>
+
+<script>
+function update() {
+  const selRole = document.getElementById('sel_role').value;
+  const chkAI = document.getElementById('chk_ai').checked;
+  const chkHigh = document.getElementById('chk_highrisk').checked;
+  const chkPlan = document.getElementById('chk_plan').checked;
+  const docVal = parseFloat(document.getElementById('rng_doc').value) || 0;
+  const peopleVal = parseInt(document.getElementById('num_people').value) || 0;
+
+  const wProvider = parseFloat(document.getElementById('w_provider').value) || 30;
+  const wOperator = parseFloat(document.getElementById('w_operator').value) || 30;
+  const wAI = parseFloat(document.getElementById('w_ai').value) || 20;
+  const wHigh = parseFloat(document.getElementById('w_highrisk').value) || 15;
+  const wDocFactor = parseFloat(document.getElementById('w_doc_factor').value) || 0.3;
+  const wNoPlan = parseFloat(document.getElementById('w_no_plan').value) || 20;
+  const threshold = parseFloat(document.getElementById('num_threshold').value) || 60;
+
+  let score = 0;
+  if (selRole === 'provider' || selRole === 'both') score += wProvider;
+  if (selRole === 'operator' || selRole === 'both') score += wOperator;
+  if (chkAI) score += wAI;
+  if (chkHigh) score += wHigh;
+  score -= docVal * wDocFactor;
+  if (!chkPlan) score += wNoPlan;
+
+  const scoreRounded = Math.round(score * 10) / 10;
+  const maxScore = Math.max(150, wProvider + wOperator + wAI + wHigh + wNoPlan);
+  const pct = Math.min(100, Math.max(0, (scoreRounded / maxScore) * 100));
+
+  document.getElementById('scoreDisplay').textContent = scoreRounded.toFixed(1);
+  document.getElementById('scoreBar').style.width = pct + '%';
+  document.getElementById('fieldsThreshold').textContent = threshold;
+
+  let openFields = 0;
+  if (selRole === 'none' || selRole === 'unclear') openFields += 1;
+  if (!chkAI) openFields += 1; // Wenn KI nicht identifiziert, Klärungsbedarf
+  if (peopleVal === 0 && chkAI) openFields += 1; // Wenn KI ja, aber 0 Personen angegeben
+  if (docVal < 100) openFields += 1; // Dokumentation nicht vollständig (Hinweis: bitte prüfen)
+  if (!chkPlan) openFields += 1;
+
+  document.getElementById('fieldsOpen').textContent = openFields + ' von 5 Feldern offen';
+
+  if (scoreRounded >= threshold) {
+    document.getElementById('resultText').innerHTML = '<span class="text-amber-300">Akuter Handlungsbedarf laut Ihrer Einstellung.</span> Art. 4 KI-Kompetenzpflicht prüfen und Schulungs-/Dokumentationsplan erstellen.';
+    document.getElementById('resultText').className = 'text-base md:text-lg font-medium text-slate-200 mb-4 min-h-[2rem]';
+  } else {
+    document.getElementById('resultText').innerHTML = '<span class="text-emerald-300">Grundlage prüfen und dokumentieren.</span> Je nach Gewichtung besteht Handlungsbedarf – prüfen Sie Ihre Einstellung der Parameter.';
+    document.getElementById('resultText').className = 'text-base md:text-lg font-medium text-slate-200 mb-4 min-h-[2rem]';
+  }
+
+  document.getElementById('scoreSub').textContent = 'Berechnet aus Ihren Eingaben (Gewichte: ' + [wProvider, wOperator, wAI, wHigh, wDocFactor, wNoPlan].join(', ') + ')';
+}
+
+// Init
+update();
+</script>
+</body>
+</html>

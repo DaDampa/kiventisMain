@@ -466,6 +466,12 @@ export const translations = {
       ],
       badge: 'PDF · 38 Seiten · Freischaltung nach E-Mail-Bestätigung',
       cta: 'Praxisleitfaden anfordern (Freischaltung per E-Mail)',
+      toolsLabel: 'LIVE-SELBSTCHECKS & RECHNER (SOFORT NUTZBAR)',
+      tools: [
+        { label: 'EU AI Act Art. 4 Betroffenheits-Check', href: '/tools/eu-ai-act-betroffenheits-check/', note: 'Interaktiver Selbstcheck · ca. 3 Min.' },
+        { label: 'Vibe-Coding Readiness-Check', href: '/tools/vibe-coding-readiness-check/', note: 'Reife-Check für Fachteams' },
+        { label: 'SFEC AI ROI Calculator (SG)', href: '/tools/sfec-ai-roi-calculator/', note: 'ROI-Modell für Singapore SMEs' },
+      ],
     },
     faq: {
       kicker: 'HÄUFIG GESTELLTE FRAGEN & GEO-KNOWLEDGE',
@@ -1061,6 +1067,12 @@ export const translations = {
       ],
       badge: 'PDF · 38 Pages · Unlocked upon email confirmation',
       cta: 'Request executive guide (Email confirmation)',
+      toolsLabel: 'LIVE SELF-CHECKS & CALCULATORS (READY TO USE)',
+      tools: [
+        { label: 'EU AI Act Art. 4 Impact Check', href: '/tools/eu-ai-act-betroffenheits-check/', note: 'Interactive self-assessment · ~3 min' },
+        { label: 'Vibe Coding Readiness Check', href: '/tools/vibe-coding-readiness-check/', note: 'Maturity check for domain teams' },
+        { label: 'SFEC AI ROI Calculator (SG)', href: '/tools/sfec-ai-roi-calculator/', note: 'ROI model for Singapore SMEs' },
+      ],
     },
     faq: {
       kicker: 'FREQUENTLY ASKED QUESTIONS & GEO KNOWLEDGE',

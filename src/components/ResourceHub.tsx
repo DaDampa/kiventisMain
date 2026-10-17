@@ -1,7 +1,7 @@
 import React from 'react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
-import { FileText, Download, CheckCircle2, ArrowRight, BookOpen, ShieldCheck } from 'lucide-react';
+import { FileText, Download, CheckCircle2, ArrowRight, BookOpen, ShieldCheck, ExternalLink } from 'lucide-react';
 
 interface ResourceHubProps {
   lang: Language;
@@ -57,6 +57,28 @@ export const ResourceHub: React.FC<ResourceHubProps> = ({
                 <span className="text-xs text-slate-400 font-mono">
                   {t.badge}
                 </span>
+              </div>
+
+              {/* Live Self-Service Tools (Lead Magnets) */}
+              <div className="mt-8 pt-6 border-t border-white/[0.08]">
+                <div className="text-xs font-mono font-semibold tracking-wider text-slate-400 mb-4">
+                  {t.toolsLabel}
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  {t.tools.map((tool, idx) => (
+                    <a
+                      key={idx}
+                      href={tool.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-lg border border-white/[0.1] bg-white/[0.03] hover:border-[#14B8A6]/40 hover:bg-white/[0.06] px-4 py-2.5 text-xs text-slate-200 transition-colors"
+                    >
+                      <ExternalLink className="h-3.5 w-3.5 text-[#14B8A6] shrink-0" />
+                      <span className="font-medium">{tool.label}</span>
+                      <span className="text-slate-500">· {tool.note}</span>
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
 
