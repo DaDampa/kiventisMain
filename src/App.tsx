@@ -56,6 +56,9 @@ import {
 
 import { LandingPage } from './components/LandingPage';
 import { landingById, type LandingId } from './data/landings';
+import { articlesDe, articlesEn } from './data/articles';
+import { ArticleDetailModal } from './components/ArticleDetailModal';
+import type { InsightArticle } from './types';
 
 const SectionFallback: React.FC = () => (
   <div className="min-h-[50vh] flex items-center justify-center">
@@ -78,6 +81,26 @@ export default function App() {
   const [preselectedPackage, setPreselectedPackage] = useState<string | undefined>(undefined);
   const [standaloneDemo, setStandaloneDemo] = useState<'none' | 'bom-designer' | 'rechnungspruefer' | 'ai-act-audit'>('none');
   const [landing, setLanding] = useState<LandingId | 'none'>('none');
+  // Synchroner Initialwert beim Direktaufruf /blog/<id> (bzw. /en/blog/<id>):
+  // Der Early-Return greift ab dem ersten Render — kein Flickern der Startseite.
+  const [directArticle, setDirectArticle] = useState<InsightArticle | null>(() => {
+    try {
+      const raw = window.location.pathname;
+      const clean = raw.replace(/^\/en\b/, '') || '/';
+      const m = clean.match(/^\/blog\/([a-z0-9-]+)\/?$/);
+      if (m) {
+        const id = m[1];
+        return (
+          (lang === 'en' ? articlesEn : articlesDe).find((a) => a.id === id) ??
+          articlesDe.find((a) => a.id === id) ??
+          null
+        );
+      }
+    } catch {
+      // Ignore (z.B. SSR/Prerender ohne window)
+    }
+    return null;
+  });
 
   // Sync theme with document attribute & localStorage
   useEffect(() => {
@@ -157,6 +180,52 @@ export default function App() {
       if (enPath && lang !== 'en') {
         setLang('en');
         persistLanguage('en', true);
+      }
+
+      // Direkter Artikel-Aufruf /blog/<id> (bzw. /en/blog/<id>):
+      // Nur den Artikel rendern, ohne die Startseite dahinter (einzelner H1).
+      const blogMatch = path.match(/^\/blog\/([a-z0-9-]+)\/?$/);
+      if (blogMatch) {
+        const articleId = blogMatch[1];
+        const pool = lang === 'en' ? articlesEn : articlesDe;
+        const found =
+          pool.find((a) => a.id === articleId) ??
+          articlesDe.find((a) => a.id === articleId);
+        if (found) {
+          setDirectArticle(found);
+          setLanding('none');
+          setStandaloneDemo('none');
+          updatePageMeta({
+            title: `${found.title} · KIVENTIS`,
+            description: found.excerpt,
+            canonical: `https://www.kiventis.com${enPath ? '/en' : ''}/blog/${found.id}`,
+            ogType: 'article',
+            publishedTime: found.publishedDate,
+            schema: {
+              '@context': 'https://schema.org',
+              '@type': 'Article',
+              headline: found.title,
+              description: found.excerpt,
+              inLanguage: lang === 'de' ? 'de-DE' : 'en-US',
+              datePublished: '2026-09-01T08:00:00+02:00',
+              author: {
+                '@type': 'Person',
+                name: found.author.name,
+                jobTitle: found.author.role,
+              },
+              publisher: {
+                '@type': 'Organization',
+                name: 'KIVENTIS',
+                url: 'https://www.kiventis.com',
+              },
+              mainEntityOfPage: `https://www.kiventis.com${enPath ? '/en' : ''}/blog/${found.id}`,
+              keywords: found.tags.join(', '),
+            },
+          });
+          return;
+        }
+      } else {
+        setDirectArticle(null);
       }
 
       // Hidden admin entry (?admin=1) — keeps the lead manager reachable
@@ -455,6 +524,29 @@ export default function App() {
       canonical: lang === 'de' ? 'https://www.kiventis.com/' : 'https://www.kiventis.com/?lang=en',
     });
   };
+
+  // Direkter Artikel-Aufruf: nur der Artikel (einzelner H1, keine Startseite dahinter)
+  if (directArticle) {
+    return (
+      <>
+        <ArticleDetailModal
+          article={directArticle}
+          lang={lang}
+          asH1
+          onClose={() => {
+            window.location.href = '/#insights';
+          }}
+          onOpenBooking={() => handleOpenBooking()}
+        />
+        <BookingModal
+          lang={lang}
+          isOpen={isBookingOpen}
+          preselectedPackage={preselectedPackage}
+          onClose={() => setIsBookingOpen(false)}
+        />
+      </>
+    );
+  }
 
   // If user navigated to a dedicated standalone application page, render it full-screen in its original application UI
   if (standaloneDemo === 'bom-designer') {
