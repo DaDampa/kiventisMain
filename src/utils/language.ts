@@ -27,6 +27,18 @@ export function getInitialLanguage(): Language {
     return 'de';
   }
 
+  // 0. Clean-URL path variant (/en or /en/...) takes precedence
+  // over query params and stored preferences (hreflang consistency).
+  try {
+    const p = window.location.pathname;
+    if (p === '/en' || p.startsWith('/en/')) {
+      persistLanguage('en', true);
+      return 'en';
+    }
+  } catch (e) {
+    // Ignore URL parsing errors
+  }
+
   // 1. URL Query Parameter override (?lang=en or ?lang=de)
   try {
     const urlParams = new URLSearchParams(window.location.search);

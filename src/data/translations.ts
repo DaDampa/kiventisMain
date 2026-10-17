@@ -17,7 +17,7 @@ export const translations = {
     hero: {
       kicker: 'B2B KI-ENABLEMENT FÜR MITTELSTÄNDISCHE UNTERNEHMEN · DACH & APAC',
       headlineStart: 'Wir befähigen KMU-Teams,',
-      headlineAccent: 'Arbeitsabläufe sicher zu automatisieren',
+      headlineAccent: 'Arbeitsabläufe mit KI sicher zu automatisieren',
       headlineEnd: 'und Produktivität messbar zu steigern.',
       subheadline:
         'Praxisnahes Online-Training im souveränen Umgang mit AI, Vibe Coding für Fachkräfte ohne Programmierkenntnisse und rechtssichere EU-AI-Act-Compliance. Sparen Sie Serviceverträge und Softwarelizenzen, indem Sie Ihre eigenen Tools und Webseiten in kurzer Zeit und maßgeschneidert an Ihr Unternehmen erstellen. Modular über mehrere Wochen (1–2x pro Woche), mit messbarem ROI in 2 bis 4 Monaten.',
@@ -36,7 +36,7 @@ export const translations = {
       ],
       interactivePreview: {
         title: 'KIVENTIS B2B Execution Pipeline',
-        subtitle: 'Vom Fachbereichs-Problem zum sicheren Produktiv-Workflow in 48 Stunden',
+        subtitle: 'Vom Fachbereichs-Problem zum ersten Ergebnis in 48 Stunden – produktionsreif im PoC in 14 Tagen',
         steps: [
           { tag: '01. Input', title: 'Unstrukturierte Daten', desc: 'PDFs, Kundenanfragen, ERP-Exporte, Verträge' },
           { tag: '02. Core', title: 'RAG & Lokale Wissensdatenbank', desc: 'Sichere Vektorsuche ohne Datenabfluss (DSGVO)' },
@@ -213,7 +213,7 @@ export const translations = {
     },
     solutions: {
       kicker: 'UNSERE TRAININGS- & BERATUNGSPROGRAMME',
-      heading: 'Vier modular aufgebaute Leistungsbausteine für Ihren KI-Erfolg',
+      heading: 'Modulare KI-Beratung & Programme für KMU – Automatisierung, Enablement & Compliance',
       subheading:
         'Vom ersten Quick Start bis zur unternehmensweiten Implementierung von Vibe Coding, Compliance und On-Premise-LLMs.',
       modules: [
@@ -466,6 +466,12 @@ export const translations = {
       ],
       badge: 'PDF · 38 Seiten · Freischaltung nach E-Mail-Bestätigung',
       cta: 'Praxisleitfaden anfordern (Freischaltung per E-Mail)',
+      toolsLabel: 'LIVE-SELBSTCHECKS & RECHNER (SOFORT NUTZBAR)',
+      tools: [
+        { label: 'EU AI Act Art. 4 Betroffenheits-Check', href: '/tools/eu-ai-act-betroffenheits-check/', note: 'Interaktiver Selbstcheck · ca. 3 Min.' },
+        { label: 'Vibe-Coding Readiness-Check', href: '/tools/vibe-coding-readiness-check/', note: 'Reife-Check für Fachteams' },
+        { label: 'SFEC AI ROI Calculator (SG)', href: '/tools/sfec-ai-roi-calculator/', note: 'ROI-Modell für Singapore SMEs' },
+      ],
     },
     faq: {
       kicker: 'HÄUFIG GESTELLTE FRAGEN & GEO-KNOWLEDGE',
@@ -611,7 +617,7 @@ export const translations = {
     hero: {
       kicker: 'B2B AI ENABLEMENT FOR MID-SIZED ENTERPRISES · DACH & APAC',
       headlineStart: 'We equip SME teams to',
-      headlineAccent: 'safely automate business workflows',
+      headlineAccent: 'safely automate business workflows with AI',
       headlineEnd: 'and measurably boost productivity.',
       subheadline:
         'Hands-on online training teaching practical AI usage, Vibe Coding for domain experts without software engineering backgrounds, and verifiable EU AI Act compliance. Save on service contracts and software licenses by rapidly building your own custom tools and websites tailored to your company. Modular format over multiple weeks (1–2 sessions per week) with measurable ROI in 2 to 4 months.',
@@ -630,7 +636,7 @@ export const translations = {
       ],
       interactivePreview: {
         title: 'KIVENTIS B2B Execution Pipeline',
-        subtitle: 'From business pain point to resilient internal automation in 48 hours',
+        subtitle: 'From business pain point to first results in 48 hours – production-ready PoC within 14 days',
         steps: [
           { tag: '01. Input', title: 'Unstructured Data', desc: 'PDFs, RFPs, ERP exports, customer inquiries' },
           { tag: '02. Core', title: 'RAG & Sovereign Knowledge', desc: 'Private vector search without data leakage' },
@@ -807,7 +813,7 @@ export const translations = {
     },
     solutions: {
       kicker: 'OUR TRAINING & CONSULTING PROGRAMS',
-      heading: 'Four modular programs engineered for SME operational excellence',
+      heading: 'Modular AI consulting & programs for SMEs – automation, enablement & compliance',
       subheading:
         'From initial opportunity audit to enterprise-wide Vibe Coding and regulatory compliance certification.',
       modules: [
@@ -1061,6 +1067,12 @@ export const translations = {
       ],
       badge: 'PDF · 38 Pages · Unlocked upon email confirmation',
       cta: 'Request executive guide (Email confirmation)',
+      toolsLabel: 'LIVE SELF-CHECKS & CALCULATORS (READY TO USE)',
+      tools: [
+        { label: 'EU AI Act Art. 4 Impact Check', href: '/tools/eu-ai-act-betroffenheits-check/', note: 'Interactive self-assessment · ~3 min' },
+        { label: 'Vibe Coding Readiness Check', href: '/tools/vibe-coding-readiness-check/', note: 'Maturity check for domain teams' },
+        { label: 'SFEC AI ROI Calculator (SG)', href: '/tools/sfec-ai-roi-calculator/', note: 'ROI model for Singapore SMEs' },
+      ],
     },
     faq: {
       kicker: 'FREQUENTLY ASKED QUESTIONS & GEO KNOWLEDGE',

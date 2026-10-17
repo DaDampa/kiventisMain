@@ -262,6 +262,76 @@ export const articlesDe: InsightArticle[] = [
       },
     ],
   },
+  {
+    id: 'e-rechnung-workflow-automatisierung-mittelstand',
+    category: 'erp',
+    categoryLabel: 'ERP, Prozesse & KI-Agenten',
+    kicker: 'E-RECHNUNG & WORKFLOW 2026',
+    title:
+      'E-Rechnung und Workflow Automatisierung im Mittelstand: Von der PDF-Eingangsrechnung zur audit-sicheren Prozesskette',
+    excerpt:
+      'Eingangsrechnungen per E-Mail und PDF verlangsamen den Cash-Flow ebenso wie verwaiste Freigabeketten. Wie Mittelständler Eingangsrechnungsprüfung, Freigabeworkflow und Buchung in ihre ERP-Landschaft holen – ohne die Compliance zu riskieren.',
+    readTime: '6 Min. Lesezeit',
+    publishedDate: 'Oktober 2026',
+    author: {
+      name: 'Dipl.-Ing. D. Blazinic',
+      role: 'Senior Enterprise Architect & KI-Consultant',
+    },
+    tags: ['E-Rechnung', 'Workflow Automatisierung', 'Eingangsrechnung', 'ERP Prozessautomatisierung', 'Audit-Trail'],
+    citation:
+      'Richtlinie 2014/55/EU (elektronische Rechnungsstellung bei öffentlichen Aufträgen); Verordnung (EU) 2024/1689 (EU AI Act), Art. 4 (KI-Kompetenz)',
+    keyTakeaways: [
+      'Der größte Kostenblock liegt nicht in der Belegerkennung, sondern in der manuellen Weiterverarbeitung: Prüfung, Freigabe und Buchung sind drei getrennte Prozessschritte.',
+      'Der 3-Wege-Abgleich (Bestellung, Wareneingang, Rechnung) mit Toleranzprüfung ist der Qualitätskern der automatisierten Eingangsrechnungsprüfung.',
+      'Workflow Automatisierung ersetzt E-Mail-Freigaben durch regelbasierte Freigabeketten mit Eskalation, Vertretung und lückenlosem Protokoll.',
+      'Für KI-gestützte Belegerfassung gilt Art. 4 EU AI Act: Beschäftigte brauchen nachweisbare KI-Kompetenz, wenn sie solche Systeme beaufsichtigen.',
+      'Ein Audit-Trail pro Beleg (wer hat was wann freigegeben) ist Voraussetzung für goBD-konforme Buchhaltung und jede externe Prüfung.',
+    ],
+    sections: [
+      {
+        heading: '1. Warum E-Rechnung jetzt Priorität hat',
+        paragraphs: [
+          'In vielen Mittelstandsbetrieben erreichen Eingangsrechnungen weiterhin als PDF per E-Mail. Der Weg von der Mail bis zur Buchung führt über manuelle Erfassung, Sichtprüfung und eine Freigabe per E-Mail-Kette – mit der Folge: Bearbeitungszeiten in Tagen, verstreichende Skontofristen und Belege, die im Posteingang eines Kollegen liegen bleiben.',
+          'Der Druck kommt von zwei Seiten. Erstens der öffentliche Sektor: Die Richtlinie 2014/55/EU zur elektronischen Rechnungsstellung bei öffentlichen Aufträgen hat die E-Rechnung für Lieferanten öffentlicher Auftraggeber längst zur Pflicht gemacht, und private Kunden folgen dem Muster. Zweitens die eigene Skalierung: Wer wächst, ohne die Buchhaltung aufzustocken, muss automatisieren – oder wird mit der Belegflut teuer.',
+          'Die gute Nachricht für den Mittelstand: Der technologische Aufwand ist überschaubar. Die meisten ERP-Systeme (SAP S/4HANA, Microsoft Dynamics 365, Mesonic WinLine, proALPHA, abas, Infor, Sage) bieten native oder per Schnittstelle nachrüstbare Belegerfassung – die eigentliche Arbeit liegt in der Prozesskette dahinter.',
+        ],
+        callout:
+          'Startpunkt jeder Analyse: Wo landen Rechnungen heute physisch (Posteingang, Shared Mailbox, Scanzentrale) und wie viele Touchpoints hat ein Beleg bis zur Buchung? Diese Zahl ist die Baseline für jede Wirtschaftlichkeitsrechnung.',
+      },
+      {
+        heading: '2. Die Prozesskette: Eingang, Prüfung, Freigabe, Buchung',
+        paragraphs: [
+          'Eine automatisierte Eingangsrechnungsprüfung besteht aus vier ineinandergreifenden Schritten. Der Eingang erfolgt zentral (E-Mail-Parser, Lieferantenportal oder E-Rechnungsstandard wie XRechnung und ZUGFeRD). Die Erkennung extrahiert Lieferant, Betrag, Steuer und Positionsdaten – regelbasiert bei strukturierten Formaten, modellgestützt bei freien PDF-Layouts.',
+          'Der Qualitätskern ist der 3-Wege-Abgleich: Rechnung gegen Bestellung und Wareneingang. Betrag, Menge und Leistungszeitraum werden geprüft, mit definierten Toleranzen (etwa ein prozentualer Spielraum für Skonto oder Rundungsdifferenzen). Liegt alles innerhalb der Toleranz, wird der Beleg automatisch zur Buchung freigegeben; weicht er ab, wandert er in die Ausnahmeklärung.',
+          'Entscheidend ist die Trennung von Prüfung und Freigabe. Die Prüfung kann maschinell erfolgen, die Freigabe bleibt als menschlicher Schritt mit definiertem Schwellwert erhalten. Wer beides vermischt, verliert die Prüffähigkeit; wer beide getrennt automatisiert, gewinnt Geschwindigkeit ohne Kontrollverlust.',
+        ],
+      },
+      {
+        heading: '3. Workflow Automatisierung: Freigaben ohne E-Mail-Ketten',
+        paragraphs: [
+          'Freigabeketten per E-Mail sind der stille Kostenfaktor: Sie sind nicht nachvollziehbar, nicht eskalationsfähig und nicht vertretungsfest. Eine regelbasierte Workflow Automatisierung ersetzt sie durch strukturierte Freigaben: Betrag und Kostenstelle bestimmen den Freigebenden, Abwesenheit löst die Vertretungsregel aus, und bei Fristüberschreitung eskaliert der Beleg automatisch an die nächste Instanz.',
+          'Für die Anbindung ans ERP gibt es zwei übliche Wege: native Workflow-Funktionen des ERP (Freigabeprozesse in SAP S/4HANA oder Dynamics 365) oder eine vorgelagerte Middleware, die über REST- und OData-Schnittstellen mit dem ERP kommuniziert. Letzteres ist oft der schnellere Weg, weil die Kernsysteme unangetastet bleiben.',
+          'In der Praxis hat sich eine Stufenlogik bewährt: kleine Beträge unterhalb einer Freigabegrenze laufen vollautomatisch durch, mittlere Beträge erhalten einen Freigebenden, hohe Beträge eine mehrstufige Kette. Die Grenzwerte definiert die Finanzabteilung – nicht die IT.',
+        ],
+      },
+      {
+        heading: '4. Compliance: Art. 4 EU AI Act, GoBD und der lückenlose Audit-Trail',
+        paragraphs: [
+          'Sobald KI-gestützte Belegerkennung im Spiel ist (modellgestützte Extraktion aus freien PDFs, Agenten für Ausnahmefälle), greift die Schulungspflicht nach Artikel 4 der Verordnung (EU) 2024/1689: Beschäftigte, die solche Systeme beaufsichtigen, benötigen nachweisbare KI-Kompetenz. Für die Buchhaltung heißt das konkret: Wer einen automatischen Kontierungsvorschlag prüft und absegnet, muss beurteilen können, wann der Vorschlag plausibel ist.',
+          'Zusätzlich gelten die klassischen Pflichten der Buchführung: Jeder Beleg muss lückenlos nachvollziehbar bleiben (GoBD-Grundsätze). Das bedeutet ein Protokoll pro Schritt – Eingang, Erkennungsergebnis, Prüflauf, Freigabe durch wen und wann, Buchung. Fehlt eine Station, wird der Beleg bei einer Betriebsprüfung zum Problem.',
+          'Der Audit-Trail ist zugleich das beste Werkzeug gegen Fehler: Wenn jeder Eingriff protokolliert ist, lassen sich Fehlbuchungen in Minuten statt Tagen zurückverfolgen – und die interne Revision erhält ihre Nachweise ohne Zusatzarbeit.',
+        ],
+      },
+      {
+        heading: '5. Wirtschaftlichkeit: Was die Automatisierung bringt',
+        paragraphs: [
+          'Die Wirtschaftlichkeit berechnet sich aus drei Größen: Bearbeitungszeit pro Beleg (heute: Minuten bis Tage, je nach Prozessweg), Fehlerquote (manuelle Erfassung produziert typischerweise Tipp- und Zuordnungsfehler) und Skonto-Frequenz (wie viele Skontofristen verstreichen ungenutzt).',
+          'Als Faustwert gilt in der Praxis: Je manueller der Prozess heute ist, desto schneller amortisiert sich die Automatisierung – Betriebe mit Shared-Mailbox-Eingang und E-Mail-Freigaben sehen den Break-even erfahrungsgemäß in Monaten, nicht Jahren. Eine belastbare Zahl liefert nur die eigene Baseline.',
+          'Der Einstieg muss nicht die komplette Buchhaltung sein. Ein häufig genutzter PoC beschränkt sich auf einen Lieferantenkreis mit hohem, strukturiertem Belegaufkommen: Eingang, 3-Wege-Abgleich, automatische Freigabe unterhalb der Grenze, Buchung. Das liefert messbare Zahlen für den Rollout – und das Team hat die Governance-Routine schon aufgebaut.',
+        ],
+      },
+    ],
+  },
 ];
 
 export const articlesEn: InsightArticle[] = [
@@ -518,6 +588,76 @@ export const articlesEn: InsightArticle[] = [
           'A sound assessment compares three quantities. First, the volume of exception cases: as long as exceptions are rare, better rules deliver more than an agent. Second, today\u2019s effort per exception: a case that costs an experienced specialist twenty minutes of research across three systems is a good candidate. Third, change risk: processes whose interfaces change frequently make an agent solution disproportionately expensive.',
           'A pragmatic entry point has proven effective: scope the agent initially to clarification and research tasks only. That delivers value quickly without risking write access to core systems, and it establishes the logging routine that later write scenarios require anyway.',
           'Anyone who runs this assessment against their own process data typically arrives at a small number of viable candidates rather than a company-wide rollout - and that is precisely the difference between a defensible business case and a technology demo.',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'e-rechnung-workflow-automatisierung-mittelstand',
+    category: 'erp',
+    categoryLabel: 'ERP, Processes & AI Agents',
+    kicker: 'E-INVOICING & WORKFLOW 2026',
+    title:
+      'E-invoicing and workflow automation for SMEs: from PDF invoice to audit-proof process chain',
+    excerpt:
+      'Invoices arriving as email PDFs stall cash flow just as much as orphaned approval chains do. How mid-sized companies bring incoming invoice checks, approval workflows and posting into their ERP landscape – without risking compliance.',
+    readTime: '6 min read',
+    publishedDate: 'October 2026',
+    author: {
+      name: 'Dipl.-Ing. D. Blazinic',
+      role: 'Senior Enterprise Architect & AI Consultant',
+    },
+    tags: ['E-invoicing', 'Workflow Automation', 'Incoming Invoices', 'ERP Process Automation', 'Audit Trail'],
+    citation:
+      'Directive 2014/55/EU (electronic invoicing in public procurement); Regulation (EU) 2024/1689 (EU AI Act), Art. 4 (AI literacy)',
+    keyTakeaways: [
+      'The biggest cost block is not invoice recognition but manual downstream processing: check, approval and posting are three separate process steps.',
+      'The three-way match (purchase order, goods receipt, invoice) with tolerance checks is the quality core of automated incoming invoice verification.',
+      'Workflow automation replaces email approvals with rule-based approval chains including escalation, substitution and complete logging.',
+      'AI-supported invoice capture falls under Art. 4 EU AI Act: employees supervising such systems need verifiable AI literacy.',
+      'An audit trail per invoice (who approved what, when) is a prerequisite for GoBD-compliant accounting and any external audit.',
+    ],
+    sections: [
+      {
+        heading: '1. Why e-invoicing is now a priority',
+        paragraphs: [
+          'In many mid-sized companies, incoming invoices still arrive as PDFs by email. The path from mailbox to posting runs through manual entry, visual checks and an approval email chain – with the result: processing times in days, missed early-payment discounts and invoices stuck in a colleague\'s inbox.',
+          'The pressure comes from two sides. First, the public sector: Directive 2014/55/EU on electronic invoicing in public procurement has long made e-invoicing mandatory for suppliers of public authorities, and private customers are following the pattern. Second, scaling: companies that grow without adding headcount to accounting must automate – or the volume of documents becomes expensive.',
+          'Good news for SMEs: the technological effort is manageable. Most ERP systems (SAP S/4HANA, Microsoft Dynamics 365, Mesonic WinLine, proALPHA, abas, Infor, Sage) offer native or interface-retrofittable document capture – the real work lies in the process chain behind it.',
+        ],
+        callout:
+          'Starting point of every analysis: Where do invoices physically arrive today (mailbox, shared mailbox, scan desk) and how many touchpoints does a document have until posting? That number is the baseline for any business case.',
+      },
+      {
+        heading: '2. The process chain: intake, check, approval, posting',
+        paragraphs: [
+          'An automated incoming invoice check consists of four interlocking steps. Intake happens centrally (email parser, supplier portal or an e-invoicing standard such as XRechnung or ZUGFeRD). Recognition extracts vendor, amount, tax and line-item data – rule-based for structured formats, model-based for free PDF layouts.',
+          'The quality core is the three-way match: invoice against purchase order and goods receipt. Amount, quantity and service period are checked with defined tolerances (a percentage margin for discounts or rounding differences, for example). If everything is within tolerance, the document is automatically released for posting; if it deviates, it goes to exception handling.',
+          'The decisive design choice is the separation of check and approval. The check can be machine-driven, while approval remains a human step with a defined threshold. Mixing both destroys auditability; automating both separately gains speed without loss of control.',
+        ],
+      },
+      {
+        heading: '3. Workflow automation: approvals without email chains',
+        paragraphs: [
+          'Approval chains via email are the silent cost driver: not traceable, not escalatable, and not substitution-proof. Rule-based workflow automation replaces them with structured approvals: amount and cost center determine the approver, absence triggers the substitution rule, and overdue items escalate automatically to the next instance.',
+          'For ERP integration there are two common paths: native workflow functions of the ERP (approval processes in SAP S/4HANA or Dynamics 365) or a middleware layer that talks to the ERP via REST and OData interfaces. The latter is often the faster route because the core systems remain untouched.',
+          'A tiered logic has proven itself in practice: small amounts below an approval threshold run fully automatically, medium amounts get one approver, high amounts a multi-step chain. Finance defines the thresholds – not IT.',
+        ],
+      },
+      {
+        heading: '4. Compliance: Art. 4 EU AI Act, GoBD and the complete audit trail',
+        paragraphs: [
+          'Once AI-supported document capture is in play (model-based extraction from free PDFs, agents for exception cases), the training mandate under Article 4 of Regulation (EU) 2024/1689 applies: employees supervising such systems need verifiable AI literacy. For accounting this concretely means: anyone who reviews and signs off an automated posting suggestion must be able to judge when that suggestion is plausible.',
+          'On top of that, the classic bookkeeping duties apply: every document must remain traceable without gaps (GoBD principles). That means a log entry per step – intake, recognition result, check run, approval by whom and when, posting. If a station is missing, the document becomes a problem in an external audit.',
+          'The audit trail is also the best tool against errors: if every intervention is logged, mispostings can be traced back in minutes instead of days – and internal audit receives its evidence without extra work.',
+        ],
+      },
+      {
+        heading: '5. ROI: what automation actually returns',
+        paragraphs: [
+          'The business case rests on three variables: processing time per document (today: minutes to days depending on the process path), error rate (manual entry typically produces typos and misassignments) and discount frequency (how many early-payment deadlines lapse unused).',
+          'As a rule of thumb: the more manual the process is today, the faster automation pays off – companies with shared-mailbox intake and email approvals typically see break-even in months, not years. Only your own baseline delivers a solid number.',
+          'The entry point does not have to be the entire accounting department. A common PoC limits itself to a vendor group with high, structured document volume: intake, three-way match, automatic approval below the threshold, posting. That yields measurable figures for the rollout – and the team has already built the governance routine.',
         ],
       },
     ],
