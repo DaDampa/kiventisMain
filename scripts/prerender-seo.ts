@@ -22,7 +22,7 @@
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
-import { articlesDe } from '../src/data/articles';
+import { articlesDe, articlesEn } from '../src/data/articles';
 import type { InsightArticle } from '../src/types';
 import { landings } from '../src/data/landings';
 import type { LandingSpec } from '../src/data/landings';
@@ -53,10 +53,9 @@ interface RouteSpec {
 const esc = (s: string): string =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-const articleUrl = (id: string): string => `${SITE}/blog/${id}`;
-
 /** Blogartikel -> RouteSpec. Inhalte stammen 1:1 aus src/data/articles.ts (keine Erfindungen). */
-function articleRoute(a: InsightArticle): RouteSpec {
+function articleRoute(a: InsightArticle, en = false): RouteSpec {
+  const prefix = en ? 'en/' : '';
   const blocks: RouteSpec['blocks'] = [
     {
       heading: 'Kernaussagen',
@@ -73,7 +72,7 @@ function articleRoute(a: InsightArticle): RouteSpec {
   }
 
   return {
-    route: `blog/${a.id}`,
+    route: `${prefix}blog/${a.id}`,
     title: `${a.title} · KIVENTIS`,
     description: a.excerpt,
     ogType: 'article',
@@ -83,14 +82,14 @@ function articleRoute(a: InsightArticle): RouteSpec {
     breadcrumb: [
       { name: 'Startseite', item: `${SITE}/` },
       { name: 'Insights & Blog', item: `${SITE}/#insights` },
-      { name: a.categoryLabel, item: articleUrl(a.id) },
+      { name: a.categoryLabel, item: `${SITE}/${prefix}blog/${a.id}` },
     ],
     schema: {
       '@context': 'https://schema.org',
       '@type': 'Article',
       headline: a.title,
       description: a.excerpt,
-      inLanguage: 'de-DE',
+      inLanguage: en ? 'en-US' : 'de-DE',
       datePublished: '2026-09-01T08:00:00+02:00',
       dateModified: `${BUILD_DATE}T00:00:00+02:00`,
       author: {
@@ -104,7 +103,7 @@ function articleRoute(a: InsightArticle): RouteSpec {
         url: SITE,
         logo: { '@type': 'ImageObject', url: `${SITE}/favicon.svg` },
       },
-      mainEntityOfPage: articleUrl(a.id),
+      mainEntityOfPage: `${SITE}/${prefix}blog/${a.id}`,
       keywords: a.tags.join(', '),
       citation: a.citation,
     },
@@ -435,42 +434,49 @@ function buildPage(template: string, spec: RouteSpec): string {
   return html;
 }
 
-/** Landingpage-Routen aus den Cluster-Content-Specs (DACH-Cluster). */
-function landingRoute(l: LandingSpec): RouteSpec {
-  const url = `${SITE}/${l.path}`;
-  const short = l.h1.de.split(':')[0];
+/** Landingpage-Routen aus den Cluster-Content-Specs (DACH-Cluster, DE+EN). */
+function landingRoute(l: LandingSpec, en = false): RouteSpec {
+  const prefix = en ? 'en/' : '';
+  const url = `${SITE}/${prefix}${l.path}`;
+  const h1 = en ? l.h1.en : l.h1.de;
+  const lead = en ? l.lead.en : l.lead.de;
+  const short = h1.split(':')[0];
+  const whyHeading = en ? 'Why Kiventis' : 'Warum Kiventis';
+  const whyText = en
+    ? 'Kiventis is a consulting and implementation house specialized in the mid-market for AI and ERP automation, with 25 years of ERP & process consulting and over 250 delivered projects in DACH & APAC.'
+    : 'Kiventis ist ein auf den Mittelstand spezialisiertes Beratungs- und Implementierungshaus für KI und ERP-Automatisierung mit 25 Jahren ERP- & Prozessberatung und über 250 umgesetzten Projekten in DACH & APAC.';
   return {
-    route: l.path,
-    title: `${l.h1.de} · KIVENTIS`,
-    description: l.lead.de,
+    route: `${prefix}${l.path}`,
+    title: `${h1} · KIVENTIS`,
+    description: lead,
     ogType: 'website',
-    h1: l.h1.de,
-    lead: l.lead.de,
+    h1,
+    lead,
     blocks: [
       {
-        heading: 'Leistungen',
-        bullets: l.benefits.map((b) => `${b.title.de} — ${b.text.de}`),
+        heading: en ? 'Services' : 'Leistungen',
+        bullets: l.benefits.map((b) =>
+          `${en ? b.title.en : b.title.de} — ${en ? b.text.en : b.text.de}`,
+        ),
       },
       {
-        heading: 'Warum Kiventis',
-        paragraphs: [
-          'Kiventis ist ein auf den Mittelstand spezialisiertes Beratungs- und Implementierungshaus für KI und ERP-Automatisierung mit 25 Jahren ERP- & Prozessberatung und über 250 umgesetzten Projekten in DACH & APAC.',
-        ],
+        heading: whyHeading,
+        paragraphs: [whyText],
       },
     ],
     breadcrumb: [
-      { name: 'Startseite', item: `${SITE}/` },
+      { name: en ? 'Home' : 'Startseite', item: `${SITE}/` },
       { name: short, item: url },
     ],
     schema: {
       '@context': 'https://schema.org',
       '@type': 'Service',
-      name: l.h1.de,
-      description: l.lead.de,
+      name: h1,
+      description: lead,
       serviceType: short,
       provider: { '@type': 'Organization', name: 'KIVENTIS', url: SITE },
       areaServed: ['DE', 'AT', 'CH', 'LI'],
-      keywords: l.keywords.de,
+      keywords: en ? l.keywords.en : l.keywords.de,
       url,
     },
   };
@@ -485,8 +491,10 @@ function main(): void {
   const template = readFileSync(TEMPLATE_PATH, 'utf8');
   const specs: RouteSpec[] = [
     ...staticRoutes,
-    ...landings.map(landingRoute),
-    ...articlesDe.map(articleRoute),
+    ...landings.map((l) => landingRoute(l)),
+    ...landings.map((l) => landingRoute(l, true)),
+    ...articlesDe.map((a) => articleRoute(a)),
+    ...articlesEn.map((a) => articleRoute(a, true)),
   ];
 
   let written = 0;
@@ -512,11 +520,28 @@ function main(): void {
   console.log(`[prerender-seo] ${written}/${specs.length} statische Routen erzeugt (Stand ${BUILD_DATE}).`);
 
   // E3: sitemap.xml automatisch aus allen Specs generieren (ersetzt manuelle Pflege)
+  // hreflang-Paare (de <-> en) fuer Routen mit /en/-Variante
+  const hreflangPair = (route: string): string[] => {
+    const isEn = route.startsWith('en/');
+    const deRoute = isEn ? route.slice(3) : route;
+    const enRoute = isEn ? route : `en/${route}`;
+    return [
+      `    <xhtml:link rel="alternate" hreflang="de" href="${SITE}/${deRoute}" />`,
+      `    <xhtml:link rel="alternate" hreflang="en" href="${SITE}/${enRoute}" />`,
+    ];
+  };
+  const hasEnVariant = (route: string): boolean =>
+    route.startsWith('blog/') ||
+    route.startsWith('en/blog/') ||
+    route === 'ki-beratung-kmu' ||
+    route === 'en/ki-beratung-kmu' ||
+    route === 'erp-prozessautomatisierung' ||
+    route === 'en/erp-prozessautomatisierung';
   const homepageEntry = [
     '  <url>',
     `    <loc>${SITE}/</loc>`,
     `    <xhtml:link rel="alternate" hreflang="de" href="${SITE}/" />`,
-    `    <xhtml:link rel="alternate" hreflang="en" href="${SITE}/?lang=en" />`,
+    `    <xhtml:link rel="alternate" hreflang="en" href="${SITE}/en/" />`,
     `    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE}/" />`,
     `    <lastmod>${BUILD_DATE}</lastmod>`,
     '    <changefreq>weekly</changefreq>',
@@ -525,9 +550,12 @@ function main(): void {
   ].join('\n');
   const sitemapUrls = specs.map((spec) => {
     const loc = spec.route ? `${SITE}/${spec.route}` : `${SITE}/`;
+    const alternates =
+      spec.route === '' ? [] : hasEnVariant(spec.route) ? hreflangPair(spec.route) : [];
     return [
       '  <url>',
       `    <loc>${loc}</loc>`,
+      ...alternates,
       `    <lastmod>${BUILD_DATE}</lastmod>`,
       '    <changefreq>monthly</changefreq>',
       '    <priority>0.8</priority>',

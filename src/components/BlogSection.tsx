@@ -40,7 +40,9 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
   // Check on mount or URL popstate if a specific article is requested via clean URL /blog/:id
   useEffect(() => {
     const handleUrlRoute = () => {
-      const path = window.location.pathname;
+      // /en/blog/:id unterstuetzen: Prefix entfernen
+      const rawPath = window.location.pathname;
+      const path = rawPath.replace(/^\/en\b/, '') || '/';
       if (path.startsWith('/blog/')) {
         const articleId = path.replace('/blog/', '').replace(/\/$/, '').trim();
         const found = articles.find((a) => a.id === articleId);
@@ -61,7 +63,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
       updatePageMeta({
         title: `${selectedArticle.title} · KIVENTIS`,
         description: selectedArticle.excerpt,
-        canonical: `https://www.kiventis.com/blog/${selectedArticle.id}`,
+        canonical: `https://www.kiventis.com${lang === 'en' ? '/en' : ''}/blog/${selectedArticle.id}`,
         ogType: 'article',
         publishedTime: selectedArticle.publishedDate,
         schema: {

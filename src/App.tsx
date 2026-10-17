@@ -149,7 +149,15 @@ export default function App() {
   // Handle Clean URL Route for /beispiele and standalone apps
   useEffect(() => {
     const handleRoute = () => {
-      const path = window.location.pathname;
+      // /en/... Pfadvariante: Sprache erzwingen und Prefix entfernen
+      const rawPath = window.location.pathname;
+      const enPath = rawPath === '/en' || rawPath.startsWith('/en/');
+      const path = enPath ? rawPath.replace(/^\/en/, '') || '/' : rawPath;
+
+      if (enPath && lang !== 'en') {
+        setLang('en');
+        persistLanguage('en', true);
+      }
 
       // Hidden admin entry (?admin=1) — keeps the lead manager reachable
       // without a public footer button.
@@ -239,7 +247,10 @@ export default function App() {
             lang === 'de'
               ? 'Kiventis ist Ihr Partner für KI-Beratung KMU, ERP Prozessautomatisierung und KI Agenten im Mittelstand — von der Strategie über die ERP Schnittstellen Programmierung bis zur E-Rechnung und Workflow Automatisierung.'
               : 'Kiventis is your partner for AI consulting for SMEs, ERP process automation and AI agents for the mid-market — from strategy and ERP interface programming to e-invoicing and workflow automation.',
-          canonical: 'https://www.kiventis.com/ki-beratung-kmu',
+          canonical:
+            lang === 'de'
+              ? 'https://www.kiventis.com/ki-beratung-kmu'
+              : 'https://www.kiventis.com/en/ki-beratung-kmu',
           schema: {
             '@context': 'https://schema.org',
             '@type': 'Service',
@@ -267,7 +278,10 @@ export default function App() {
             lang === 'de'
               ? 'Kiventis automatisiert Ihre ERP-Prozesse — von der Schnittstellen-Programmierung über KI Agenten bis zur E-Rechnung. 25 Jahre ERP- & Prozessberatung, über 250 umgesetzte Projekte.'
               : 'Kiventis automates your ERP processes — from interface programming and AI agents to e-invoicing. 25 years of ERP & process consulting, over 250 delivered projects.',
-          canonical: 'https://www.kiventis.com/erp-prozessautomatisierung',
+          canonical:
+            lang === 'de'
+              ? 'https://www.kiventis.com/erp-prozessautomatisierung'
+              : 'https://www.kiventis.com/en/erp-prozessautomatisierung',
           schema: {
             '@context': 'https://schema.org',
             '@type': 'Service',
