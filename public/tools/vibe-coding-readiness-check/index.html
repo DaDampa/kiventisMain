@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vibe-Coding-Readiness-Check</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+    input[type="number"] { -moz-appearance: textfield; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-cyan-500/30">
+
+  <main class="max-w-3xl mx-auto px-6 py-12 md:py-16 w-full flex-grow">
+    <header class="mb-10 md:mb-14">
+      <div class="inline-flex items-center gap-2 rounded-full bg-cyan-950/60 border border-cyan-900/40 px-3 py-1 text-xs font-medium text-cyan-300 mb-5">
+        <span class="relative flex h-1.5 w-1.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-cyan-500"></span>
+        </span>
+        Self-Assessment für KI-Teams
+      </div>
+      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-cyan-300 via-emerald-300 to-teal-200 mb-5 leading-tight">Vibe-Coding-Readiness-Check</h1>
+      <p class="text-slate-400 text-lg md:text-xl leading-relaxed max-w-2xl">Kann Ihr Team eigene KI-Tools bauen? Bewerten Sie in 60 Sekunden die interne Bereitschaft – mit vollständig transparenten Annahmen und sofortigem Ergebnis.</p>
+    </header>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-10">
+      <!-- Dimensionen -->
+      <section class="bg-slate-900/50 border border-slate-800/80 rounded-3xl p-6 md:p-8 shadow-2xl shadow-black/20">
+        <h2 class="text-sm font-bold text-slate-200 uppercase tracking-widest mb-6">Dimensionen <span class="text-slate-500 font-normal normal-case">(0 = nicht vorhanden, 10 = exzellent)</span></h2>
+        <div class="space-y-5">
+          <label class="block">
+            <span class="block text-slate-300 text-sm font-medium mb-1.5">KI-Grundwissen im Team</span>
+            <input id="dim-ki" type="number" min="0" max="10" step="0.5" value="6" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/40 focus:border-cyan-500 transition" oninput="calculateReadiness()">
+          </label>
+          <label class="block">
+            <span class="block text-slate-300 text-sm font-medium mb-1.5">Prompt-Engineering-Erfahrung</span>
+            <input id="dim-prompt" type="number" min="0" max="10" step="0.5" value="5" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/40 focus:border-cyan-500 transition" oninput="calculateReadiness()">
+          </label>
+          <label class="block">
+            <span class="block text-slate-300 text-sm font-medium mb-1.5">Verfügbare Entwicklerzeit (Stunden/Woche)</span>
+            <input id="dim-zeit" type="number" min="0" max="40" step="1" value="10" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/40 focus:border-cyan-500 transition" oninput="calculateReadiness()">
+          </label>
+          <label class="block">
+            <span class="block text-slate-300 text-sm font-medium mb-1.5">Datenqualität & Zugriff</span>
+            <input id="dim-daten" type="number" min="0" max="10" step="0.5" value="6" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/40 focus:border-cyan-500 transition" oninput="calculateReadiness()">
+          </label>
+          <label class="block">
+            <span class="block text-slate-300 text-sm font-medium mb-1.5">Sicherheits- & Compliance-Anforderungen</span>
+            <input id="dim-sicherheit" type="number" min="0" max="10" step="0.5" value="5" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/40 focus:border-cyan-500 transition" oninput="calculateReadiness()">
+          </label>
+          <label class="block">
+            <span class="block text-slate-300 text-sm font-medium mb-1.5">Technische Infrastruktur</span>
+            <input id="dim-infra" type="number" min="0" max="10" step="0.5" value="7" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/40 focus:border-cyan-500 transition" oninput="calculateReadiness()">
+          </label>
+        </div>
+      </section>
+
+      <!-- Annahmen & Parameter -->
+      <section class="bg-slate-900/50 border border-slate-800/80 rounded-3xl p-6 md:p-8 shadow-2xl shadow-black/20">
+        <h2 class="text-sm font-bold text-slate-200 uppercase tracking-widest mb-6">Annahmen & Gewichte <span class="text-rose-400 text-xs font-normal normal-case ml-1">(bitte prüfen)</span></h2>
+        <p class="text-xs text-slate-500 mb-5">Es existieren keine universell validierten Benchmarks für „Vibe-Coding-Readiness“. Die folgenden Gewichte und Schwellen sind als editierbare Annahmen zu verstehen.</p>
+        <div class="space-y-4">
+          <label class="block">
+            <span class="block text-slate-300 text-xs font-medium mb-1">Gewicht KI-Grundwissen</span>
+            <input id="w-ki" type="number" min="0" max="1" step="0.05" value="0.20" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/40" oninput="calculateReadiness()">
+          </label>
+          <label class="block">
+            <span class="block text-slate-300 text-xs font-medium mb-1">Gewicht Prompt-Engineering</span>
+            <input id="w-prompt" type="number" min="0" max="1" step="0.05" value="0.20" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/40" oninput="calculateReadiness()">
+          </label>
+          <label class="block">
+            <span class="block text-slate-300 text-xs font-medium mb-1">Gewicht Entwicklerzeit</span>
+            <input id="w-zeit" type="number" min="0" max="1" step="0.05" value="0.15" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/40" oninput="calculateReadiness()">
+          </label>
+          <label class="block">
+            <span class="block text-slate-300 text-xs font-medium mb-1">Gewicht Datenqualität</span>
+            <input id="w-daten" type="number" min="0" max="1" step="0.05" value="0.15" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/40" oninput="calculateReadiness()">
+          </label>
+          <label class="block">
+            <span class="block text-slate-300 text-xs font-medium mb-1">Gewicht Sicherheit & Compliance</span>
+            <input id="w-sicherheit" type="number" min="0" max="1" step="0.05" value="0.15" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/40" oninput="calculateReadiness()">
+          </label>
+          <label class="block">
+            <span class="block text-slate-300 text-xs font-medium mb-1">Gewicht Infrastruktur</span>
+            <input id="w-infra" type="number" min="0" max="1" step="0.05" value="0.15" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/40" oninput="calculateReadiness()">
+          </label>
+        </div>
+
+        <div class="mt-6 pt-6 border-t border-slate-800">
+          <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Schwellenwerte für Einstufung <span class="text-rose-400">(bitte prüfen)</span></h3>
+          <label class="block mb-3">
+            <span class="block text-slate-300 text-xs font-medium mb-1">Schwelle „Startklar“ (0–100)</span>
+            <input id="t-startklar" type="number" min="0" max="100" step="1" value="75" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/40" oninput="calculateReadiness()">
+          </label>
+          <label class="block">
+            <span class="block text-slate-300 text-xs font-medium mb-1">Schwelle „Mit Begleitung“ (0–100)</span>
+            <input id="t-begleitung" type="number" min="0" max="100" step="1" value="45" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/40" oninput="calculateReadiness()">
+          </label>
+        </div>
+      </section>
+    </div>
+
+    <!-- Ergebnis -->
+    <section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-cyan-950/20 border border-slate-800 shadow-2xl shadow-cyan-950/10 p-8 md:p-12">
+      <div class="absolute top-0 right-0 -mt-8 -mr-8 w-64 h-64 rounded-full bg-cyan-500/10 blur-3xl pointer-events-none"></div>
+      <div class="relative z-10">
+        <h2 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-2">Readiness-Score</h2>
+        <div class="flex items-baseline gap-3 mb-2">
+          <span id="score-value" class="text-7xl md:text-9xl font-black text-white tracking-tighter tabular-nums">62</span>
+          <span class="text-2xl text-slate-500 font-light">/ 100</span>
+        </div>
+        <div class="h-3 w-full bg-slate-800 rounded-full overflow-hidden mb-6">
+          <div id="score-bar" class="h-full bg-gradient-to-r from-cyan-500 to-emerald-400 rounded-full transition-all duration-700 ease-out" style="width: 62%"></div>
+        </div>
+        <div class="flex items-center gap-3 mb-6">
+          <span id="category-badge" class="inline-flex items-center rounded-full bg-amber-500/10 border border-amber-500/20 px-3 py-1 text-sm font-bold text-amber-300">Mit Begleitung</span>
+        </div>
+        <p id="category-text" class="text-3xl md:text-4xl font-extrabold text-amber-300 mb-4">Mit Begleitung</p>
+        <p id="result-desc" class="text-slate-300 text-base md:text-lg leading-relaxed max-w-2xl">Ihr Team hat solide Grundlagen, aber für eigenständiges Vibe-Coding fehlen noch gezielte Kompetenzen in Prompt-Engineering und Datenaufbereitung. Ein strukturiertes KI-Training beschleunigt den Weg zur Autonomie deutlich.</p>
+      </div>
+    </section>
+
+    <section class="mt-10 bg-slate-900/30 border border-slate-800/60 rounded-2xl p-6 md:p-8">
+      <h3 class="text-lg font-bold text-slate-100 mb-3">Wie wird gerechnet?</h3>
+      <div class="text-sm text-slate-400 space-y-2 font-mono bg-slate-950/60 rounded-xl p-4 border border-slate-800">
+        <p>Score = Σ (Dimension<sub>i</sub> × Gewicht<sub>i</sub>) / (10 × Σ Gewicht<sub>i</sub>) × 100</p>
+        <p>Dimensionen: 0–10 | Gewichte: editierbar (Summe nicht zwingend 1) | Schwellen: editierbar</p>
+      </div>
+      <p class="text-xs text-slate-500 mt-3">Die Formel ist vollständig im JavaScript dieser Seite offen einsehbar. Keine versteckten Konstanten.</p>
+    </section>
+  </main>
+
+  <footer class="text-center text-slate-600 text-xs md:text-sm py-8 border-t border-slate-900">
+    <p>Keine Rechts- oder Steuerberatung. Angaben ohne Gewähr.</p>
+    <p class="mt-1">Dieses Tool dient ausschließlich der Selbsteinschätzung und ersetzt keine fachliche Beratung.</p>
+  </footer>
+
+  <script>
+    function calculateReadiness() {
+      // Dimensionen lesen
+      const dKi = parseFloat(document.getElementById('dim-ki').value) || 0;
+      const dPrompt = parseFloat(document.getElementById('dim-prompt').value) || 0;
+      const dZeit = parseFloat(document.getElementById('dim-zeit').value) || 0;
+      const dDaten = parseFloat(document.getElementById('dim-daten').value) || 0;
+      const dSicherheit = parseFloat(document.getElementById('dim-sicherheit').value) || 0;
+      const dInfra = parseFloat(document.getElementById('dim-infra').value) || 0;
+
+      // Gewichte lesen (Annahmen – bitte prüfen)
+      const wKi = parseFloat(document.getElementById('w-ki').value) || 0;
+      const wPrompt = parseFloat(document.getElementById('w-prompt').value) || 0;
+      const wZeit = parseFloat(document.getElementById('w-zeit').value) || 0;
+      const wDaten = parseFloat(document.getElementById('w-daten').value) || 0;
+      const wSicherheit = parseFloat(document.getElementById('w-sicherheit').value) || 0;
+      const wInfra = parseFloat(document.getElementById('w-infra').value) || 0;
+
+      // Schwellenwerte lesen (Annahmen – bitte prüfen)
+      const tStartklar = parseFloat(document.getElementById('t-startklar').value) || 75;
+      const tBegleitung = parseFloat(document.getElementById('t-begleitung').value) || 45;
+
+      const dims = { ki: dKi, prompt: dPrompt, zeit: dZeit, daten: dDaten, sicherheit: dSicherheit, infra: dInfra };
+      const weights = { ki: wKi, prompt: wPrompt, zeit: wZeit, daten: wDaten, sicherheit: wSicherheit, infra: wInfra };
+
+      const sumWeights = Object.values(weights).reduce((a, b) => a + b, 0);
+      if (sumWeights === 0) return;
+
+      let weightedSum = 0;
+      for (const [key, val] of Object.entries(dims)) {
+        weightedSum += val * (weights[key] || 0);
+      }
+
+      const maxScore = 10 * sumWeights;
+      const score = maxScore > 0 ? (weightedSum / maxScore) * 100 : 0;
+      const roundedScore = Math.round(score);
+
+      // Kategorie bestimmen
+      let category = "Grundlagen nötig";
+      let colorClass = "text-rose-400";
+      let badgeClass = "bg-rose-500/10 border-rose-500/20 text-rose-300";
+      let desc = "Die internen Voraussetzungen für eigenständiges Vibe-Coding sind noch nicht ausreichend. Ein gezieltes KI-Kompetenz-Training und klare Datenstrategien sind der nächste sinnvolle Schritt.";
+
+      if (roundedScore >= tStartklar) {
+        category = "Startklar";
+        colorClass = "text-emerald-400";
+        badgeClass = "bg-emerald-500/10 border-emerald-500/20 text-emerald-300";
+        desc = "Ihr Team verfügt über die notwendigen Kompetenzen und Rahmenbedingungen, um eigene KI-Tools weitgehend autonom zu entwickeln. Fokus auf Skalierung und Governance.";
+      } else if (roundedScore >= tBegleitung) {
+        category = "Mit Begleitung";
+        colorClass = "text-amber-400";
+        badgeClass = "bg-amber-500/10 border-amber-500/20 text-amber-300";
+        desc = "Ihr Team hat solide Grundlagen, aber für eigenständiges Vibe-Coding fehlen noch gezielte Kompetenzen in Prompt-Engineering und Datenaufbereitung. Ein strukturiertes KI-Training beschleunigt den Weg zur Autonomie deutlich.";
+      }
+
+      // DOM aktualisieren
+      document.getElementById('score-value').textContent = roundedScore;
+      document.getElementById('score-bar').style.width = roundedScore + '%';
+      document.getElementById('category-text').textContent = category;
+      document.getElementById('category-text').className = `text-3xl md:text-4xl font-extrabold mb-4 ${colorClass}`;
+      document.getElementById('category-badge').textContent = category;
+      document.getElementById('category-badge').className = `inline-flex items-center rounded-full px-3 py-1 text-sm font-bold ${badgeClass}`;
+      document.getElementById('result-desc').textContent = desc;
+    }
+
+    // Initiale Berechnung beim Laden
+    document.addEventListener('DOMContentLoaded', calculateReadiness);
+  </script>
+</body>
+</html>

@@ -42,7 +42,7 @@ export const Hero: React.FC<HeroProps> = ({
 }) => {
   const isSepia = theme === 'sepia';
   const [activeStep, setActiveStep] = useState<PipelineStepId>('02-rag');
-  const [isSimulating, setIsSimulating] = useState<boolean>(true);
+  const [isSimulating, setIsSimulating] = useState<boolean>(false);
   const [processedCount, setProcessedCount] = useState<number>(14280);
   const [activeModel, setActiveModel] = useState<ModelOption>('qwen');
   const [activeTab, setActiveTab] = useState<'payload' | 'execution' | 'telemetry'>('payload');
@@ -375,7 +375,7 @@ export const Hero: React.FC<HeroProps> = ({
                   {lang === 'de' ? 'Durchsatz:' : 'Processed:'}
                 </span>
                 <span className={`font-bold tabular-nums ${isSepia ? 'text-[#0D9488]' : 'text-emerald-400'}`}>
-                  {processedCount.toLocaleString()} {lang === 'de' ? 'Vorgänge' : 'records'}
+                  {processedCount.toLocaleString()} {lang === 'de' ? 'Vorgänge (Ø/Monat)' : 'records (avg./month)'}
                 </span>
               </div>
 

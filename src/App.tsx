@@ -26,9 +26,21 @@ import { ResourceModal } from './components/ResourceModal';
 import { ImpressumModal } from './components/ImpressumModal';
 import { AdminLeadModal } from './components/AdminLeadModal';
 import { LlmsTxtModal } from './components/LlmsTxtModal';
-import { BomDesignerApp } from './components/demos/BomDesignerApp';
-import { InvoiceAuditorApp } from './components/demos/InvoiceAuditorApp';
-import { AiActAuditPage } from './components/audit/AiActAuditPage';
+const BomDesignerApp = React.lazy(() =>
+  import('./components/demos/BomDesignerApp').then((m) => ({
+    default: m.BomDesignerApp,
+  })),
+);
+const InvoiceAuditorApp = React.lazy(() =>
+  import('./components/demos/InvoiceAuditorApp').then((m) => ({
+    default: m.InvoiceAuditorApp,
+  })),
+);
+const AiActAuditPage = React.lazy(() =>
+  import('./components/audit/AiActAuditPage').then((m) => ({
+    default: m.AiActAuditPage,
+  })),
+);
 import { updatePageMeta } from './utils/seo';
 import {
   getInitialThemeState,
@@ -42,6 +54,20 @@ import {
   persistLanguage,
 } from './utils/language';
 
+import { LandingPage } from './components/LandingPage';
+import { landingById, type LandingId } from './data/landings';
+import { articlesDe, articlesEn } from './data/articles';
+import { ArticleDetailModal } from './components/ArticleDetailModal';
+import type { InsightArticle } from './types';
+
+const SectionFallback: React.FC = () => (
+  <div className="min-h-[50vh] flex items-center justify-center">
+    <div className="font-mono text-[11px] tracking-[0.3em] text-slate-500 uppercase">
+      KIVENTIS · Loading
+    </div>
+  </div>
+);
+
 export default function App() {
   const [lang, setLang] = useState<Language>(getInitialLanguage);
   const [themeState, setThemeState] = useState<{ theme: Theme; mode: ThemeMode }>(getInitialThemeState);
@@ -54,6 +80,27 @@ export default function App() {
   const [isLlmsTxtOpen, setIsLlmsTxtOpen] = useState<boolean>(false);
   const [preselectedPackage, setPreselectedPackage] = useState<string | undefined>(undefined);
   const [standaloneDemo, setStandaloneDemo] = useState<'none' | 'bom-designer' | 'rechnungspruefer' | 'ai-act-audit'>('none');
+  const [landing, setLanding] = useState<LandingId | 'none'>('none');
+  // Synchroner Initialwert beim Direktaufruf /blog/<id> (bzw. /en/blog/<id>):
+  // Der Early-Return greift ab dem ersten Render — kein Flickern der Startseite.
+  const [directArticle, setDirectArticle] = useState<InsightArticle | null>(() => {
+    try {
+      const raw = window.location.pathname;
+      const clean = raw.replace(/^\/en\b/, '') || '/';
+      const m = clean.match(/^\/blog\/([a-z0-9-]+)\/?$/);
+      if (m) {
+        const id = m[1];
+        return (
+          (lang === 'en' ? articlesEn : articlesDe).find((a) => a.id === id) ??
+          articlesDe.find((a) => a.id === id) ??
+          null
+        );
+      }
+    } catch {
+      // Ignore (z.B. SSR/Prerender ohne window)
+    }
+    return null;
+  });
 
   // Sync theme with document attribute & localStorage
   useEffect(() => {
@@ -95,7 +142,7 @@ export default function App() {
   // Sync document lang attribute and dynamic metadata when language changes
   useEffect(() => {
     document.documentElement.lang = lang;
-    if (standaloneDemo === 'none') {
+    if (standaloneDemo === 'none' && landing === 'none') {
       updatePageMeta({
         title:
           lang === 'de'
@@ -108,7 +155,7 @@ export default function App() {
         canonical: lang === 'de' ? 'https://www.kiventis.com/' : 'https://www.kiventis.com/?lang=en',
       });
     }
-  }, [lang, standaloneDemo]);
+  }, [lang, standaloneDemo, landing]);
 
   // Background Geo-IP detection: Automatically selects English for visitors outside DACH (Germany, Austria, Switzerland)
   useEffect(() => {
@@ -125,7 +172,71 @@ export default function App() {
   // Handle Clean URL Route for /beispiele and standalone apps
   useEffect(() => {
     const handleRoute = () => {
-      const path = window.location.pathname;
+      // /en/... Pfadvariante: Sprache erzwingen und Prefix entfernen
+      const rawPath = window.location.pathname;
+      const enPath = rawPath === '/en' || rawPath.startsWith('/en/');
+      const path = enPath ? rawPath.replace(/^\/en/, '') || '/' : rawPath;
+
+      if (enPath && lang !== 'en') {
+        setLang('en');
+        persistLanguage('en', true);
+      }
+
+      // Direkter Artikel-Aufruf /blog/<id> (bzw. /en/blog/<id>):
+      // Nur den Artikel rendern, ohne die Startseite dahinter (einzelner H1).
+      const blogMatch = path.match(/^\/blog\/([a-z0-9-]+)\/?$/);
+      if (blogMatch) {
+        const articleId = blogMatch[1];
+        const pool = lang === 'en' ? articlesEn : articlesDe;
+        const found =
+          pool.find((a) => a.id === articleId) ??
+          articlesDe.find((a) => a.id === articleId);
+        if (found) {
+          setDirectArticle(found);
+          setLanding('none');
+          setStandaloneDemo('none');
+          updatePageMeta({
+            title: `${found.title} · KIVENTIS`,
+            description: found.excerpt,
+            canonical: `https://www.kiventis.com${enPath ? '/en' : ''}/blog/${found.id}`,
+            ogType: 'article',
+            publishedTime: found.publishedDate,
+            schema: {
+              '@context': 'https://schema.org',
+              '@type': 'Article',
+              headline: found.title,
+              description: found.excerpt,
+              inLanguage: lang === 'de' ? 'de-DE' : 'en-US',
+              datePublished: '2026-09-01T08:00:00+02:00',
+              author: {
+                '@type': 'Person',
+                name: found.author.name,
+                jobTitle: found.author.role,
+              },
+              publisher: {
+                '@type': 'Organization',
+                name: 'KIVENTIS',
+                url: 'https://www.kiventis.com',
+              },
+              mainEntityOfPage: `https://www.kiventis.com${enPath ? '/en' : ''}/blog/${found.id}`,
+              keywords: found.tags.join(', '),
+            },
+          });
+          return;
+        }
+      } else {
+        setDirectArticle(null);
+      }
+
+      // Hidden admin entry (?admin=1) — keeps the lead manager reachable
+      // without a public footer button.
+      try {
+        if (new URLSearchParams(window.location.search).get('admin') === '1') {
+          setIsAdminLeadsOpen(true);
+        }
+      } catch {
+        /* ignore malformed URLs */
+      }
 
       if (path === '/beispiele/bom-designer' || path === '/demos/bom-designer') {
         setStandaloneDemo('bom-designer');
@@ -191,7 +302,70 @@ export default function App() {
         return;
       }
 
+      if (path === '/ki-beratung-kmu' || path === '/ki-beratung-kmu/') {
+        setLanding('ki-beratung-kmu');
+        setStandaloneDemo('none');
+        window.history.pushState(null, '', '/ki-beratung-kmu');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        updatePageMeta({
+          title:
+            lang === 'de'
+              ? 'KI-Beratung für KMU: Strategisch beraten, Prozesse automatisieren · KIVENTIS'
+              : 'AI consulting for SMEs: strategic advice, automated processes · KIVENTIS',
+          description:
+            lang === 'de'
+              ? 'Kiventis ist Ihr Partner für KI-Beratung KMU, ERP Prozessautomatisierung und KI Agenten im Mittelstand — von der Strategie über die ERP Schnittstellen Programmierung bis zur E-Rechnung und Workflow Automatisierung.'
+              : 'Kiventis is your partner for AI consulting for SMEs, ERP process automation and AI agents for the mid-market — from strategy and ERP interface programming to e-invoicing and workflow automation.',
+          canonical:
+            lang === 'de'
+              ? 'https://www.kiventis.com/ki-beratung-kmu'
+              : 'https://www.kiventis.com/en/ki-beratung-kmu',
+          schema: {
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            serviceType: 'KI-Beratung KMU',
+            provider: { '@type': 'Organization', name: 'KIVENTIS', url: 'https://www.kiventis.com' },
+            areaServed: ['DE', 'AT', 'CH', 'LI'],
+            keywords:
+              'KI Beratung KMU, ERP Prozessautomatisierung, KI Agenten Mittelstand, ERP Schnittstellen Programmierung, E-Rechnung, Workflow Automatisierung',
+          },
+        });
+        return;
+      }
+
+      if (path === '/erp-prozessautomatisierung' || path === '/erp-prozessautomatisierung/') {
+        setLanding('erp-prozessautomatisierung');
+        setStandaloneDemo('none');
+        window.history.pushState(null, '', '/erp-prozessautomatisierung');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        updatePageMeta({
+          title:
+            lang === 'de'
+              ? 'ERP-Prozessautomatisierung: Bestehende Workflows end-to-end automatisieren · KIVENTIS'
+              : 'ERP process automation: automate existing workflows end-to-end · KIVENTIS',
+          description:
+            lang === 'de'
+              ? 'Kiventis automatisiert Ihre ERP-Prozesse — von der Schnittstellen-Programmierung über KI Agenten bis zur E-Rechnung. 25 Jahre ERP- & Prozessberatung, über 250 umgesetzte Projekte.'
+              : 'Kiventis automates your ERP processes — from interface programming and AI agents to e-invoicing. 25 years of ERP & process consulting, over 250 delivered projects.',
+          canonical:
+            lang === 'de'
+              ? 'https://www.kiventis.com/erp-prozessautomatisierung'
+              : 'https://www.kiventis.com/en/erp-prozessautomatisierung',
+          schema: {
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            serviceType: 'ERP Prozessautomatisierung',
+            provider: { '@type': 'Organization', name: 'KIVENTIS', url: 'https://www.kiventis.com' },
+            areaServed: ['DE', 'AT', 'CH', 'LI'],
+            keywords:
+              'ERP Prozessautomatisierung, ERP Schnittstellen Programmierung, KI Agenten Mittelstand, E-Rechnung, Workflow Automatisierung, KI Beratung KMU',
+          },
+        });
+        return;
+      }
+
       setStandaloneDemo('none');
+      setLanding('none');
 
       if (path === '/beispiele' || path === '/beispiele/') {
         updatePageMeta({
@@ -334,13 +508,75 @@ export default function App() {
     });
   };
 
+  const handleBackFromLanding = () => {
+    setLanding('none');
+    window.history.pushState(null, '', '/');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    updatePageMeta({
+      title:
+        lang === 'de'
+          ? 'KIVENTIS · B2B KI-Trainings, Vibe Coding & EU AI Act (DACH)'
+          : 'KIVENTIS · B2B AI Training, Vibe Coding & EU AI Act Compliance',
+      description:
+        lang === 'de'
+          ? 'Praxisnahes KI-Enablement, Vibe Coding & rechtssichere Zertifikate nach Art. 4 EU AI Act für den B2B-Mittelstand. Messbarer ROI in 2 bis 4 Monaten.'
+          : 'Hands-on AI enablement, Vibe Coding for domain teams & verifiable EU AI Act compliance for mid-sized enterprises. Measurable ROI in 2 to 4 months.',
+      canonical: lang === 'de' ? 'https://www.kiventis.com/' : 'https://www.kiventis.com/?lang=en',
+    });
+  };
+
+  // Direkter Artikel-Aufruf: nur der Artikel (einzelner H1, keine Startseite dahinter)
+  if (directArticle) {
+    return (
+      <>
+        <ArticleDetailModal
+          article={directArticle}
+          lang={lang}
+          asH1
+          onClose={() => {
+            window.location.href = '/#insights';
+          }}
+          onOpenBooking={() => handleOpenBooking()}
+        />
+        <BookingModal
+          lang={lang}
+          isOpen={isBookingOpen}
+          preselectedPackage={preselectedPackage}
+          onClose={() => setIsBookingOpen(false)}
+        />
+      </>
+    );
+  }
+
   // If user navigated to a dedicated standalone application page, render it full-screen in its original application UI
   if (standaloneDemo === 'bom-designer') {
-    return <BomDesignerApp theme={theme} onBack={handleBackFromStandalone} lang={lang} />;
+    return (
+      <React.Suspense fallback={<SectionFallback />}>
+        <BomDesignerApp theme={theme} onBack={handleBackFromStandalone} lang={lang} />
+      </React.Suspense>
+    );
   }
 
   if (standaloneDemo === 'rechnungspruefer') {
-    return <InvoiceAuditorApp theme={theme} onBack={handleBackFromStandalone} lang={lang} />;
+    return (
+      <React.Suspense fallback={<SectionFallback />}>
+        <InvoiceAuditorApp theme={theme} onBack={handleBackFromStandalone} lang={lang} />
+      </React.Suspense>
+    );
+  }
+
+  // Landingpages der DACH-Cluster (/ki-beratung-kmu, /erp-prozessautomatisierung)
+  if (landing !== 'none') {
+    const spec = landingById(landing);
+    return (
+      <LandingPage
+        spec={spec}
+        lang={lang}
+        theme={theme}
+        onOpenBooking={() => handleOpenBooking()}
+        onBackToHome={handleBackFromLanding}
+      />
+    );
   }
 
   return (
@@ -366,12 +602,14 @@ export default function App() {
       {/* Main Content Sections */}
       <main className="flex-grow">
         {standaloneDemo === 'ai-act-audit' ? (
-          <AiActAuditPage
-            lang={lang}
-            theme={theme}
-            onOpenBooking={(packageTitle) => handleOpenBooking(packageTitle)}
-            onBackToHome={handleBackFromAudit}
-          />
+          <React.Suspense fallback={<SectionFallback />}>
+            <AiActAuditPage
+              lang={lang}
+              theme={theme}
+              onOpenBooking={(packageTitle) => handleOpenBooking(packageTitle)}
+              onBackToHome={handleBackFromAudit}
+            />
+          </React.Suspense>
         ) : (
           <>
             {/* 1. Hero Section (Next-Level High-Craft & Interactive Dataflow Pipeline) */}

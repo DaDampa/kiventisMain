@@ -101,6 +101,16 @@ export const Footer: React.FC<FooterProps> = ({
                 </a>
               </li>
               <li>
+                <a href="/ki-beratung-kmu" className="hover:text-white transition-colors">
+                  {lang === 'de' ? 'KI-Beratung für KMU' : 'AI Consulting for SMEs'}
+                </a>
+              </li>
+              <li>
+                <a href="/erp-prozessautomatisierung" className="hover:text-white transition-colors">
+                  {lang === 'de' ? 'ERP-Prozessautomatisierung' : 'ERP Process Automation'}
+                </a>
+              </li>
+              <li>
                 <a href="#services" className="hover:text-white transition-colors">
                   {lang === 'de' ? 'Vibe Coding & Citizen Dev' : 'Vibe Coding & Citizen Dev'}
                 </a>
@@ -221,15 +231,6 @@ export const Footer: React.FC<FooterProps> = ({
                 <span>LLMs.txt / AI Fact Sheet</span>
               </button>
             )}
-            <button
-              type="button"
-              onClick={onOpenAdminLeads}
-              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-teal-500/30 bg-teal-500/10 hover:bg-teal-500/20 text-teal-300 font-mono text-[11px] transition-colors cursor-pointer"
-              title={lang === 'de' ? 'Interner Lead-Manager für Kundenkontakte & E-Mails' : 'Internal lead manager for client contacts & emails'}
-            >
-              <ShieldCheck className="h-3 w-3" />
-              <span>{lang === 'de' ? 'Lead-Zentrale (Admin)' : 'Lead Center (Admin)'}</span>
-            </button>
             {t.links.map((link, idx) => {
               const isImpressum = link.href === '#impressum' || link.href === '#legal';
               if (isImpressum) {
