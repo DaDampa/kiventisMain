@@ -12,6 +12,12 @@
     <meta name="author" content="KIVENTIS · ERP and Marketing Solutions LLC" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 
+    <!-- Icons & Browser Chrome -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="mask-icon" href="/favicon.svg" color="#14B8A6" />
+    <meta name="theme-color" content="#090D14" />
+    <meta name="color-scheme" content="dark light" />
+
     <!-- Geotargeting & Regional SEO (DACH: Germany, Austria, Switzerland) -->
     <meta name="geo.region" content="DE;AT;CH" />
     <meta name="geo.placename" content="Deutschland, Österreich, Schweiz" />
@@ -41,8 +47,9 @@
     <meta property="og:site_name" content="KIVENTIS · B2B KI-Enablement DACH" />
     <meta property="og:title" content="KIVENTIS · B2B KI-Trainings, Vibe Coding &amp; EU AI Act (DACH)" />
     <meta property="og:description" content="Praxisnahe B2B KI-Trainings &amp; Vibe Coding für KMUs in Deutschland, Österreich &amp; der Schweiz. Gesetzliche Zertifikate nach Art. 4 EU AI Act mit 2–4 Monaten ROI." />
-    <meta property="og:image" content="https://www.kiventis.com/og-image.svg" />
-    <meta property="og:image:type" content="image/svg+xml" />
+    <meta property="og:image" content="https://www.kiventis.com/og-image.png" />
+    <meta property="og:image:secure_url" content="https://www.kiventis.com/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="KIVENTIS B2B KI-Trainings, Vibe Coding und EU AI Act Governance für den Mittelstand" />
@@ -56,7 +63,7 @@
     <meta name="twitter:url" content="https://www.kiventis.com/" />
     <meta name="twitter:title" content="KIVENTIS · B2B KI-Trainings, Vibe Coding &amp; EU AI Act (DACH)" />
     <meta name="twitter:description" content="Praxisnahes KI-Enablement, Vibe Coding &amp; rechtssichere Zertifikate nach Art. 4 EU AI Act für den B2B-Mittelstand." />
-    <meta name="twitter:image" content="https://www.kiventis.com/og-image.svg" />
+    <meta name="twitter:image" content="https://www.kiventis.com/og-image.png" />
     <meta name="twitter:image:alt" content="KIVENTIS B2B KI-Trainings für KMUs" />
     
     <!-- Preconnect to Google Fonts -->
@@ -75,7 +82,10 @@
           "url": "https://www.kiventis.com/",
           "name": "KIVENTIS",
           "description": "B2B KI-Trainings, Vibe Coding und EU AI Act Governance für mittelständische Unternehmen in der DACH-Region.",
-          "inLanguage": ["de-DE", "de-AT", "de-CH", "en-US"]
+          "inLanguage": ["de-DE", "de-AT", "de-CH", "en-US"],
+          "publisher": {
+            "@id": "https://www.kiventis.com/#organization"
+          }
         },
         {
           "@type": ["EducationalOrganization", "ProfessionalService"],
@@ -85,7 +95,21 @@
           "description": "25 Jahre Erfahrung im Bereich Business & ERP Prozess Consulting mit über 250 umgesetzten ERP-Projekten für Kunden aus 40 Branchen in Europa und Southeast Asia. Spezialisiert auf End-to-End Workflowanbindung (CRM, Supply Chain, Produktion), praxisnahe B2B KI-Trainings, Vibe Coding und EU-AI-Act-Compliance (Art. 4) für den Mittelstand im DACH-Raum (Deutschland, Österreich, Schweiz) sowie weltweit. Eine Initiative der ERP and Marketing Solutions LLC.",
           "url": "https://www.kiventis.com",
           "email": "Kontakt@kiventis.com",
-          "image": "https://www.kiventis.com/og-image.svg",
+          "image": "https://www.kiventis.com/og-image.png",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.kiventis.com/favicon.svg",
+            "caption": "KIVENTIS"
+          },
+          "slogan": "Boost your processes, save license costs.",
+          "knowsLanguage": ["de", "en"],
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "sales",
+            "email": "Kontakt@kiventis.com",
+            "availableLanguage": ["de", "en"],
+            "areaServed": ["DE", "AT", "CH", "SG"]
+          },
           "address": {
             "@type": "PostalAddress",
             "streetAddress": "1209 Mountain Road PL NE, STE R",
@@ -318,6 +342,7 @@
   <body class="bg-[#0B0F17] text-[#E2E8F0] antialiased selection:bg-[#0D9488] selection:text-white">
     <!-- Static Semantic Crawling Fallback inside #root: Extracted by search engine bots & AI web indexers (ChatGPT, Perplexity, Claude, Google) without JS. Overwritten on React mount. -->
     <div id="root">
+      <!-- SEO:STATIC -->
       <header style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
         <p style="font-size: 0.875rem; color: #14B8A6; font-weight: 600; text-transform: uppercase;">KIVENTIS · Enterprise AI Enablement DACH &amp; APAC</p>
         <h1 style="font-size: 2.25rem; font-weight: 800; line-height: 1.2; margin-top: 0.5rem;">B2B KI-Trainings, Vibe Coding &amp; EU AI Act Zertifizierung für den Mittelstand</h1>
@@ -381,6 +406,7 @@
           <p>Kontakt: <a href="mailto:Kontakt@kiventis.com">Kontakt@kiventis.com</a> · Website: <a href="https://www.kiventis.com">https://www.kiventis.com</a></p>
         </footer>
       </main>
+      <!-- /SEO:STATIC -->
     </div>
 
     <!-- Noscript Crawling Fallback for Non-JS Environments -->
@@ -389,6 +415,7 @@
         <p><strong>KIVENTIS B2B KI-Trainings &amp; Enablement</strong>: 25+ Jahre Erfahrung, &gt;250 realisierte ERP-Projekte in DACH &amp; APAC. Vibe Coding, EU AI Act Schulungspflicht Art. 4, On-Premise LLM &amp; RAG Architekturen (Qwen, DeepSeek, Mistral, Gemma). Kontakt: Kontakt@kiventis.com.</p>
       </div>
     </noscript>
+    <!-- SEO:ROUTE-JSONLD -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

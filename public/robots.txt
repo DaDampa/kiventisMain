@@ -1,6 +1,8 @@
 # robots.txt for https://www.kiventis.com
 User-agent: *
 Allow: /
+# Internal API endpoints (lead intake) - must live in the "*" group to apply to all crawlers.
+Disallow: /api/
 
 # Dedicated directives for Generative Engine Optimization (GEO) & AI Search
 User-agent: Googlebot
@@ -41,9 +43,6 @@ Allow: /
 
 User-agent: CCBot
 Allow: /
-
-# Disallow internal admin endpoints
-Disallow: /api/leads
 
 # Machine-readable AI Knowledge Base for LLMs (Generative Engine Optimization)
 # Standard: https://llmstxt.org/
