@@ -20,6 +20,7 @@ import {
   Play,
   Pause,
   Terminal,
+  ChevronDown,
   Clock,
   ExternalLink,
 } from 'lucide-react';
@@ -46,6 +47,8 @@ export const Hero: React.FC<HeroProps> = ({
   const [processedCount, setProcessedCount] = useState<number>(14280);
   const [activeModel, setActiveModel] = useState<ModelOption>('qwen');
   const [activeTab, setActiveTab] = useState<'payload' | 'execution' | 'telemetry'>('payload');
+  // Die Pipeline ist technisches Detail: standardmaessig zu, per Button aufklappbar.
+  const [pipelineOpen, setPipelineOpen] = useState<boolean>(false);
 
   // Increment simulated counter
   useEffect(() => {
@@ -358,14 +361,41 @@ export const Hero: React.FC<HeroProps> = ({
                 </div>
                 <p className={`text-xs mt-0.5 ${isSepia ? 'text-[#5A4D3F]' : 'text-slate-400'}`}>
                   {lang === 'de'
-                    ? 'Klicken Sie auf einen der 4 Pipeline-Schritte, um den technischen Ablauf im Terminal einzusehen.'
-                    : 'Click any of the 4 execution pipeline steps below to inspect live telemetry and code.'}
+                    ? 'Wie Kiventis Automatisierung technisch umsetzt — vom Beleg bis ins ERP. Bei Bedarf aufklappen und die vier Schritte im Detail ansehen.'
+                    : 'How Kiventis implements automation technically — from document to ERP. Expand it if you want the four steps in detail.'}
                 </p>
               </div>
             </div>
 
-            {/* Simulation Controls & Model Selector */}
-            <div className="flex flex-wrap items-center gap-2.5">
+            {/* Technisches Detail ist zugeklappt; der Button oeffnet es. */}
+            <button
+              type="button"
+              onClick={() => setPipelineOpen((v) => !v)}
+              aria-expanded={pipelineOpen}
+              aria-controls="pipeline-detail"
+              className={`inline-flex items-center gap-2 rounded-lg border px-3 py-2 text-xs font-semibold transition-colors cursor-pointer shrink-0 ${
+                isSepia
+                  ? 'border-[#E0D5C3] bg-[#FAF8F5] text-[#2D241C] hover:border-[#0D9488]'
+                  : 'border-white/[0.12] bg-black/30 text-slate-200 hover:border-emerald-500/50 hover:text-white'
+              }`}
+            >
+              {pipelineOpen
+                ? (lang === 'de' ? 'Weniger anzeigen' : 'Show less')
+                : (lang === 'de' ? 'Zeige mehr …' : 'Show more …')}
+              <ChevronDown
+                className={`h-4 w-4 transition-transform duration-200 ${pipelineOpen ? 'rotate-180' : ''}`}
+              />
+            </button>
+          </div>
+
+          <div
+            id="pipeline-detail"
+            className={`overflow-hidden transition-all duration-300 ease-out ${
+              pipelineOpen ? 'max-h-[6000px] opacity-100' : 'max-h-0 opacity-0'
+            }`}
+          >
+          {/* Simulation Controls & Model Selector */}
+          <div className="flex flex-wrap items-center gap-2.5 pt-5">
               <div className={`hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg border text-xs font-mono ${
                 isSepia
                   ? 'border-[#E0D5C3] bg-[#FAF8F5] text-[#18130E]'
@@ -445,7 +475,6 @@ export const Hero: React.FC<HeroProps> = ({
                 </button>
               </div>
             </div>
-          </div>
 
           {/* 4-Step Execution Pipeline Grid (01 -> 02 -> 03 -> 04) */}
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -764,6 +793,8 @@ export const Hero: React.FC<HeroProps> = ({
               </div>
             </div>
           </div>
+          </div>
+          {/* /pipeline-detail */}
         </div>
       </div>
     </section>
