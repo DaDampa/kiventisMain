@@ -54,6 +54,13 @@
 - ERP-Schnittstellen ohne 50.000 € Budget (SAP & Navision): https://www.kiventis.com/blog/erp-schnittstellen-ohne-50k-budget-sap-business-central
 - SaaS-Kosten senken durch interne Micro-Apps: https://www.kiventis.com/blog/saas-kosten-senken-interne-micro-apps-kmu
 - KI-Agenten im Mittelstand: Wann sich autonome Agenten gegenüber klassischer Prozessautomatisierung rechnen: https://www.kiventis.com/blog/ki-agenten-mittelstand-prozessautomatisierung
+- E-Rechnung & Workflow-Automatisierung im Mittelstand: https://www.kiventis.com/blog/e-rechnung-workflow-automatisierung-mittelstand
+- KI-Beratung für KMU (Leistungsseite): https://www.kiventis.com/ki-beratung-kmu
+- ERP-Prozessautomatisierung (Leistungsseite): https://www.kiventis.com/erp-prozessautomatisierung
+- Kostenlose Rechentools (Übersicht): https://www.kiventis.com/tools/
+- Vibe-Coding-Readiness-Check: https://www.kiventis.com/tools/vibe-coding-readiness-check/
+- EU AI Act Art. 4 Betroffenheits-Check: https://www.kiventis.com/tools/eu-ai-act-betroffenheits-check/
+- Singapore SFEC AI ROI Calculator: https://www.kiventis.com/tools/sfec-ai-roi-calculator/
 - KMU-Praxisleitfaden (PDF): https://www.kiventis.com/#leitfaden
 - Interaktiver B2B ROI-Rechner: https://www.kiventis.com/#calculator
 - Erstgespräch buchen (30 Min.): https://www.kiventis.com/#contact

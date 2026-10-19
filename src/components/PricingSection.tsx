@@ -34,13 +34,16 @@ export const PricingSection: React.FC<PricingSectionProps> = ({
         <div className="mt-14 grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
           {t.packages.map((pkg) => {
             const isPopular = pkg.popular;
+            const isOffer = Boolean(pkg.offerLabel) && !isPopular;
             return (
               <div
                 key={pkg.id}
-                className={`relative rounded-2xl p-7 sm:p-8 flex flex-col justify-between transition-all ${
+                className={`relative rounded-2xl p-7 sm:p-8 flex flex-col justify-between transition-colors ${
                   isPopular
                     ? 'border-2 border-[#14B8A6] bg-[#0E1524] shadow-2xl shadow-[#14B8A6]/10 -translate-y-2'
-                    : 'border border-white/[0.08] bg-[#0E1524]/60 hover:border-white/20'
+                    : isOffer
+                      ? 'border border-[#14B8A6]/35 bg-[#0E1524] hover:border-[#14B8A6]/60'
+                      : 'border border-white/[0.08] bg-[#0E1524]/60 hover:border-white/20'
                 }`}
               >
                 {/* Popularity Banner */}
@@ -51,8 +54,13 @@ export const PricingSection: React.FC<PricingSectionProps> = ({
                 )}
 
                 <div>
-                  <div className="text-xs font-mono font-semibold text-[#14B8A6] tracking-wider">
-                    {pkg.kicker}
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs font-mono font-semibold text-[#14B8A6] tracking-wider">
+                    <span>{pkg.kicker}</span>
+                    {pkg.offerLabel && (
+                      <span className="rounded border border-[#14B8A6]/40 px-1.5 py-0.5 text-[10px] font-medium tracking-[0.08em] text-[#14B8A6]/90">
+                        {pkg.offerLabel}
+                      </span>
+                    )}
                   </div>
 
                   <h3 className="mt-2 text-2xl font-bold text-white">
@@ -65,11 +73,20 @@ export const PricingSection: React.FC<PricingSectionProps> = ({
 
                   {/* Price Tag with Tabular Numerals */}
                   <div className="mt-6 pb-6 border-b border-white/[0.08]">
-                    <div className="flex items-baseline gap-1">
+                    <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
                       <span className="text-xl font-bold text-slate-400">{t.currency}</span>
                       <span className="font-mono tabular-nums text-4xl sm:text-5xl font-extrabold text-white">
                         {pkg.priceTag}
                       </span>
+                      {pkg.compareAtPrice && (
+                        <span className="text-xs text-slate-500">
+                          {lang === 'de' ? 'statt' : 'instead of'}{' '}
+                          <s className="font-mono tabular-nums">
+                            {t.currency}
+                            {pkg.compareAtPrice}
+                          </s>
+                        </span>
+                      )}
                     </div>
                     <div className="mt-1 text-xs text-slate-400">
                       {pkg.priceSub}

@@ -64,6 +64,10 @@ export interface PricingPackage {
   targetAudience: string;
   roiEstimate: string;
   popular?: boolean;
+  /** Zurueckhaltende Angebots-Kennzeichnung (Alternative zum lauten popular-Banner). */
+  offerLabel?: string;
+  /** Durchgestrichener Ausgangspreis, z. B. "2.400" - nur bei Angeboten. */
+  compareAtPrice?: string;
   features: string[];
   deliverableSnippet: string;
 }
@@ -82,6 +86,8 @@ export interface InsightArticle {
   categoryLabel: string;
   kicker: string;
   title: string;
+  /** Kurzer <title> (<=60 Zeichen inkl. ' · KIVENTIS'); title bleibt die H1. */
+  seoTitle?: string;
   excerpt: string;
   readTime: string;
   publishedDate: string;

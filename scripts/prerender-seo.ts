@@ -73,7 +73,7 @@ function articleRoute(a: InsightArticle, en = false): RouteSpec {
 
   return {
     route: `${prefix}blog/${a.id}`,
-    title: `${a.title} · KIVENTIS`,
+    title: a.seoTitle ?? `${a.title} · KIVENTIS`,
     description: a.excerpt,
     ogType: 'article',
     h1: a.title,
@@ -174,7 +174,7 @@ const staticRoutes: RouteSpec[] = [
   },
   {
     route: 'beispiele/bom-designer',
-    title: 'BOM Designer Pro (Stücklisten & Baugruppen-Editor) · KIVENTIS Showcase',
+    title: 'BOM Designer Pro: Stücklisten-Editor · KIVENTIS',
     description:
       'Interaktive Baukasten- und Stücklistenkalkulation mit MOK-Industriedaten und OData REST ERP-Export nach SAP S/4HANA.',
     ogType: 'website',
@@ -256,7 +256,7 @@ const staticRoutes: RouteSpec[] = [
   },
   {
     route: 'ai-act-audit',
-    title: 'EU AI Act Art. 4 Haftungs- & Bußgeld-Rechner für KMUs · KIVENTIS Audit',
+    title: 'EU AI Act Art. 4 Rechner für KMUs · KIVENTIS',
     description:
       'Kostenloser interaktiver Compliance-Check nach Art. 4 Verordnung (EU) 2024/1689. Berechnen Sie das persönliche Geschäftsführer-Haftungsrisiko (§ 43 GmbHG) und behördliche Bußgelder bis zu 15 Mio. €.',
     ogType: 'website',
@@ -447,7 +447,7 @@ function landingRoute(l: LandingSpec, en = false): RouteSpec {
     : 'Kiventis ist ein auf den Mittelstand spezialisiertes Beratungs- und Implementierungshaus für KI und ERP-Automatisierung mit 25 Jahren ERP- & Prozessberatung und über 250 umgesetzten Projekten in DACH & APAC.';
   return {
     route: `${prefix}${l.path}`,
-    title: `${h1} · KIVENTIS`,
+    title: (en ? l.seoTitle?.en : l.seoTitle?.de) ?? `${h1} · KIVENTIS`,
     description: lead,
     ogType: 'website',
     h1,
@@ -562,17 +562,38 @@ function main(): void {
       '  </url>',
     ].join('\n');
   });
+  // Die Rechentools liegen als statische Dateien unter public/tools/ und sind keine
+  // RouteSpecs — ohne eigenen Eintrag waren sie fuer Crawler unsichtbar. Trailing
+  // slash, weil ausgeliefert wird unter /tools/<slug>/ (spart einen Redirect-Hop).
+  const toolRoutes: { route: string; priority: string }[] = [
+    { route: 'tools/', priority: '0.6' },
+    { route: 'tools/vibe-coding-readiness-check/', priority: '0.7' },
+    { route: 'tools/eu-ai-act-betroffenheits-check/', priority: '0.7' },
+    { route: 'tools/sfec-ai-roi-calculator/', priority: '0.7' },
+  ];
+  const toolEntries = toolRoutes.map(({ route, priority }) => [
+    '  <url>',
+    `    <loc>${SITE}/${route}</loc>`,
+    `    <lastmod>${BUILD_DATE}</lastmod>`,
+    '    <changefreq>monthly</changefreq>',
+    `    <priority>${priority}</priority>`,
+    '  </url>',
+  ].join('\n'));
+
   const sitemap = [
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
     '        xmlns:xhtml="http://www.w3.org/1999/xhtml">',
     homepageEntry,
     ...sitemapUrls,
+    ...toolEntries,
     '</urlset>',
     '',
   ].join('\n');
   writeFileSync(join(DIST, 'sitemap.xml'), sitemap, 'utf8');
-  console.log(`[prerender-seo] sitemap.xml mit ${sitemapUrls.length + 1} URLs erzeugt.`);
+  console.log(
+    `[prerender-seo] sitemap.xml mit ${sitemapUrls.length + 1 + toolEntries.length} URLs erzeugt.`,
+  );
 }
 
 main();
