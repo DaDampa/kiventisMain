@@ -30,11 +30,12 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({
   const rateId = useId();
   const autoRateId = useId();
 
-  // State sliders - defaults matching realistic SME baseline
-  const [docsPerMonth, setDocsPerMonth] = useState<number>(1800);
+  // State sliders - bewusst konservative Vorbelegung fuer den Mittelstand:
+  // 200 Belege/Monat, 40 EUR Vollkosten pro Stunde, 40% Automatisierungsgrad.
+  const [docsPerMonth, setDocsPerMonth] = useState<number>(200);
   const [minutesPerDoc, setMinutesPerDoc] = useState<number>(18);
-  const [hourlyRate, setHourlyRate] = useState<number>(65);
-  const [automationPct, setAutomationPct] = useState<number>(80);
+  const [hourlyRate, setHourlyRate] = useState<number>(40);
+  const [automationPct, setAutomationPct] = useState<number>(40);
 
   // Exact Transparent Mathematical Model:
   // 1. Total manual hours currently spent per month
@@ -178,9 +179,9 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({
               <input
                 id={docsId}
                 type="range"
-                min="100"
-                max="10000"
-                step="100"
+                min="50"
+                max="1000"
+                step="50"
                 value={docsPerMonth}
                 onChange={(e) => setDocsPerMonth(Number(e.target.value))}
                 className="w-full h-2 rounded-lg appearance-none cursor-pointer accent-emerald-500"
@@ -188,10 +189,9 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({
               <div className={`flex justify-between text-[11px] font-mono mt-1 ${
                 isSepia ? 'text-[#5A4D3F]' : 'text-slate-400'
               }`}>
-                <span>100</span>
-                <span>2.500</span>
-                <span>5.000</span>
-                <span>10.000 Belege/Mo</span>
+                <span>50</span>
+                <span>500</span>
+                <span>1.000 Belege/Mo</span>
               </div>
             </div>
 
@@ -251,8 +251,8 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({
               <input
                 id={rateId}
                 type="range"
-                min="40"
-                max="140"
+                min="30"
+                max="75"
                 step="5"
                 value={hourlyRate}
                 onChange={(e) => setHourlyRate(Number(e.target.value))}
@@ -261,9 +261,9 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({
               <div className={`flex justify-between text-[11px] font-mono mt-1 ${
                 isSepia ? 'text-[#5A4D3F]' : 'text-slate-400'
               }`}>
-                <span>40 € / Std.</span>
-                <span>65 € (Ø Mittelstand)</span>
-                <span>140 € (Spezialist)</span>
+                <span>30 € / Std.</span>
+                <span>40 € (Standard Mittelstand)</span>
+                <span>75 € / Std.</span>
               </div>
             </div>
 
@@ -297,9 +297,9 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({
               <div className={`flex justify-between text-[11px] font-mono mt-1 ${
                 isSepia ? 'text-[#5A4D3F]' : 'text-slate-400'
               }`}>
-                <span>40% Konservativ</span>
-                <span>80% Realistischer Schnitt</span>
-                <span>95% Maximale Dunkelquote</span>
+                <span>30% Konservativ</span>
+                <span>40% Standard</span>
+                <span>95% Maximum</span>
               </div>
             </div>
 
