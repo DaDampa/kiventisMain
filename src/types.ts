@@ -82,6 +82,8 @@ export interface InsightArticle {
   categoryLabel: string;
   kicker: string;
   title: string;
+  /** Kurzer <title> (<=60 Zeichen inkl. ' · KIVENTIS'); title bleibt die H1. */
+  seoTitle?: string;
   excerpt: string;
   readTime: string;
   publishedDate: string;

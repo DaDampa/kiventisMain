@@ -7,6 +7,7 @@ export const articlesDe: InsightArticle[] = [
     categoryLabel: 'EU AI Act & Compliance',
     kicker: 'RECHTLICHE RAHMENBEDINGUNGEN 2025/2026',
     title: 'EU AI Act im Mittelstand: Schulungspflicht (Art. 4) & Risikoklassen im Praxis-Check',
+    seoTitle: 'EU AI Act: Schulungspflicht Art. 4 für KMU · KIVENTIS',
     excerpt:
       'Seit dem 2. Februar 2025 gilt für alle Betreiber von KI-Systemen in der EU die gesetzliche Schulungspflicht nach Artikel 4. Erfahren Sie, welche Pflichten KMU treffen, wie Sie Shadow AI verhindern und Audits gelassen begegnen.',
     readTime: '6 Min. Lesezeit',
@@ -63,6 +64,7 @@ export const articlesDe: InsightArticle[] = [
     categoryLabel: 'Vibe Coding & Tooling',
     kicker: 'PRODUKTIVITÄTSREVOLUTION 2026',
     title: 'Vibe Coding im Unternehmen: Wie Fachbereiche interne Tools in 48 Stunden statt 6 Monaten bauen',
+    seoTitle: 'Vibe Coding: interne Tools in 48 Stunden · KIVENTIS',
     excerpt:
       'Andrej Karpathys Konzept des "Vibe Coding" revolutioniert den Mittelstand: Nicht-technische Fachabteilungen erstellen maßgeschneiderte Webanwendungen und Automatisierungen per natürlicher Sprache – ohne zehntausende Euro für externe Agenturen.',
     readTime: '5 Min. Lesezeit',
@@ -113,6 +115,7 @@ export const articlesDe: InsightArticle[] = [
     categoryLabel: 'ERP & Systemintegration',
     kicker: 'SYSTEMARCHITEKTUR & SCHNITTSTELLEN',
     title: 'ERP-Schnittstellen ohne 50.000 € Budget: SAP, Business Central & Navision per KI anbinden',
+    seoTitle: 'ERP-Schnittstellen ohne 50k-Budget anbinden · KIVENTIS',
     excerpt:
       'Warum scheitern klassische ERP-Schnittstellenprojekte an astronomischen Tagessätzen? Wie mittelständische Unternehmen ihre Kernsysteme heute per REST, OData und Vibe Coding intelligent vernetzen.',
     readTime: '7 Min. Lesezeit',
@@ -159,6 +162,7 @@ export const articlesDe: InsightArticle[] = [
     categoryLabel: 'Kosten & ROI',
     kicker: 'LIZENZ-OPTIMIERUNG & SAAS-DIÄT',
     title: 'Schluss mit 50 €/User-Abonnements: Wie KMU ihre Lizenzkosten durch eigene Micro-Tools halbieren',
+    seoTitle: 'SaaS-Kosten senken mit eigenen Micro-Tools · KIVENTIS',
     excerpt:
       'SaaS-Sprawl frisst Budgets: Für jedes kleine Problem schließt der Mittelstand monatliche Abos ab. Warum 2026 maßgeschneiderte Inhouse-Apps die wirtschaftlichere und unabhängigere Alternative sind.',
     readTime: '4 Min. Lesezeit',
@@ -199,6 +203,7 @@ export const articlesDe: InsightArticle[] = [
     kicker: 'PROZESSAUTOMATISIERUNG 2026',
     title:
       'KI-Agenten im Mittelstand: Wann sich autonome Agenten gegenüber klassischer Prozessautomatisierung rechnen',
+    seoTitle: 'KI-Agenten im Mittelstand: wann sie sich lohnen · KIVENTIS',
     excerpt:
       'Zwischen RPA-Skript, Workflow-Engine und autonomem Agenten liegen Welten in Architektur, Betriebsrisiko und Kosten. Eine technische Einordnung für IT-Leitung und Geschäftsführung, welche ERP-nahen Prozesse sich heute sinnvoll agentisch automatisieren lassen.',
     readTime: '7 Min. Lesezeit',
@@ -269,6 +274,7 @@ export const articlesDe: InsightArticle[] = [
     kicker: 'E-RECHNUNG & WORKFLOW 2026',
     title:
       'E-Rechnung und Workflow Automatisierung im Mittelstand: Von der PDF-Eingangsrechnung zur audit-sicheren Prozesskette',
+    seoTitle: 'E-Rechnung automatisieren im Mittelstand · KIVENTIS',
     excerpt:
       'Eingangsrechnungen per E-Mail und PDF verlangsamen den Cash-Flow ebenso wie verwaiste Freigabeketten. Wie Mittelständler Eingangsrechnungsprüfung, Freigabeworkflow und Buchung in ihre ERP-Landschaft holen – ohne die Compliance zu riskieren.',
     readTime: '6 Min. Lesezeit',
@@ -341,6 +347,7 @@ export const articlesEn: InsightArticle[] = [
     categoryLabel: 'EU AI Act & Compliance',
     kicker: 'LEGAL FRAMEWORK 2025/2026',
     title: 'EU AI Act for SMEs: Training Mandate (Art. 4) & Risk Classes in Practice',
+    seoTitle: 'EU AI Act: Art. 4 training mandate for SMEs · KIVENTIS',
     excerpt:
       'Since February 2, 2025, Article 4 of the EU AI Act mandates verifiable AI literacy for all organizations deploying AI tools. Learn what obligations apply to SMEs, how to prevent Shadow AI, and how to pass audits with confidence.',
     readTime: '6 min read',
@@ -397,6 +404,7 @@ export const articlesEn: InsightArticle[] = [
     categoryLabel: 'Vibe Coding & Tooling',
     kicker: 'PRODUCTIVITY REVOLUTION 2026',
     title: 'Vibe Coding in the Enterprise: How Domain Experts Build Internal Tools in 48 Hours',
+    seoTitle: 'Vibe coding: internal tools in 48 hours · KIVENTIS',
     excerpt:
       'Andrej Karpathy’s paradigm of "Vibe Coding" is reshaping mid-market enterprises: Non-technical domain teams engineer tailored web applications and automated workflows using natural language – without paying €50k to software agencies.',
     readTime: '5 min read',
@@ -444,6 +452,7 @@ export const articlesEn: InsightArticle[] = [
     categoryLabel: 'ERP & Integration',
     kicker: 'ENTERPRISE SYSTEM ARCHITECTURE',
     title: 'Connecting ERP Systems Without €50k Project Budgets: SAP & Business Central AI Pipelines',
+    seoTitle: 'ERP integrations without a €50k budget · KIVENTIS',
     excerpt:
       'Why traditional ERP interface projects cost fortunes in consultant fees, and how modern mid-sized companies connect core business systems cleanly via OData, REST, and Vibe Coding.',
     readTime: '7 min read',
@@ -489,6 +498,7 @@ export const articlesEn: InsightArticle[] = [
     categoryLabel: 'Cost & ROI',
     kicker: 'LICENSE OPTIMIZATION & SAAS DIET',
     title: 'Slashing SaaS Spend: Why SMEs Are Building Custom Micro-Tools in 2026 Instead of Subscriptions',
+    seoTitle: 'Cutting SaaS spend with micro-tools · KIVENTIS',
     excerpt:
       'SaaS sprawl drains budgets. For every small operational friction, companies subscribe to yet another €50/user monthly tool. How in-house apps deliver superior ROI and total data independence.',
     readTime: '4 min read',
@@ -529,6 +539,7 @@ export const articlesEn: InsightArticle[] = [
     kicker: 'PROCESS AUTOMATION 2026',
     title:
       'AI Agents for SMEs: When Autonomous Agents Beat Classical Process Automation',
+    seoTitle: 'AI agents for SMEs: when they pay off · KIVENTIS',
     excerpt:
       'Between an RPA script, a workflow engine and an autonomous agent lie fundamental differences in architecture, operational risk and cost. A technical assessment for IT leadership and managing directors on which ERP-adjacent processes are worth automating agentically today.',
     readTime: '7 min read',
@@ -599,6 +610,7 @@ export const articlesEn: InsightArticle[] = [
     kicker: 'E-INVOICING & WORKFLOW 2026',
     title:
       'E-invoicing and workflow automation for SMEs: from PDF invoice to audit-proof process chain',
+    seoTitle: 'E-invoicing automation for SMEs · KIVENTIS',
     excerpt:
       'Invoices arriving as email PDFs stall cash flow just as much as orphaned approval chains do. How mid-sized companies bring incoming invoice checks, approval workflows and posting into their ERP landscape – without risking compliance.',
     readTime: '6 min read',

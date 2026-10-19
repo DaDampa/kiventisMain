@@ -25,6 +25,8 @@ export interface LandingSpec {
   path: string;
   kicker: LocalizedString;
   h1: LocalizedString;
+  /** Kurzer <title> (<=60 Zeichen inkl. ' · KIVENTIS'); h1 bleibt unveraendert. */
+  seoTitle: LocalizedString;
   lead: LocalizedString;
   benefits: LandingBenefit[];
   /** Cluster-Keywords fuer Meta + JSON-LD */
@@ -42,6 +44,10 @@ export const landings: LandingSpec[] = [
     h1: {
       de: 'KI-Beratung für KMU: Strategisch beraten, Prozesse automatisieren',
       en: 'AI consulting for SMEs: strategic advice, automated processes',
+    },
+    seoTitle: {
+      de: 'KI-Beratung für KMU: Prozesse automatisieren · KIVENTIS',
+      en: 'AI consulting for SMEs: automate processes · KIVENTIS',
     },
     lead: {
       de: 'Kiventis ist Ihr Partner für KI-Beratung KMU, ERP Prozessautomatisierung und KI Agenten im Mittelstand — von der Strategie über die ERP Schnittstellen Programmierung bis zur E-Rechnung und Workflow Automatisierung.',
@@ -99,6 +105,10 @@ export const landings: LandingSpec[] = [
     h1: {
       de: 'ERP-Prozessautomatisierung: Bestehende Workflows end-to-end automatisieren',
       en: 'ERP process automation: automate existing workflows end-to-end',
+    },
+    seoTitle: {
+      de: 'ERP-Prozessautomatisierung für den Mittelstand · KIVENTIS',
+      en: 'ERP process automation for SMEs · KIVENTIS',
     },
     lead: {
       de: 'Kiventis automatisiert Ihre ERP-Prozesse — von der Schnittstellen-Programmierung über KI Agenten bis zur E-Rechnung. 25 Jahre ERP- & Prozessberatung, über 250 umgesetzte Projekte.',
