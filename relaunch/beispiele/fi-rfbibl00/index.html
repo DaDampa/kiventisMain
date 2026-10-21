@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAP RFBIBL00 Buchungsexport – KIVENTIS Demo</title>
+<meta name="description" content="Demo: FI-Buchungsbelege als SAP-Batch-Input-Datei für RFBIBL00 erzeugen, validieren und herunterladen. Satzarten BGR00, BBK00, BBS00.">
+<meta name="robots" content="noindex,follow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/beispiele/assets/demo.css">
+</head>
+<body>
+
+<header class="appbar">
+  <a class="appbar__brand" href="/"><img src="/assets/mark.svg" alt="" width="20" height="20">Kiventis</a>
+  <span class="appbar__sep" aria-hidden="true"></span>
+  <h1>FI-Buchungsexport · RFBIBL00</h1>
+  <div class="appbar__right">
+    <span>Demo mit MOK-Daten · keine Verbindung zu einem Produktivsystem</span>
+    <a href="/beispiele/">Alle Demos</a>
+  </div>
+</header>
+
+<section class="toolbar" aria-label="Exportoptionen">
+  <label class="field">
+    <span>Modus</span>
+    <select id="mode">
+      <option value="BI" selected>Batch-Input (SM35)</option>
+      <option value="DI">Direct Input</option>
+      <option value="CT">Call Transaction</option>
+    </select>
+  </label>
+  <label class="field">
+    <span>Format</span>
+    <select id="format">
+      <option value="FIXED" selected>Festes Satzformat</option>
+      <option value="TAB">TAB-getrennt</option>
+    </select>
+  </label>
+  <label class="field">
+    <span>Kodierung</span>
+    <select id="encoding">
+      <option value="UTF-8" selected>UTF-8</option>
+      <option value="ISO-8859-1">ISO-8859-1 (Codepage 1100)</option>
+    </select>
+  </label>
+  <label class="field">
+    <span>Dezimalzeichen</span>
+    <select id="decimal">
+      <option value="," selected>Komma (D-Profil)</option>
+      <option value=".">Punkt (US-Profil)</option>
+    </select>
+  </label>
+  <label class="field">
+    <span>Mappenname</span>
+    <input id="mapname" type="text" value="FI_EXP_202610" maxlength="12" size="14">
+  </label>
+  <label class="field">
+    <span>Mandant</span>
+    <input id="mandant" type="text" value="100" maxlength="3" size="4">
+  </label>
+  <label class="field">
+    <span>Benutzer</span>
+    <input id="user" type="text" value="SAP_BATCH" maxlength="12" size="12">
+  </label>
+  <div class="actions">
+    <button class="btn btn--ghost" id="btnValidate" type="button">Validieren <kbd>F2</kbd></button>
+    <button class="btn" id="btnExport" type="button">Datei generieren &amp; laden <kbd>⌘E</kbd></button>
+  </div>
+</section>
+
+<main class="workspace">
+
+  <section class="pane" aria-label="Belege">
+    <div class="pane__head"><strong>Buchungsbelege</strong><span class="count" id="docCount">0</span></div>
+    <div class="pane__body">
+      <div class="docs" id="docList" role="listbox" aria-label="Belege auswählen"></div>
+
+      <div class="section-title">Positionen des gewählten Belegs</div>
+      <table class="grid" id="posTable">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">BS</th>
+            <th scope="col">Konto</th>
+            <th scope="col" class="num">Soll</th>
+            <th scope="col" class="num">Haben</th>
+            <th scope="col">MWSKZ</th>
+            <th scope="col">KOSTL</th>
+            <th scope="col">Text</th>
+          </tr>
+        </thead>
+        <tbody id="posBody"></tbody>
+      </table>
+
+      <details>
+        <summary class="section-title summary-toggle">Feldlayout der Satzarten</summary>
+        <div id="layoutTable" class="hint"></div>
+      </details>
+
+      <div class="messages" id="messages" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="pane" aria-label="Rohdaten">
+    <div class="pane__head">
+      <strong>RFBIBL00-Rohdaten</strong>
+      <span class="count" id="lineCount">0 Zeilen</span>
+    </div>
+    <div class="inspector">
+      <div class="inspector__bar">
+        <span id="fileInfo">–</span>
+        <span class="legend">
+          <span><i class="swatch swatch--head"></i>BGR00 / BBK00</span>
+          <span><i class="swatch swatch--pos"></i>BBS00</span>
+        </span>
+      </div>
+      <div class="inspector__body" id="inspector" tabindex="0">
+        <p class="inspector__empty">Mit „Validieren“ (F2) wird die Datei erzeugt und hier zeilengenau angezeigt.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="keyhints">
+  <span><kbd>F2</kbd> validieren und Vorschau erzeugen</span>
+  <span><kbd>Strg</kbd>/<kbd>⌘</kbd> + <kbd>E</kbd> Datei herunterladen</span>
+  <span><kbd>↑</kbd><kbd>↓</kbd> Beleg wechseln</span>
+</div>
+
+<footer class="statusbar" aria-live="polite">
+  <span class="kpi">Belege <b id="kpiDocs">0</b></span>
+  <span class="kpi">Positionen <b id="kpiLines">0</b></span>
+  <span class="kpi">Soll <b id="kpiDebit">0,00</b></span>
+  <span class="kpi">Haben <b id="kpiCredit">0,00</b></span>
+  <span class="kpi">Saldo <b id="kpiSaldo">0,00</b></span>
+  <span class="state"><span class="badge badge--mute" id="statusBadge">NICHT VALIDIERT</span></span>
+</footer>
+
+<script src="/beispiele/fi-rfbibl00/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAP SD Preislisten- &amp; Konditionsexport – KIVENTIS Demo</title>
+<meta name="description" content="Demo: Preislisten, Staffelpreise und Rabatte als SAP-Konditionssätze exportieren – Flatfile, IDoc COND_A04 oder CSV, mit Validierung vor dem Export.">
+<meta name="robots" content="noindex,follow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/beispiele/assets/demo.css">
+</head>
+<body>
+
+<header class="appbar">
+  <a class="appbar__brand" href="/"><img src="/assets/mark.svg" alt="" width="20" height="20">Kiventis</a>
+  <span class="appbar__sep" aria-hidden="true"></span>
+  <h1>SD-Preislisten &amp; Konditionen · COND_A04</h1>
+  <div class="appbar__right">
+    <span>Demo mit MOK-Daten · keine Verbindung zu einem Produktivsystem</span>
+    <a href="/beispiele/">Alle Demos</a>
+  </div>
+</header>
+
+<section class="toolbar" aria-label="Filter und Export">
+  <label class="field">
+    <span>Vertriebslinie</span>
+    <select id="fLine">
+      <option value="">alle</option>
+      <option value="1000/10/01">1000 / 10 / 01 – Industrie</option>
+      <option value="1000/20/01">1000 / 20 / 01 – Großhandel</option>
+      <option value="2000/10/02">2000 / 10 / 02 – Chemie</option>
+    </select>
+  </label>
+  <label class="field">
+    <span>Preislisten-Typ</span>
+    <select id="fType">
+      <option value="">alle</option>
+      <option value="Händler-Preisliste">Händler-Preisliste</option>
+      <option value="Endkunden-Standard">Endkunden-Standard</option>
+      <option value="Rahmenvereinbarung">Kundenspezifische Rahmenvereinbarung</option>
+    </select>
+  </label>
+  <label class="field">
+    <span>Stichtag</span>
+    <input id="fDate" type="date" value="2026-10-21">
+  </label>
+  <label class="field">
+    <span>Exportformat</span>
+    <select id="format">
+      <option value="BVD" selected>A · Flatfile (BVD00/01/02)</option>
+      <option value="IDOC">B · IDoc COND_A04 (flat)</option>
+      <option value="XML">B · IDoc COND_A04 (XML)</option>
+      <option value="CSV">C · CSV für Massendatenimport</option>
+    </select>
+  </label>
+  <label class="field">
+    <span>Dezimalzeichen</span>
+    <select id="decimal">
+      <option value="," selected>Komma (D-Profil)</option>
+      <option value=".">Punkt (US-Profil)</option>
+    </select>
+  </label>
+  <div class="actions">
+    <button class="btn btn--ghost" id="btnValidate" type="button">Validieren <kbd>F2</kbd></button>
+    <button class="btn" id="btnExport" type="button">Export erzeugen &amp; laden <kbd>⌘E</kbd></button>
+  </div>
+</section>
+
+<main class="workspace">
+  <section class="pane" aria-label="Konditionssätze">
+    <div class="pane__head"><strong>Konditionssätze</strong><span class="count" id="rowCount">0</span></div>
+    <div class="pane__body">
+      <table class="grid" id="condTable">
+        <thead>
+          <tr>
+            <th scope="col">KSCHL</th>
+            <th scope="col">VKORG / VTWEG / SPART</th>
+            <th scope="col">KUNNR / KDGRP</th>
+            <th scope="col">MATNR</th>
+            <th scope="col">DATAB</th>
+            <th scope="col">DATBI</th>
+            <th scope="col" class="num">KBETR</th>
+            <th scope="col">KONWA</th>
+            <th scope="col" class="num">KPEIN</th>
+            <th scope="col">KMEIN</th>
+            <th scope="col" class="num">Staffeln</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody id="condBody"></tbody>
+      </table>
+      <p class="hint">Zeile wählen mit Pfeiltasten, <kbd>Enter</kbd> macht den Preis editierbar, <kbd>F4</kbd> öffnet Staffeln und Schlüsselfelder.</p>
+
+      <div id="detail"></div>
+      <div class="messages" id="messages" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="pane" aria-label="Rohdaten">
+    <div class="pane__head">
+      <strong>Export-Rohdaten</strong>
+      <span class="count" id="lineCount">0 Zeilen</span>
+    </div>
+    <div class="inspector">
+      <div class="inspector__bar">
+        <span id="fileInfo">–</span>
+        <span class="legend"><span id="legendText"></span></span>
+      </div>
+      <div class="inspector__body" id="inspector" tabindex="0">
+        <p class="inspector__empty">Mit „Validieren“ (F2) wird die Datei erzeugt und hier zeilengenau angezeigt.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="keyhints">
+  <span><kbd>F2</kbd> validieren</span>
+  <span><kbd>F4</kbd> Staffeln und Details</span>
+  <span><kbd>Enter</kbd> Preis bearbeiten</span>
+  <span><kbd>Strg</kbd>/<kbd>⌘</kbd> + <kbd>E</kbd> Export laden</span>
+</div>
+
+<footer class="statusbar" aria-live="polite">
+  <span class="kpi">Positionen <b id="kpiRows">0</b></span>
+  <span class="kpi">Valide <b id="kpiOk">0</b></span>
+  <span class="kpi">Prüfung <b id="kpiWarn">0</b></span>
+  <span class="kpi">Gesperrt <b id="kpiLocked">0</b></span>
+  <span class="state"><span class="badge badge--mute" id="statusBadge">NICHT VALIDIERT</span></span>
+</footer>
+
+<script src="/beispiele/preise-konditionen/app.js"></script>
+</body>
+</html>
