@@ -19,11 +19,21 @@ Dieses Setup wurde speziell an die Anforderungen deines **Hostinger VPS mit Dock
 
 ## 📁 Enthaltene Dateien
 
-- **`Dockerfile`**: Schlanker Multi-Stage-Build (Node.js 20 Builder + Alpine Nginx Server mit SPA-Routing und Gzip-Kompression).
-- **`.github/workflows/deploy.yml`**: GitHub Actions Workflow, der das Docker-Image baut und zu `ghcr.io/dadampa/kiventismain:latest` pusht.
-- **`docker-compose.yml`**: Für Hostinger VPS optimiert – nutzt das GHCR-Image, Traefik-Labels und Traefik-Netzwerk.
-- **`docker-compose.local.yml`**: Fallback für lokale Tests auf dem Rechner (`docker compose -f docker-compose.local.yml up --build`).
-- **`nginx.conf`**: Nginx-Konfiguration mit Client-seitigem Router-Fallback (`try_files $uri $uri/ /index.html;`) und Caching.
+> **Stand 2026-10:** Die statische Startseite ist die neue Root des
+> Repositorys (`index.html`, `en/`, `assets/`, `beispiele/`, …).
+> Die React-App liegt in **`app/`** und wird von `Dockerfile` mit
+> `vite base: "/app/"` gebaut. Ihre Bundles landen unter `/app/assets/`,
+> ihre vorrenderten SEO-Seiten (wissen/, blog/, tools/,
+> beispiele/bom-designer/) bleiben unter den gewohnten URLs,
+> `dist/index.html` wird zum SPA-Fallback `/app.html`.
+
+- **`Dockerfile`** (Root): Multi-Stage-Build — Stage 1 baut `app/` (Node.js 20),
+  Stage 2 liefert die statische Seite und die App über Nginx (SPA-Routing, Gzip).
+- **`nginx.conf`** (Root): Container-Nginx mit strikter CSP für statische Seiten
+  und app-tauglicher CSP für SPA-Routen, `?lang=en`-Redirect, Caching-Regeln.
+- **`.github/workflows/deploy.yml`**: GitHub Actions Workflow, der das Docker-Image baut und zu `ghcr.io/dadampa/kiventismain:latest` pusht (unverändert, baut das Root-Dockerfile).
+- **`app/docker-compose.yml`**: Für Hostinger VPS optimiert – nutzt das GHCR-Image, Traefik-Labels und Traefik-Netzwerk.
+- **`app/docker-compose.local.yml`**: Fallback für lokale Tests (`docker compose -f app/docker-compose.local.yml up --build`).
 
 ---
 

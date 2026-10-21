@@ -5,6 +5,8 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
+    // Bundles landen unter /app/assets/ – das Root-Assets/-Verzeichnis gehört der statischen Seite
+    base: "/app/",
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {

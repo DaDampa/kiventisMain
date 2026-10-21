@@ -1,422 +1,623 @@
 <!doctype html>
-<html lang="de" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- Primary Meta Tags -->
-    <title>KIVENTIS · B2B KI-Enablement, Vibe Coding &amp; AI Act</title>
-    <meta name="title" content="KIVENTIS · B2B KI-Enablement, Vibe Coding &amp; AI Act" />
-    <meta name="description" content="Boost your processes, save license costs. Praxisnahe B2B KI-Trainings &amp; Vibe Coding für KMUs: Bauen Sie eigene Software und senken Sie Lizenzkosten mit 2–4 Monaten ROI." />
-    <meta name="keywords" content="KIVENTIS, KI Schulung KMU, AI Training Mittelstand DACH, EU AI Act Schulungspflicht Art. 4, Vibe Coding Workshop B2B, On-Premise LLM Beratung, Citizen Developer Enablement Deutschland Österreich Schweiz, AI Governance KMU" />
-    <meta name="author" content="KIVENTIS · ERP and Marketing Solutions LLC" />
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+<!-- KIVENTIS-RELAUNCH · statische Startseite, Stand 2026-10 -->
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KIVENTIS – ERP-Beratung und KI-Enablement für den Mittelstand</title>
+<meta name="description" content="25 Jahre ERP-Beratung, 250+ Projekte: Wir schulen Fachabteilungen, mit KI eigene Werkzeuge zu bauen – inkl. Schulungsnachweis nach Art. 4 EU AI Act.">
+<link rel="canonical" href="https://www.kiventis.com/">
+<link rel="alternate" hreflang="de" href="https://www.kiventis.com/">
+<link rel="alternate" hreflang="en" href="https://www.kiventis.com/en/">
+<link rel="alternate" hreflang="x-default" href="https://www.kiventis.com/">
 
-    <!-- Icons & Browser Chrome -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="mask-icon" href="/favicon.svg" color="#14B8A6" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <meta name="theme-color" content="#090D14" />
-    <meta name="color-scheme" content="dark light" />
+<meta property="og:type" content="website">
+<meta property="og:title" content="KIVENTIS – ERP-Beratung und KI-Enablement für den Mittelstand">
+<meta property="og:description" content="Ihr Team baut seine ERP-Werkzeuge selbst. Wir schulen es darin – und sichern die Schulungspflicht nach Art. 4 EU AI Act ab.">
+<meta property="og:url" content="https://www.kiventis.com/">
+<meta property="og:image" content="https://www.kiventis.com/og-image.png">
+<meta property="og:locale" content="de_DE">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
 
-    <!-- Geotargeting & Regional SEO (DACH: Germany, Austria, Switzerland) -->
-    <meta name="geo.region" content="DE;AT;CH" />
-    <meta name="geo.placename" content="Deutschland, Österreich, Schweiz" />
-    <meta name="geo.position" content="51.165691;10.451526" />
-    <meta name="ICBM" content="51.165691, 10.451526" />
-    <meta name="coverage" content="Germany, Austria, Switzerland, Worldwide" />
-    <meta name="distribution" content="global" />
-    <meta name="rating" content="general" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/newsreader-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/styles.css">
 
-    <!-- Canonical URL & Hreflang for internationalization & DACH geo-targeting -->
-    <link rel="canonical" href="https://www.kiventis.com/" />
-    <link rel="alternate" hreflang="de" href="https://www.kiventis.com/" />
-    <link rel="alternate" hreflang="de-DE" href="https://www.kiventis.com/" />
-    <link rel="alternate" hreflang="de-AT" href="https://www.kiventis.com/" />
-    <link rel="alternate" hreflang="de-CH" href="https://www.kiventis.com/" />
-    <link rel="alternate" hreflang="en" href="https://www.kiventis.com/?lang=en" />
-    <link rel="alternate" hreflang="en-US" href="https://www.kiventis.com/?lang=en" />
-    <link rel="alternate" hreflang="en-GB" href="https://www.kiventis.com/?lang=en" />
-    <link rel="alternate" hreflang="x-default" href="https://www.kiventis.com/" />
-
-    <!-- Machine-readable AI Documentation for Generative Engine Optimization (GEO) -->
-    <link rel="help" type="text/plain" href="https://www.kiventis.com/llms.txt" title="LLMs.txt" />
-
-    <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.kiventis.com/" />
-    <meta property="og:site_name" content="KIVENTIS · B2B KI-Enablement DACH" />
-    <meta property="og:title" content="KIVENTIS · B2B KI-Trainings, Vibe Coding &amp; EU AI Act (DACH)" />
-    <meta property="og:description" content="Praxisnahe B2B KI-Trainings &amp; Vibe Coding für KMUs in Deutschland, Österreich &amp; der Schweiz. Gesetzliche Zertifikate nach Art. 4 EU AI Act mit 2–4 Monaten ROI." />
-    <meta property="og:image" content="https://www.kiventis.com/og-image.png" />
-    <meta property="og:image:secure_url" content="https://www.kiventis.com/og-image.png" />
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="KIVENTIS B2B KI-Trainings, Vibe Coding und EU AI Act Governance für den Mittelstand" />
-    <meta property="og:locale" content="de_DE" />
-    <meta property="og:locale:alternate" content="de_AT" />
-    <meta property="og:locale:alternate" content="de_CH" />
-    <meta property="og:locale:alternate" content="en_US" />
-
-    <!-- Twitter / X -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://www.kiventis.com/" />
-    <meta name="twitter:title" content="KIVENTIS · B2B KI-Trainings, Vibe Coding &amp; EU AI Act (DACH)" />
-    <meta name="twitter:description" content="Praxisnahes KI-Enablement, Vibe Coding &amp; rechtssichere Zertifikate nach Art. 4 EU AI Act für den B2B-Mittelstand." />
-    <meta name="twitter:image" content="https://www.kiventis.com/og-image.png" />
-    <meta name="twitter:image:alt" content="KIVENTIS B2B KI-Trainings für KMUs" />
-    
-    <!-- Preconnect to Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
-    <!-- Schema.org Structured Data for SEO and GEO (Generative Engine Optimization) -->
-    <script type="application/ld+json">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
+      "@type": "ProfessionalService",
+      "name": "KIVENTIS",
+      "url": "https://www.kiventis.com/",
+      "email": "Kontakt@kiventis.com",
+      "description": "ERP-Prozessberatung und KI-Enablement für mittelständische Unternehmen: Vibe Coding, Schulungen nach Art. 4 EU AI Act, On-Premise-LLM- und RAG-Architekturen.",
+      "areaServed": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "knowsAbout": [
+        "ERP-Integration",
+        "Vibe Coding",
+        "EU AI Act Artikel 4",
+        "RAG",
+        "On-Premise LLM",
+        "SAP",
+        "Microsoft Dynamics 365",
+        "proALPHA",
+        "abas ERP",
+        "Mesonic WinLine"
+      ],
+      "foundingDate": "2000"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
         {
-          "@type": "WebSite",
-          "@id": "https://www.kiventis.com/#website",
-          "url": "https://www.kiventis.com/",
-          "name": "KIVENTIS",
-          "description": "B2B KI-Trainings, Vibe Coding und EU AI Act Governance für mittelständische Unternehmen in der DACH-Region.",
-          "inLanguage": ["de-DE", "de-AT", "de-CH", "en-US"],
-          "publisher": {
-            "@id": "https://www.kiventis.com/#organization"
+          "@type": "Question",
+          "name": "Was heißt Vibe Coding im ERP-Umfeld?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Fachkräfte aus Einkauf, Vertrieb oder Arbeitsvorbereitung beschreiben in normaler Sprache, was das Werkzeug leisten soll. Das Modell schreibt den Code, die Fachkraft prüft das Ergebnis am realen Datensatz. Typische Ergebnisse sind Stücklisten-Kalkulatoren, ZUGFeRD-Prüfer oder Nachbestellportale."
           }
         },
         {
-          "@type": ["EducationalOrganization", "ProfessionalService"],
-          "@id": "https://www.kiventis.com/#organization",
-          "name": "KIVENTIS – B2B KI-Trainings & Enablement",
-          "alternateName": "KIVENTIS",
-          "description": "25 Jahre Erfahrung im Bereich Business & ERP Prozess Consulting mit über 250 umgesetzten ERP-Projekten für Kunden aus 40 Branchen in Europa und Southeast Asia. Spezialisiert auf End-to-End Workflowanbindung (CRM, Supply Chain, Produktion), praxisnahe B2B KI-Trainings, Vibe Coding und EU-AI-Act-Compliance (Art. 4) für den Mittelstand im DACH-Raum (Deutschland, Österreich, Schweiz) sowie weltweit. Eine Initiative der ERP and Marketing Solutions LLC.",
-          "url": "https://www.kiventis.com",
-          "email": "Kontakt@kiventis.com",
-          "image": "https://www.kiventis.com/og-image.png",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://www.kiventis.com/favicon.svg",
-            "caption": "KIVENTIS"
-          },
-          "slogan": "Boost your processes, save license costs.",
-          "knowsLanguage": ["de", "en"],
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "contactType": "sales",
-            "email": "Kontakt@kiventis.com",
-            "availableLanguage": ["de", "en"],
-            "areaServed": ["DE", "AT", "CH", "SG"]
-          },
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "1209 Mountain Road PL NE, STE R",
-            "addressLocality": "Albuquerque",
-            "addressRegion": "NM",
-            "postalCode": "87110",
-            "addressCountry": "US"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 51.165691,
-            "longitude": 10.451526
-          },
-          "areaServed": [
-            {
-              "@type": "Country",
-              "name": "Deutschland",
-              "identifier": "DE"
-            },
-            {
-              "@type": "Country",
-              "name": "Österreich",
-              "identifier": "AT"
-            },
-            {
-              "@type": "Country",
-              "name": "Schweiz",
-              "identifier": "CH"
-            },
-            {
-              "@type": "AdministrativeArea",
-              "name": "DACH-Region"
-            },
-            {
-              "@type": "Country",
-              "name": "Singapur",
-              "identifier": "SG"
-            }
-          ],
-          "knowsAbout": [
-            "Business & ERP Prozess Consulting (25 Jahre Erfahrung)",
-            "Über 250 umgesetzte ERP-Projekte in 40 Branchen",
-            "Workflowanbindung: CRM, Supply Chain, Lager und Produktion",
-            "EU AI Act Schulungspflicht Art. 4 (AI Literacy)",
-            "Vibe Coding & Citizen Developer Enablement",
-            "On-Premise LLM & lokale RAG Architekturen",
-            "DSGVO Datensouveränität in KMUs",
-            "SAP S/4HANA, Microsoft Dynamics 365, proALPHA, abas, Infor, Salesforce",
-            "Cursor, Lovable, Anthropic Claude, OpenAI ChatGPT, Qwen 2.5 / 3, DeepSeek R1/V3, Mistral, Gemma (vLLM / Ollama)"
-          ],
-          "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "B2B KI Enablement Services & Modules (DACH & APAC)",
-            "itemListElement": [
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "01 Quick Start: AI Opportunity Scan & Workflow Audit",
-                  "description": "Erstanalyse bestehender ERP- und Fachbereichsprozesse, Identifikation sofortiger Quick Wins mit hohem Entlastungspotenzial und verbindliche ROI-Amortisationsprognose.",
-                  "timeRequired": "P2W",
-                  "provider": { "@id": "https://www.kiventis.com/#organization" }
-                },
-                "price": "999.00",
-                "priceCurrency": "EUR",
-                "availability": "https://schema.org/InStock",
-                "validFrom": "2025-01-01"
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "02 Core Program: Vibe Coding & ERP Micro-Apps",
-                  "description": "Citizen Developer Enablement: Fachkräfte ohne Programmierkenntnisse bauen per Prompting funktionierende interne Web-Tools und Micro-Apps mit abgesicherter ERP-Staging-Anbindung.",
-                  "timeRequired": "P4W",
-                  "provider": { "@id": "https://www.kiventis.com/#organization" }
-                },
-                "price": "4900.00",
-                "priceCurrency": "EUR",
-                "availability": "https://schema.org/InStock",
-                "validFrom": "2025-01-01"
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "03 Legal Mandate: EU AI Act Art. 4 Zertifizierung",
-                  "description": "Erfüllung der gesetzlichen Schulungspflicht (AI Literacy) ab 2. Februar 2025 mit personalisierten, revisionssicheren Schulungszertifikaten und betrieblichen Richtlinien.",
-                  "timeRequired": "P2W",
-                  "provider": { "@id": "https://www.kiventis.com/#organization" }
-                },
-                "price": "3490.00",
-                "priceCurrency": "EUR",
-                "availability": "https://schema.org/InStock",
-                "validFrom": "2025-01-01"
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "04 Air-Gapped Sovereign AI: On-Premise LLMs & RAG",
-                  "description": "DSGVO-konforme Enterprise-Inferenz ohne Cloud-Abfluss (0 Byte Transfer): Lokale Open-Weights-Modelle (Qwen 2.5 / Qwen 3, DeepSeek R1/V3, Mistral, Gemma) und Vector RAG hinter Firmen-Firewall.",
-                  "timeRequired": "P4W",
-                  "provider": { "@id": "https://www.kiventis.com/#organization" }
-                },
-                "price": "8900.00",
-                "priceCurrency": "EUR",
-                "availability": "https://schema.org/InStock",
-                "validFrom": "2025-01-01"
-              }
-            ]
+          "@type": "Question",
+          "name": "Wie kommt ein selbstgebautes Tool an ERP-Daten, ohne das System zu gefährden?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Über eine dreistufige Staging-Schicht mit Schema-Validierung und OData- beziehungsweise REST-Schnittstellen. Werkzeuge lesen ausschließlich; Schreibzugriffe auf produktive ERP-Tabellen gibt es nicht."
           }
         },
         {
-          "@type": "Course",
-          "@id": "https://www.kiventis.com/#course-ai-enablement",
-          "name": "B2B KI-Enablement, Vibe Coding & EU AI Act Compliance",
-          "description": "Zertifiziertes Praxistraining für Fach- und Führungskräfte zur Erfüllung der gesetzlichen Schulungspflicht nach Art. 4 EU AI Act und Automatisierung interner Abläufe.",
-          "provider": {
-            "@id": "https://www.kiventis.com/#organization"
-          },
-          "educationalLevel": "Intermediate / Professional Executive",
-          "inLanguage": ["de-DE", "en-US"],
-          "hasCourseInstance": {
-            "@type": "CourseInstance",
-            "courseMode": ["online", "blended", "onsite"],
-            "courseWorkload": "PT12H",
-            "location": "Deutschland, Österreich, Schweiz (Inhouse vor Ort oder Live-Online)"
+          "@type": "Question",
+          "name": "Reicht für Artikel 4 EU AI Act eine Teilnahmebescheinigung?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Artikel 4 verlangt ein angemessenes Maß an KI-Kompetenz im Personal, abhängig von Vorkenntnissen, Rolle und Einsatzszenario. Eine Bescheinigung allein erfüllt das nicht; nachweisbar wird es durch Schulungsinhalte, Rollenbezug und dokumentierte Nutzungsrichtlinien."
           }
         },
         {
-          "@type": "DigitalDocument",
-          "@id": "https://www.kiventis.com/#kmu-leitfaden",
-          "name": "KMU-Praxisleitfaden: Künstliche Intelligenz, Vibe Coding & EU-AI-Act-Compliance",
-          "headline": "Der pragmatische Handlungsleitfaden für Geschäftsführer, Vorstände, CIOs/IT-Leiter & Abteilungsverantwortliche im B2B-Mittelstand",
-          "numberOfPages": 38,
-          "inLanguage": "de-DE",
-          "author": {
-            "@id": "https://www.kiventis.com/#organization"
-          },
-          "publisher": {
-            "@id": "https://www.kiventis.com/#organization"
-          },
-          "isAccessibleForFree": true,
-          "fileFormat": "application/pdf",
-          "url": "https://www.kiventis.com/#leitfaden"
+          "@type": "Question",
+          "name": "Läuft das auch ohne US-Cloud?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja. Open-Weights-Modelle wie Qwen, DeepSeek, Mistral oder Gemma laufen über vLLM oder Ollama auf eigener Hardware, die Wissensbasis liegt in einer lokalen Vektordatenbank wie Qdrant oder pgvector. Der Datenverkehr bleibt im Firmennetz."
+          }
         },
         {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Was bedeutet Vibe Coding im ERP-Umfeld?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Vibe Coding im ERP-Umfeld bedeutet, dass Fachteams ohne manuelle Programmierung per KI-Prompts voll funktionsfähige Micro-Apps (z. B. Stücklisten-Kalkulatoren, ZUGFeRD-Prüfer oder Nachbestellportale) entwickeln, die über validierte Staging-Schichten sicher an ERP-Systeme angebunden werden. Fachkräfte steuern KI-Tools in natürlicher Sprache, sparen Wochen Entwicklungszeit und behalten volle Kontrolle über die Geschäftslogik."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Wie wird die Datenbank-Sicherheit bei Citizen Development garantiert?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Die Datenbank-Sicherheit wird durch ein striktes 3-Stufen-Staging mit Schema-Validierung und OData/REST-APIs garantiert: Micro-Apps erhalten niemals direkten SQL-Schreibzugriff auf produktive ERP-Tabellen. Daten werden in isolierten Sandbox-Tabellen validiert und erst nach systemseitiger Konsistenzprüfung oder 2-Augen-Freigabe ins Produktivsystem synchronisiert."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Was fordert Artikel 4 des EU AI Act für KMUs?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Artikel 4 des EU AI Act verpflichtet alle gewerblichen Betreiber von KI-Systemen seit dem 2. Februar 2025 verbindlich, ein angemessenes Maß an KI-Kompetenz (AI Literacy) im Personal nachzuweisen. Unternehmen müssen sicherstellen, dass Mitarbeiter Funktionsweisen, Halluzinationsrisiken und Urheberrechte verstehen; KIVENTIS liefert hierfür audit- und haftungssichere Schulungszertifikate."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Wie funktioniert On-Premise KI ohne US-Cloud?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "On-Premise KI läuft zu 100 % autark auf firmeneigenen Servern über moderne Open-Weights-Architekturen (Qwen 2.5 / Qwen 3, DeepSeek R1/V3, Mistral, Gemma via vLLM oder Ollama) und lokale Vektordatenbanken (Qdrant). Sämtliche Daten, Prompts und internen R&D-Dokumente verbleiben physisch im Firmen-Intranet – es fließen 0 Byte an externe Hyperscaler."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Mit welchen ERP-Systemen integriert Kiventis?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "KIVENTIS verbindet KI-Workflows nativ mit SAP S/4HANA & ECC, Microsoft Dynamics 365 (Business Central & F&O), Mesonic WinLine, proALPHA, abas ERP sowie Infor und Sage. Über standardisierte Schnittstellen (REST, OData, RFC, Webhooks) werden Stücklisten, Belege, Aufträge und Bestände ohne kostspielige Individualprogrammierung synchronisiert."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Wie schnell amortisiert sich das Training?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Das Training amortisiert sich typischerweise in 2 bis 4 Monaten (oft in unter 60 Tagen): Durch 4,5 bis 7 eingesparte Arbeitsstunden pro Woche und Fachkraft bei wiederkehrenden Prozessen summiert sich der Produktivitätsgewinn bei 75 € Stundensatz auf über 15.000 € pro Mitarbeiter und Jahr."
-              }
-            }
-          ]
+          "@type": "Question",
+          "name": "Mit welchen ERP-Systemen arbeiten Sie?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "SAP S/4HANA und ECC, Microsoft Dynamics 365 Business Central und F&O, Mesonic WinLine, proALPHA, abas ERP, Infor und Sage."
+          }
         }
       ]
     }
-    </script>
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Zum Inhalt springen</a>
 
-    <!-- Time-based Theme Init: Sepia (07:00–20:00), Dunkel (20:00–07:00) -->
-    <script>
-      (function() {
-        try {
-          var mode = localStorage.getItem('kiventis_theme_mode');
-          var manual = localStorage.getItem('kiventis_theme');
-          var theme = 'sepia';
-          if (mode === 'manual' && (manual === 'sepia' || manual === 'dark')) {
-            theme = manual;
-          } else {
-            var hour = new Date().getHours();
-            theme = (hour >= 20 || hour < 7) ? 'dark' : 'sepia';
-          }
-          document.documentElement.setAttribute('data-theme', theme);
-        } catch (e) {}
-      })();
-    </script>
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <a class="wordmark" href="/" aria-label="KIVENTIS – Startseite">
+      <img class="wordmark__mark" src="/assets/mark.svg" alt="" width="26" height="26">
+      <span>Kiventis<span class="wordmark__tag">ERP-Prozessberatung &amp; KI-Enablement</span></span>
+    </a>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <span class="nav__links">
+        <a href="#programme">Programme</a>
+        <a href="#werkzeuge">Werkzeuge</a>
+        <a href="#nachweise">Nachweise</a>
+        <a href="#preise">Preise</a>
+        <a href="#ablauf">Ablauf</a>
+        <a href="#fragen">Fragen</a>
+      </span>
+      <a class="nav__lang" href="/en/" hreflang="en" lang="en">EN</a>
+      <a class="btn btn--small" href="mailto:Kontakt@kiventis.com?subject=Erstgespr%C3%A4ch">Erstgespräch</a>
+    </nav>
+  </div>
+</header>
 
-    <!-- Umami Analytics (Privacy-friendly, GDPR-compliant, Cookie-free) -->
-    <script
-      defer
-      src="https://analytics.kiventis.com/script.js"
-      data-website-id="e1929661-c80f-41fa-bf0e-25e76d678236">
-    </script>
-  </head>
-  <body class="bg-[#0B0F17] text-[#E2E8F0] antialiased selection:bg-[#0D9488] selection:text-white">
-    <!-- Static Semantic Crawling Fallback inside #root: Extracted by search engine bots & AI web indexers (ChatGPT, Perplexity, Claude, Google) without JS. Overwritten on React mount. -->
-    <div id="root">
-      <!-- SEO:STATIC -->
-      <header style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
-        <p style="font-size: 0.875rem; color: #14B8A6; font-weight: 600; text-transform: uppercase;">KIVENTIS · Enterprise AI Enablement DACH &amp; APAC</p>
-        <h1 style="font-size: 2.25rem; font-weight: 800; line-height: 1.2; margin-top: 0.5rem;">B2B KI-Trainings, Vibe Coding &amp; EU AI Act Zertifizierung für den Mittelstand</h1>
-        <p style="font-size: 1.125rem; color: #94A3B8; margin-top: 1rem;">25+ Jahre KI-Beratung für KMU &amp; ERP-Prozessautomatisierung mit über 250 umgesetzten ERP-Projekten. Wir befähigen Fachbereichsteams (Citizen Developer) zum Bau eigener Micro-Apps und garantieren 100% rechtskonforme AI Literacy nach Art. 4 EU AI Act.</p>
-      </header>
+<main id="main">
 
-      <main style="padding: 1rem 2rem; max-width: 1200px; margin: 0 auto;">
-        <section>
-          <h2>Die 4 KIVENTIS Kernprogramme (Kunden-Pfad)</h2>
-          <ol>
-            <li>
-              <h3>01 Quick Start: AI Opportunity Scan &amp; Workflow Audit</h3>
-              <p>Strukturierte Prozessanalyse von ERP- und Fachteam-Abläufen, Ermittlung sofortiger Entlastungspotenziale und verbindliche ROI-Kalkulation (typische Amortisation in 2 bis 4 Monaten).</p>
-            </li>
-            <li>
-              <h3>02 Core Program: Vibe Coding &amp; ERP Micro-Apps</h3>
-              <p>Citizen Developer Enablement: Fachkräfte bauen ohne manuelle Programmierkenntnisse funktionierende Web-Tools und Micro-Apps mit abgesicherter Staging-Anbindung an SAP, Microsoft Dynamics 365, Mesonic WinLine, proALPHA und abas ERP.</p>
-            </li>
-            <li>
-              <h3>03 Legal Mandate: EU AI Act Art. 4 Zertifizierung</h3>
-              <p>Gesetzliche Schulungspflicht nach Art. 4 EU AI Act (Verordnung EU 2024/1689): Audit- und haftungssichere Schulungsnachweise, KI-Nutzungsrichtlinien und Governance für KMUs.</p>
-            </li>
-            <li>
-              <h3>04 Air-Gapped Sovereign AI: On-Premise LLMs &amp; RAG</h3>
-              <p>Datensouveräne Inferenz ohne Cloud-Abhängigkeit (0 Byte Transfer): Lokale Open-Weights-Modelle (Qwen 2.5 / 3, DeepSeek R1/V3, Mistral, Gemma) und lokale Vektordatenbanken (Qdrant) hinter der Firmen-Firewall.</p>
-            </li>
-          </ol>
-        </section>
-
-        <section style="margin-top: 2rem;">
-          <h2>Häufige Fragen für Geschäftsführung &amp; IT-Leitung (GEO / FAQ)</h2>
-          <article>
-            <h3>Was bedeutet Vibe Coding im ERP-Umfeld?</h3>
-            <p>Vibe Coding im ERP-Umfeld bedeutet, dass Fachteams ohne manuelle Programmierung per KI-Prompts voll funktionsfähige Micro-Apps (z. B. Stücklisten-Kalkulatoren, ZUGFeRD-Prüfer oder Nachbestellportale) entwickeln, die über validierte Staging-Schichten sicher an ERP-Systeme angebunden werden.</p>
-          </article>
-          <article>
-            <h3>Wie wird die Datenbank-Sicherheit bei Citizen Development garantiert?</h3>
-            <p>Die Datenbank-Sicherheit wird durch ein striktes 3-Stufen-Staging mit Schema-Validierung und OData/REST-APIs garantiert: Micro-Apps erhalten niemals direkten SQL-Schreibzugriff auf produktive ERP-Tabellen.</p>
-          </article>
-          <article>
-            <h3>Was fordert Artikel 4 des EU AI Act für KMUs?</h3>
-            <p>Artikel 4 des EU AI Act verpflichtet alle gewerblichen Betreiber von KI-Systemen seit dem 2. Februar 2025 verbindlich, ein angemessenes Maß an KI-Kompetenz (AI Literacy) im Personal nachzuweisen.</p>
-          </article>
-          <article>
-            <h3>Wie funktioniert On-Premise KI ohne US-Cloud?</h3>
-            <p>On-Premise KI läuft zu 100 % autark auf firmeneigenen Servern über moderne Open-Weights-Architekturen (Qwen 2.5 / Qwen 3, DeepSeek R1/V3, Mistral, Gemma via vLLM oder Ollama) und lokale Vektordatenbanken (Qdrant).</p>
-          </article>
-          <article>
-            <h3>Mit welchen ERP-Systemen integriert Kiventis?</h3>
-            <p>KIVENTIS verbindet KI-Workflows nativ mit SAP S/4HANA &amp; ECC, Microsoft Dynamics 365 (Business Central &amp; F&amp;O), Mesonic WinLine, proALPHA, abas ERP sowie Infor und Sage.</p>
-          </article>
-          <article>
-            <h3>Wie schnell amortisiert sich das Training?</h3>
-            <p>Das Training amortisiert sich typischerweise in 2 bis 4 Monaten (oft in unter 60 Tagen): Durch 4,5 bis 7 eingesparte Arbeitsstunden pro Woche und Fachkraft bei 75 € Stundensatz.</p>
-          </article>
-        </section>
-
-        <footer style="margin-top: 3rem; border-top: 1px solid #334155; padding-top: 1rem;">
-          <p><strong>KIVENTIS</strong> · ERP and Marketing Solutions LLC</p>
-          <p>Regionale Abdeckung: Deutschland (München, Stuttgart, Frankfurt, Berlin, Hamburg), Österreich (Wien), Schweiz (Zürich) sowie globale Remote-Sessions (DE/EN) für APAC (Singapur) und Nordamerika.</p>
-          <p>Kontakt: <a href="mailto:Kontakt@kiventis.com">Kontakt@kiventis.com</a> · Website: <a href="https://www.kiventis.com">https://www.kiventis.com</a></p>
-        </footer>
-      </main>
-      <!-- /SEO:STATIC -->
-    </div>
-
-    <!-- Noscript Crawling Fallback for Non-JS Environments -->
-    <noscript>
-      <div style="background-color: #070A10; color: #E2E8F0; padding: 2rem; font-family: sans-serif;">
-        <p><strong>KIVENTIS B2B KI-Trainings &amp; Enablement</strong>: 25+ Jahre Erfahrung, &gt;250 realisierte ERP-Projekte in DACH &amp; APAC. Vibe Coding, EU AI Act Schulungspflicht Art. 4, On-Premise LLM &amp; RAG Architekturen (Qwen, DeepSeek, Mistral, Gemma). Kontakt: Kontakt@kiventis.com.</p>
+  <!-- 01 · Hero -->
+  <section class="wrap hero" aria-labelledby="hero-title">
+    <div>
+      <p class="eyebrow">ERP-Beratung seit 2000 · DACH und Südostasien</p>
+      <h1 id="hero-title">Ihr Team baut seine ERP-Werkzeuge selbst. Wir zeigen ihm, wie.</h1>
+      <p class="hero__lead">Seit 25 Jahren optimieren wir ERP-Prozesse im Mittelstand. Heute schulen wir Ihre Fachabteilungen darin, mit KI eigene Werkzeuge zu bauen – und Ihre Belegschaft erfüllt dabei die Schulungspflicht nach Artikel 4 des EU AI Act.</p>
+      <div class="hero__actions">
+        <a class="btn" href="mailto:Kontakt@kiventis.com?subject=Erstgespr%C3%A4ch">Erstgespräch vereinbaren</a>
+        <a class="btn btn--ghost" href="#preise">Preise ansehen</a>
       </div>
-    </noscript>
-    <!-- SEO:ROUTE-JSONLD -->
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+    </div>
+    <div class="hero__aside">
+      <p>Vier Werkzeuge aus Kundenteams und aus unseren eigenen Export-Pipelines zeigen wir weiter unten im Original – und als laufende Demo, nicht als Grafik.</p>
+      <a class="hero__link" href="#werkzeuge">Werkzeuge ansehen →</a>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="facts" aria-label="Kennzahlen">
+      <div class="fact">
+        <span class="fact__num">25 Jahre</span>
+        <span class="fact__label">ERP- und Prozessberatung</span>
+      </div>
+      <div class="fact">
+        <span class="fact__num">250+</span>
+        <span class="fact__label">umgesetzte ERP- und Integrationsprojekte</span>
+      </div>
+      <div class="fact">
+        <span class="fact__num">40</span>
+        <span class="fact__label">Branchen in Europa und Südostasien</span>
+      </div>
+      <div class="fact">
+        <span class="fact__num">4,5–7 Std.†</span>
+        <span class="fact__label">weniger Handarbeit pro Woche und Fachkraft</span>
+      </div>
+    </div>
+    <p class="prices__note">† Erfahrungswert aus Kundenprojekten; die tatsächliche Entlastung hängt von Prozess und Datenlage ab und wird im Opportunity Scan gemessen.</p>
+  </div>
+
+  <!-- 02 · Problem -->
+  <section class="band" id="problem" aria-labelledby="problem-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">01 · Ausgangslage</span>
+        <div>
+          <h2 id="problem-title">Warum KI im Mittelstand nach dem Pilotprojekt endet</h2>
+          <p>Wir kommen in Unternehmen, in denen längst experimentiert wurde. Was fehlt, ist selten ein weiteres Tool – es fehlen Zuständigkeit, Nachweis und ein Prozess, der die Ergebniszahl liefert.</p>
+        </div>
+      </div>
+      <div class="pains">
+        <article class="pain">
+          <h3>Lizenzen ohne Messgröße</h3>
+          <p>ChatGPT, Copilot und Cursor sind gebucht, aber niemand kann sagen, wie viele Stunden dadurch wegfallen. Ohne Messgröße lässt sich die Investition im EBIT nicht verteidigen.</p>
+        </article>
+        <article class="pain">
+          <h3>Schulungspflicht ist Gesetz</h3>
+          <p>Seit dem 2. Februar 2025 verlangt Artikel 4 des EU AI Act, dass gewerbliche Anwender die KI-Kompetenz ihres Personals sicherstellen – abhängig von Rolle und Einsatzszenario, und nachweisbar.</p>
+        </article>
+        <article class="pain">
+          <h3>Die IT hat keinen Platz dafür</h3>
+          <p>Klassische Softwareprojekte laufen 9 bis 18 Monate. Für ein internes Hilfstool fehlt die Kapazität, während in der Fachabteilung täglich Stunden mit Copy-Paste verloren gehen.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 · Programme -->
+  <section class="band band--paper2" id="programme" aria-labelledby="programme-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">02 · Programme</span>
+        <div>
+          <h2 id="programme-title">Vier Programme, die aufeinander aufbauen</h2>
+          <p>Jedes Programm lässt sich einzeln buchen. In der Regel beginnt es mit dem Scan, weil danach feststeht, welche zwei Prozesse sich zuerst rechnen.</p>
+        </div>
+      </div>
+
+      <div class="path">
+        <article class="path__row">
+          <span class="path__num">01</span>
+          <div>
+            <h3>Opportunity Scan</h3>
+            <p>Zwei Wochen mit der Geschäftsführung: bis zu fünf Kernprozesse werden durchgegangen, die drei lohnendsten Eingriffe priorisiert, Lizenzkosten gegen On-Premise gerechnet. Ergebnis ist eine Entscheidungsvorlage für Vorstand, Beirat oder Bank – kein Foliensatz mit Potenzialwolken.</p>
+          </div>
+          <p class="path__meta"><strong>999 €</strong>Aktionspreis, regulär 2.400 € · 2 Wochen · bis 8 Führungskräfte</p>
+        </article>
+
+        <article class="path__row">
+          <span class="path__num">02</span>
+          <div>
+            <h3>Online-Intensivkurs KI und Vibe Coding</h3>
+            <p>Vier Wochen, ein bis zwei Termine pro Woche. Fachkräfte aus Einkauf, Vertrieb, Arbeitsvorbereitung oder Kundenservice bauen zwei bis drei echte Werkzeuge auf eigenen Daten und lernen, Wissensbasen anzuschließen (RAG). Vorkenntnisse in Programmierung sind nicht nötig. Am Ende hat jeder Teilnehmer ein Zertifikat für die Befähigung.</p>
+          </div>
+          <p class="path__meta"><strong>4.900 €</strong>Pauschale für das Fachteam · 4 Wochen · bis 12 Fachkräfte</p>
+        </article>
+
+        <article class="path__row">
+          <span class="path__num">03</span>
+          <div>
+            <h3>Compliance nach Artikel 4</h3>
+            <p>Rollenbezogene Schulung der Belegschaft, Nutzungsrichtlinie, Prompt-Regeln und ein KI-Systemverzeichnis analog zum Verzeichnis der Verarbeitungstätigkeiten. Die Nachweise sind so aufgebaut, dass Wirtschaftsprüfer oder Aufsicht sie lesen können.</p>
+          </div>
+          <p class="path__meta"><strong>im Enterprise-Programm enthalten</strong>Schulungsnachweise · Richtlinie · Systemverzeichnis</p>
+        </article>
+
+        <article class="path__row">
+          <span class="path__num">04</span>
+          <div>
+            <h3>On-Premise-Modelle und RAG</h3>
+            <p>Wenn Daten das Haus nicht verlassen dürfen: Open-Weights-Modelle (Qwen, DeepSeek, Mistral, Gemma) über vLLM oder Ollama auf eigener Hardware, Wissensbasis in Qdrant oder pgvector. Anbindung ans ERP ausschließlich lesend über Staging-Schichten – kein Werkzeug schreibt direkt in Produktivtabellen.</p>
+          </div>
+          <p class="path__meta"><strong>0 Byte</strong>Datenverkehr nach außen · SAP, Dynamics 365, WinLine, proALPHA, abas, Infor, Sage</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 · Werkzeuge -->
+  <section class="band" id="werkzeuge" aria-labelledby="werkzeuge-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">03 · Werkzeuge</span>
+        <div>
+          <h2 id="werkzeuge-title">Vier Werkzeuge, die im Kurs und im Projektalltag entstanden sind</h2>
+          <p>Beides sind Werkzeuge aus Kundenprojekten, gebaut von Fachkräften aus Arbeitsvorbereitung und Kundenservice. Beide laufen öffentlich als Demo – dort können Sie sie anklicken.</p>
+        </div>
+      </div>
+
+      <div class="tools">
+        <article class="tool">
+          <figure class="tool__shot">
+            <a class="shot" href="/assets/shot-bom.webp" aria-label="BOM Designer Pro in voller Größe öffnen">
+              <img src="/assets/shot-bom.webp" width="1600" height="1144"
+                   alt="Screenshot des BOM Designer Pro: Stücklisten- und Baukastenkalkulator mit Positionsliste"
+                   fetchpriority="high" decoding="async">
+            </a>
+          </figure>
+          <div class="tool__text">
+            <h3>BOM Designer Pro</h3>
+            <p>Stücklisten- und Baukastenkalkulator für Fertigung und Maschinenbau, mit Export ins ERP. Die Arbeitsvorbereitung stellt damit Konfigurationen zusammen, ohne eine Zeile Code zu schreiben.</p>
+            <p class="tool__meta">Eingesetzt in: Arbeitsvorbereitung und technischer Vertrieb · Web-Tool, keine Installation</p>
+            <a href="/beispiele/bom-designer">Live-Demo ansehen →</a>
+          </div>
+        </article>
+
+        <article class="tool tool--flip">
+          <figure class="tool__shot">
+            <a class="shot" href="/assets/shot-rechnung.webp" aria-label="Rechnungsprüfer in voller Größe öffnen">
+              <img src="/assets/shot-rechnung.webp" width="1600" height="1145"
+                   alt="Screenshot des Rechnungsprüfers mit Diskrepanz-Radar: Eingangsrechnungen im Abgleich gegen Bestellung"
+                   loading="lazy" decoding="async">
+            </a>
+          </figure>
+          <div class="tool__text">
+            <h3>Rechnungsprüfer &amp; Diskrepanz-Radar</h3>
+            <p>Dreistufiger Abgleich von Eingangsrechnungen gegen Bestellung und Lieferschein, mit Toleranzprüfung und Freigabe-Workflow. Was früher 15 Minuten pro Fall kostete, läuft heute in unter drei.</p>
+            <p class="tool__meta">Eingesetzt in: Einkauf und Buchhaltung · Abgleich gegen SAP und Dynamics</p>
+            <a href="/beispiele/rechnungspruefer">Live-Demo ansehen →</a>
+          </div>
+        </article>
+
+        <article class="tool">
+          <figure class="tool__shot">
+            <a class="shot" href="/assets/shot-fi-export.webp" aria-label="Buchungsexport in voller Größe öffnen">
+              <img src="/assets/shot-fi-export.webp" width="1600" height="1158"
+                   alt="Screenshot des Buchungsexports: drei FI-Belege mit Soll- und Habenspalten, rechts die erzeugte RFBIBL00-Datei mit den Satzarten BGR00, BBK00 und BBS00"
+                   loading="lazy" decoding="async">
+            </a>
+          </figure>
+          <div class="tool__text">
+            <h3>Buchungsexport für die Finanzbuchhaltung</h3>
+            <p>Die Buchhaltung sammelt ihre Belege in einer Liste und lädt sie als fertige RFBIBL00-Datei hoch, statt jede Buchung einzeln im SAP-Layout zu erfassen. Vor dem Export prüft das Werkzeug, ob Soll und Haben je Beleg aufgehen.</p>
+            <p class="tool__meta">Eingesetzt in: Buchhaltung · Satzarten BGR00, BBK00, BBS00 · UTF-8 oder ISO-8859-1</p>
+            <a href="/beispiele/fi-rfbibl00/">Live-Demo ansehen →</a>
+          </div>
+        </article>
+
+        <article class="tool tool--flip">
+          <figure class="tool__shot">
+            <a class="shot" href="/assets/shot-konditionen.webp" aria-label="Konditionsexport in voller Größe öffnen">
+              <img src="/assets/shot-konditionen.webp" width="1600" height="1160"
+                   alt="Screenshot des Konditionsexports: Konditionssätze mit Staffelpreisen und Statusanzeigen, rechts der erzeugte Export im Satzformat BVD00, BVD01 und BVD02"
+                   loading="lazy" decoding="async">
+            </a>
+          </figure>
+          <div class="tool__text">
+            <h3>Preislisten- und Konditionsexport</h3>
+            <p>Elf Konditionssätze mit Staffelpreisen, Gültigkeiten und Rabatten, ausgegeben in der Struktur, die der Konditionsimport erwartet. Ungültige Laufzeiten und unlogische Staffeln fallen vor dem Export auf statt später beim Kunden.</p>
+            <p class="tool__meta">Eingesetzt in: Vertrieb · Konditionsarten PR00, K004, K005 · IDoc COND_A04</p>
+            <a href="/beispiele/preise-konditionen/">Live-Demo ansehen →</a>
+          </div>
+        </article>
+        <p class="tools__more"><a href="/beispiele/">Alle vier Demos im Überblick ansehen →</a></p>
+
+      <!--
+        VORLAGE FÜR EIN WEITERES WERKZEUG
+        Bild vorbereiten:  python3 tools/prepare_tool_image.py <screenshot.png>
+        Das Skript legt assets/shot-<name>.webp an und gibt den fertigen Block aus.
+        Block unter dem letzten <article class="tool"> einfügen und bei jedem
+        zweiten Element die Klasse "tool--flip" mitnehmen.
+
+      <article class="tool tool--flip">
+        <figure class="tool__shot">
+          <a class="shot" href="/assets/shot-NAME.webp" aria-label="NAME in voller Größe öffnen">
+            <img src="/assets/shot-NAME.webp" width="1600" height="1144"
+                 alt="Screenshot von NAME: was auf dem Bild zu sehen ist"
+                 loading="lazy" decoding="async">
+          </a>
+        </figure>
+        <div class="tool__text">
+          <h3>NAME</h3>
+          <p>Zwei Sätze: was das Werkzeug tut und welches Problem es löst. Zahlen nur mit Quelle.</p>
+          <p class="tool__meta">Eingesetzt in: ABTEILUNG · Anbindung an SYSTEM</p>
+          <a href="/beispiele/ROUTE">Live-Demo ansehen →</a>
+        </div>
+      </article>
+      -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 · Nachweise -->
+  <section class="band" id="nachweise" aria-labelledby="nachweise-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">04 · Nachweise</span>
+        <div>
+          <h2 id="nachweise-title">Was dabei tatsächlich herausgekommen ist</h2>
+          <p>Zwei anonymisierte Referenzen mit Vorher-Nachher-Zahlen. Kundennamen nennen wir auf Anfrage, ein Teil der Projekte ist vertraglich zur Anonymität verpflichtet.</p>
+        </div>
+      </div>
+
+      <article class="case">
+        <div>
+          <p class="case__kicker">Sondermaschinenbau · 240 Mitarbeitende · Baden-Württemberg</p>
+          <h3>Angebote in vier Stunden statt in vier Tagen</h3>
+          <p>Die Angebotserstellung für hochkomplexe Fertigungsteile erforderte das Durchsuchen von über 80 Seiten CAD-Spezifikation pro Anfrage. Die Angebotsabgabe dauerte im Schnitt drei bis fünf Werktage – Aufträge gingen an schnellere Wettbewerber.</p>
+          <p>Lösung: dreiwöchiges Online-Training für den technischen Vertrieb. Das Team baute per Prompt eine eigene Suchmaske, die CAD-Notizen und ERP-Kalkulationen gegeneinander abgleicht.</p>
+          <blockquote>
+            „Unsere Vertriebsingenieure waren anfangs skeptisch gegenüber KI. Nach dem Training haben sie ihr eigenes Werkzeug gebaut. Wir gewinnen heute Ausschreibungen, weil wir am selben Tag ein präzises Angebot liefern.“
+            <footer>Vertriebsleitung und Geschäftsführung · Referenz-Benchmark Sondermaschinenbau (240 FTE)</footer>
+          </blockquote>
+        </div>
+        <div>
+          <div class="table-scroll"><table class="kpi">
+            <caption>Vorher und nachher, gemessen im Projekt</caption>
+            <thead>
+              <tr><th scope="col">Kennzahl</th><th scope="col">vorher</th><th scope="col">nachher</th><th scope="col">Veränderung</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Prüfdauer pro Anfrage</td><td>45 Min.</td><td>6 Min.</td><td class="delta">−87 %</td></tr>
+              <tr><td>Time-to-Quote</td><td>4 Tage</td><td>4 Stunden</td><td class="delta">24× schneller</td></tr>
+              <tr><td>Konversionsrate Angebote</td><td>22 %</td><td>38 %</td><td class="delta">+72 %</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </article>
+
+      <article class="case">
+        <div>
+          <p class="case__kicker">Technischer Großhandel · 140 Mitarbeitende · Wien und Singapur</p>
+          <h3>1.200 Reklamationen im Monat, fast ohne Handarbeit</h3>
+          <p>Über 1.200 Lieferantenreklamationen und Frachtabweichungen pro Monat wurden per Copy-Paste in SAP und Excel übertragen. Bearbeitungszeit: über 15 Minuten pro Fall, mit spürbarer Fehlerquote in den Gutschriften.</p>
+          <p>Lösung: Schulung des Kundenservice-Teams, danach ein Reklamations-Assistent, der E-Mails ausliest, im ERP abgleicht und Buchungsentwürfe vorschlägt.</p>
+          <blockquote>
+            „Das KIVENTIS-Team redet kein Berater-Kauderwelsch, sondern zeigt den Mitarbeitern direkt am Bildschirm, wie sie Aufgaben lösen. Unsere Service-Mitarbeiter lieben das neue Tool – und wir sparen monatlich Hunderte Arbeitsstunden.“
+            <footer>Leitung Customer Operations und Disposition · Referenz-Benchmark B2B-Großhandel (140 FTE)</footer>
+          </blockquote>
+        </div>
+        <div>
+          <div class="table-scroll"><table class="kpi">
+            <caption>Vorher und nachher, gemessen im Projekt</caption>
+            <thead>
+              <tr><th scope="col">Kennzahl</th><th scope="col">vorher</th><th scope="col">nachher</th><th scope="col">Veränderung</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Bearbeitungszeit pro Fall</td><td>15 Min.</td><td>2,8 Min.</td><td class="delta">−81 %</td></tr>
+              <tr><td>Automatisierungsgrad</td><td>0 %</td><td>81 %</td><td class="delta">weitgehend automatisiert</td></tr>
+              <tr><td>Fehlerquote Gutschriften</td><td>8,4 %</td><td>0,3 %</td><td class="delta">−96 %</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 05 · Preise -->
+  <section class="band band--paper2" id="preise" aria-labelledby="preise-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">05 · Preise</span>
+        <div>
+          <h2 id="preise-title">Festpreise, keine Tagessätze</h2>
+          <p>Alle Programme laufen online, ein bis zwei Termine pro Woche. Keine Reisekosten, keine Nachberechnung nach Stunden.</p>
+        </div>
+      </div>
+
+      <div class="table-scroll"><table class="prices">
+        <thead>
+          <tr>
+            <th scope="col">Programm</th>
+            <th scope="col">Preis</th>
+            <th scope="col">Dauer und Teilnehmer</th>
+            <th scope="col">Enthalten</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Programm"><strong>Opportunity Scan</strong><br><span class="prices__note">Einstieg und Standortbestimmung</span></td>
+            <td data-label="Preis"><span class="price">999 €<small>Aktionspreis, regulär 2.400 €</small></span></td>
+            <td data-label="Dauer">2 Wochen<br>bis 8 Führungskräfte</td>
+            <td data-label="Enthalten">
+              <ul>
+                <li>Analyse von bis zu fünf Kernprozessen</li>
+                <li>Priorisierung der drei lohnendsten Eingriffe</li>
+                <li>ROI- und Business-Case für die Geschäftsführung</li>
+                <li>Lizenzcheck Cloud gegen On-Premise</li>
+                <li>Erste Risikoeinschätzung nach EU AI Act</li>
+                <li>Entscheidungsvorlage und Roadmap</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Programm"><strong>Online-Intensivkurs KI und Vibe Coding</strong><br><span class="prices__note">Unser meistgebuchtes Format</span></td>
+            <td data-label="Preis"><span class="price">4.900 €<small>Pauschal für das gesamte Fachteam</small></span></td>
+            <td data-label="Dauer">4 Wochen<br>bis 12 Fachkräfte</td>
+            <td data-label="Enthalten">
+              <ul>
+                <li>Zwei bis drei fertige Werkzeuge aus dem Kurs</li>
+                <li>RAG-Anbindung eigener PDFs, Excel- und Wissensdateien</li>
+                <li>Prompt-Regeln für belastbare Ergebnisse</li>
+                <li>Wöchentliche Sprechstunde mit Senior-Trainern</li>
+                <li>Befähigungszertifikate für alle Teilnehmer</li>
+                <li>Vier Wochen Support nach Kursende</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Programm"><strong>Enterprise AI Enablement und Compliance</strong><br><span class="prices__note">Für Unternehmen ab 50 Mitarbeitenden</span></td>
+            <td data-label="Preis"><span class="price">9.250 €<small>Vollständiges Programm</small></span></td>
+            <td data-label="Dauer">12 Wochen<br>bis 50 Mitarbeitende</td>
+            <td data-label="Enthalten">
+              <ul>
+                <li>Rollenbezogene Schulung der Belegschaft</li>
+                <li>Nachweise nach Art. 4 EU AI Act</li>
+                <li>KI-Nutzungsrichtlinie und Prompt-Policy</li>
+                <li>KI-Systemverzeichnis als Audit-Grundlage</li>
+                <li>Begleitung bei On-Premise- oder Cloud-Entscheidung</li>
+                <li>Abschlussbericht für Geschäftsführung und Prüfer</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table></div>
+      <p class="prices__note">Alle Preise zzgl. gesetzlicher MwSt. Der Aktionspreis für den Opportunity Scan ist zeitlich befristet; das Enddatum nennen wir im Angebot.</p>
+    </div>
+  </section>
+
+  <!-- 06 · Ablauf -->
+  <section class="band" id="ablauf" aria-labelledby="ablauf-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">06 · Ablauf</span>
+        <div>
+          <h2 id="ablauf-title">Vom Erstgespräch zum ersten Werkzeug in vier Wochen</h2>
+          <p>Der Ablauf gilt für den Intensivkurs. Beim Enterprise-Programm strecken wir dieselben Schritte auf zwölf Wochen.</p>
+        </div>
+      </div>
+      <div class="weeks">
+        <div class="week">
+          <span>Woche 1</span>
+          <h3>Scan und Schatten-IT</h3>
+          <p>Prozesse aufnehmen, genutzte Tools erfassen, Datenflüsse klären, Auftragsverarbeitungsverträge prüfen.</p>
+        </div>
+        <div class="week">
+          <span>Woche 2</span>
+          <h3>Priorisierung</h3>
+          <p>Drei Eingriffe festlegen, Erfolgskriterium und Messmethode definieren, Teilnehmerkreis bestimmen.</p>
+        </div>
+        <div class="week">
+          <span>Woche 3</span>
+          <h3>Schulung und erstes Werkzeug</h3>
+          <p>Artikel-4-Schulung, dann Bau des ersten internen Werkzeugs mit echten Firmendaten.</p>
+        </div>
+        <div class="week">
+          <span>Woche 4</span>
+          <h3>Produktivsetzung</h3>
+          <p>Werkzeug in den Betrieb überführen, Nachweise ablegen, Ergebniszahl messen und dokumentieren.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 · FAQ -->
+  <section class="band band--paper2" id="fragen" aria-labelledby="fragen-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">07 · Fragen</span>
+        <div>
+          <h2 id="fragen-title">Häufige Fragen aus Erstgesprächen</h2>
+        </div>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Was heißt Vibe Coding im ERP-Umfeld?</summary>
+          <p>Fachkräfte aus Einkauf, Vertrieb oder Arbeitsvorbereitung beschreiben in normaler Sprache, was das Werkzeug leisten soll. Das Modell schreibt den Code, die Fachkraft prüft das Ergebnis am realen Datensatz. Typische Ergebnisse sind Stücklisten-Kalkulatoren, ZUGFeRD-Prüfer oder Nachbestellportale. Wer schon einmal eine ERP-Maske konfiguriert hat, kommt damit zurecht.</p>
+        </details>
+        <details>
+          <summary>Wie kommt ein selbstgebautes Tool an ERP-Daten, ohne das System zu gefährden?</summary>
+          <p>Über eine dreistufige Staging-Schicht mit Schema-Validierung und OData- beziehungsweise REST-Schnittstellen. Werkzeuge lesen ausschließlich; Schreibzugriffe auf produktive ERP-Tabellen gibt es nicht. Das ist die erste Frage, die wir mit Ihrer IT klären, nicht die letzte.</p>
+        </details>
+        <details>
+          <summary>Reicht für Artikel 4 EU AI Act eine Teilnahmebescheinigung?</summary>
+          <p>Artikel 4 verlangt ein angemessenes Maß an KI-Kompetenz im Personal, abhängig von Vorkenntnissen, Rolle und Einsatzszenario. Eine Bescheinigung allein erfüllt das nicht. Nachweisbar wird es durch Schulungsinhalte mit Rollenbezug, eine Nutzungsrichtlinie und ein Verzeichnis der eingesetzten Systeme.</p>
+        </details>
+        <details>
+          <summary>Läuft das auch ohne US-Cloud?</summary>
+          <p>Ja. Open-Weights-Modelle wie Qwen, DeepSeek, Mistral oder Gemma laufen über vLLM oder Ollama auf eigener Hardware, die Wissensbasis liegt in einer lokalen Vektordatenbank wie Qdrant oder pgvector. Der Datenverkehr bleibt im Firmennetz; für ein Modell mit 14 bis 32 Milliarden Parametern reicht in der Regel eine einzelne GPU.</p>
+        </details>
+        <details>
+          <summary>Wie schnell rechnet sich das?</summary>
+          <p>In unseren Projekten liegt die Amortisation typischerweise bei zwei bis vier Monaten, gerechnet mit 4,5 bis 7 eingesparten Stunden pro Woche und Fachkraft bei 75 € Stundensatz. Diese Zahl ist ein Erfahrungswert, keine Zusage: Im Opportunity Scan rechnen wir sie mit Ihren Prozesszeiten und Ihrem Stundensatz nach, bevor Sie buchen.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 · Kontakt -->
+  <section class="band" id="kontakt" aria-labelledby="kontakt-title">
+    <div class="wrap contact">
+      <div>
+        <h2 id="kontakt-title">Sprechen wir über den ersten Prozess.</h2>
+        <p>Im Erstgespräch gehen wir einen konkreten Ablauf durch, den Sie heute schon kennen – und sagen Ihnen, ob sich ein Projekt daran lohnt. Wenn nicht, sagen wir das auch.</p>
+      </div>
+      <div class="contact__card">
+        <dl>
+          <dt>E-Mail</dt>
+          <dd><a href="mailto:Kontakt@kiventis.com">Kontakt@kiventis.com</a></dd>
+          <!-- TODO: Telefonnummer ergänzen, sobald erreichbar (wichtig für B2B-Vertrauen) -->
+          <dt>Antwort</dt>
+          <dd>in der Regel innerhalb eines Werktags</dd>
+          <dt>Sprachen</dt>
+          <dd>Deutsch, Englisch</dd>
+        </dl>
+        <div class="contact__actions">
+          <a class="btn" href="mailto:Kontakt@kiventis.com?subject=Erstgespr%C3%A4ch">Erstgespräch vereinbaren</a>
+          <a class="btn btn--ghost" href="mailto:Kontakt@kiventis.com?subject=Praxisleitfaden">Praxisleitfaden anfordern</a>
+        </div>
+        <p class="prices__note">Der Praxisleitfaden für KMU umfasst 38 Seiten und ist kostenlos.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="band--ink foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div>
+        <h2>Kiventis</h2>
+        <p>ERP-Prozessberatung und KI-Enablement für mittelständische Unternehmen in Deutschland, Österreich und der Schweiz.</p>
+      </div>
+      <div>
+        <h2>Seite</h2>
+        <ul>
+          <li><a href="#programme">Programme</a></li>
+          <li><a href="#nachweise">Nachweise</a></li>
+          <li><a href="#preise">Preise</a></li>
+          <li><a href="#fragen">Fragen</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Rechtliches</h2>
+        <ul>
+          <li><a href="/impressum.html">Impressum</a></li>
+          <li><a href="/datenschutz.html">Datenschutz</a></li>
+          <li><a href="/llms.txt">llms.txt</a></li>
+          <li><a href="/en/" hreflang="en" lang="en">English</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__legal">
+      <span>© 2026 Kiventis</span>
+      <span>Alle Preise zzgl. gesetzlicher MwSt.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
 </html>

@@ -1,8 +1,0 @@
-# Vorschaubilder und Prüfberichte entstehen lokal
-qa/
-# macOS
-.DS_Store
-# Playwright-Browser und virtuelle Umgebung werden nie eingecheckt
-.pw-browsers/
-.venv/
-node_modules/
